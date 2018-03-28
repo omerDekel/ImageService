@@ -17,7 +17,19 @@ namespace ImageService.Modal
         #region Members
         private string m_OutputFolder;            // The Output Folder
         private int m_thumbnailSize;              // The Size Of The Thumbnail Size
-       
+
+        public ImageServiceModal()
+        {
+        }
+
+        public string AddFile(string path, out bool result)
+        {
+            Directory.CreateDirectory(path);
+            DateTime dateTime = File.GetCreationTime(path);
+            Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year + "\\" + dateTime.Month);
+            throw new NotImplementedException();
+        }
+
         #endregion
 
     }
