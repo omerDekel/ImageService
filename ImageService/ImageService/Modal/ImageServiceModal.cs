@@ -24,10 +24,27 @@ namespace ImageService.Modal
 
         public string AddFile(string path, out bool result)
         {
-            Directory.CreateDirectory(path);
-            DateTime dateTime = File.GetCreationTime(path);
-            Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year + "\\" + dateTime.Month);
-            throw new NotImplementedException();
+            try
+            {
+                Directory.CreateDirectory(path);
+                DateTime dateTime = File.GetCreationTime(path);
+                Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year);
+                String newPath = m_OutputFolder + "\\" + dateTime.Year + "\\" + dateTime.Month;
+                Directory.CreateDirectory(newPath);
+                String fileName = Path.GetFileName(path);
+                File.Copy(path, newPath + "\\" + fileName);
+                Image image = Image.FromFile(path);
+                Image thumbnail = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
+                thumbnail.Save(Path.ChangeExtension(newPath + "\\" + fileName,"thumb"));
+                result = true;
+                return newPath;
+         
+            } catch (Exception e)
+            {
+                result = false;
+                return e.Message;
+            }
+
         }
 
         #endregion
