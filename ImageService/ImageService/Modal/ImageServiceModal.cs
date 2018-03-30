@@ -17,7 +17,7 @@ namespace ImageService.Modal
         #region Members
         private string m_OutputFolder;            // The Output Folder
         private int m_thumbnailSize;              // The Size Of The Thumbnail Size
-
+        // prototype
         public ImageServiceModal(string m_OutputFolder, int m_thumbnailSize)
         {
             this.m_OutputFolder = m_OutputFolder;

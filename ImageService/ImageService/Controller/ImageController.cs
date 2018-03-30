@@ -3,6 +3,7 @@ using ImageService.Infrastructure;
 using ImageService.Infrastructure.Enums;
 using ImageService.Modal;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,28 @@ namespace ImageService.Controller
             m_modal = modal;                    // Storing the Modal Of The System
             commands = new Dictionary<int, ICommand>()
             {
-				// For Now will contain NEW_FILE_COMMAND
+                // For Now will contain NEW_FILE_COMMAND
+                {0, new NewFileCommand(m_modal) }
             };
         }
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
-           // Write Code Here
+            // Write Code Here
+            try
+            {
+                if (File.Exists(args[0]))
+                {
+                    return commands[commandID].Execute(args, out resultSuccesful);
+                } else
+                {
+                    throw new Exception ("Wrong path!");
+                }
+
+            } catch (Exception e)
+            {
+                resultSuccesful = false;
+                return e.Message;
+            }
         }
     }
 }
