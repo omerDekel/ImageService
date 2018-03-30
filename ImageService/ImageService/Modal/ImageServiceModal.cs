@@ -18,8 +18,10 @@ namespace ImageService.Modal
         private string m_OutputFolder;            // The Output Folder
         private int m_thumbnailSize;              // The Size Of The Thumbnail Size
 
-        public ImageServiceModal()
+        public ImageServiceModal(string m_OutputFolder, int m_thumbnailSize)
         {
+            this.m_OutputFolder = m_OutputFolder;
+            this.m_thumbnailSize = m_thumbnailSize;
         }
 
         public string AddFile(string path, out bool result)
