@@ -23,6 +23,7 @@ using ImageService.Controller;
 using ImageService.Modal;
 using ImageService.Logging;
 using ImageService.Logging.Modal;
+using ImageService.Logging.Modal;
 using System.Configuration;
 using ImageService.Infrastructure;
 
@@ -53,9 +54,7 @@ namespace ImageService
     };
 
     public partial class ImageService : ServiceBase
-    {
-
-        
+    {   
         private ImageServer m_imageServer;          // The Image Server
         private IImageServiceModal modal;
         private IImageController controller;
@@ -71,6 +70,11 @@ namespace ImageService
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
             // What the function really does
+            // Regidter the the logging model event o when a part of the program
+            // send a request to the logging model in order to write a log.
+            // the funtion writeLog will be invoked and it will write the massage to the event viewer.
+            this.logging.MessageRecieved += this.writeLog;
+
             eventLog1.WriteEntry("In OnStart");
             this.timer.Start();
 
@@ -96,5 +100,28 @@ namespace ImageService
         {
 
         }
+
+        private void writeLog(object sender, MessageRecievedEventArgs args)
+        {
+            switch (args.Status)
+            {
+                case MessageTypeEnum.INFO: {
+                        eventLog1.WriteEntry(args.Message, EventLogEntryType.Information);
+                        break;
+                    }
+                case MessageTypeEnum.FAIL:
+                {
+                        eventLog1.WriteEntry(args.Message, EventLogEntryType.Error);
+                        break;
+                }
+                case MessageTypeEnum.WARNING:
+                {
+                        eventLog1.WriteEntry(args.Message, EventLogEntryType.Warning);
+                        break;
+                }
+            }
+            
+        }
+
     }
 }
