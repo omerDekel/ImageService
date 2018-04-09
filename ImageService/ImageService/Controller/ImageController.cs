@@ -27,14 +27,12 @@ namespace ImageService.Controller
         }
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
-            // Write Code Here
             try
             {
                 if (File.Exists(args[0]))
                 {
                     return commands[commandID].Execute(args, out resultSuccesful);
-                } else
-                {
+                } else {
                     throw new Exception ("Wrong path!");
                 }
 

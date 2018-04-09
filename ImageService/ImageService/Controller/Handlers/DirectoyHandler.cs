@@ -35,12 +35,12 @@ namespace ImageService.Controller.Handlers
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             bool result;
-            //throw new NotImplementedException();
+            // if the command is relevant to our directory
             if (m_path.Equals(e.Args[0]))
             {
                 m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
 
-                // check the result and send to the logger
+                //here we need to check the result and send to the logger
             }
         }
 
@@ -56,13 +56,12 @@ namespace ImageService.Controller.Handlers
 
         public void StartHandleDirectory(string dirPath)
         {
-     
+          
+            m_dirWatcher.Changed += new FileSystemEventHandler(OnCreated);
             m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
             // begin watching .
             m_dirWatcher.EnableRaisingEvents = true;
-            //throw new NotImplementedException();
         }
 
-        // Implement Here!
     }
 }
