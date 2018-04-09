@@ -40,12 +40,11 @@ namespace ImageService.Modal
                 Image thumbnail = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
                 thumbnail.Save(Path.ChangeExtension(newPath + "\\" + fileName,"thumb"));
                 result = true;
-                return newPath;
-         
+                return "A file wa added added" + newPath;
             } catch (Exception e)
             {
                 result = false;
-                return e.Message;
+                return "The file adding failed " + e.Message;
             }
 
         }

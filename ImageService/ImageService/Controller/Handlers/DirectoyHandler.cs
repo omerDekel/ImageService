@@ -38,9 +38,17 @@ namespace ImageService.Controller.Handlers
             // if the command is relevant to our directory
             if (m_path.Equals(e.Args[0]))
             {
-                m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
+                string msg = m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
 
                 //here we need to check the result and send to the logger
+                if (result)
+                {           
+                    this.m_logging.Log(msg, MessageTypeEnum.INFO);
+                } else
+                {
+                    this.m_logging.Log(msg, MessageTypeEnum.FAIL);
+                }
+
             }
         }
 
