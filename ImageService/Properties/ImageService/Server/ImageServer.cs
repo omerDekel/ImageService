@@ -20,6 +20,13 @@ namespace ImageService.Server
 
         #region Properties
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
-        #endregion  
+        #endregion
+
+        public ImageServer(ILoggingService logger)
+        {
+            this.m_logging = logger;
+            //m_controller = new ImageController(new ImageServiceModal()); 
+        }
+
     }
 }

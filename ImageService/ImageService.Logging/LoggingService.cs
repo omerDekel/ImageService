@@ -11,6 +11,7 @@ namespace ImageService.Logging
     public class LoggingService : ILoggingService
     {
         public event EventHandler<MessageRecievedEventArgs> MessageRecieved;
+
         public void Log(string message, MessageTypeEnum type)
         {
             // Creates the args calss for the log writing event.

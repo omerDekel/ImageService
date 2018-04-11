@@ -36,7 +36,7 @@ namespace ImageService.Controller.Handlers
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             bool result;
-            // if the command is relevant to our directory
+            // if the command is relevant to our directory (my directory or all the directorys).
             if (m_path.Equals(e.Args[0]) || e.Args[0].Equals("*"))
             {
                 //if it's clossing directory command
@@ -53,7 +53,6 @@ namespace ImageService.Controller.Handlers
                 {
                     this.m_logging.Log(msg, MessageTypeEnum.FAIL);
                 }
-
             }
         }
 
@@ -82,6 +81,10 @@ namespace ImageService.Controller.Handlers
         {
             try
             {
+                // todo check if the folowing code in needed.
+                //m_dirWatcher.Changed -= new FileSystemEventHandler(OnCreated);
+                //m_dirWatcher.Created -= new FileSystemEventHandler(OnCreated);
+
                 m_dirWatcher.EnableRaisingEvents = false;
                 // we invoke to the server ' that it will know this directory was clossed: CommandRecieved -= this.OnCommandRecieved;
                 DirectoryClose?.Invoke(sender, closeEventArgs);
