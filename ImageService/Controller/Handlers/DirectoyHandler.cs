@@ -23,12 +23,13 @@ namespace ImageService.Controller.Handlers
         #endregion
         public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              // The Event That Notifies that the Directory is being closed
 
-        public DirectoyHandler(IImageController m_controller, ILoggingService m_logging, string m_path)
+        public DirectoyHandler(IImageController m_controller, ILoggingService m_logging, FileSystemWatcher m_dirWatcher,
+            string m_path)
         {
             this.m_controller = m_controller;
             this.m_logging = m_logging;
             this.m_path = m_path;
-            m_dirWatcher = new FileSystemWatcher(m_path);
+            this.m_dirWatcher = new FileSystemWatcher(m_path);
             m_logging.Log("Created new DirectoryHandler", MessageTypeEnum.INFO);
         }
 
@@ -40,17 +41,17 @@ namespace ImageService.Controller.Handlers
             {
                 //if it's clossing directory command
                 if(e.CommandID == 1) {
-                    CloseHandle();
+                    CloseHandle(sender, new DirectoryCloseEventArgs(m_path, "closing directory"));
                 }
                 string msg = m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
 
                 //here we need to check the result and send to the logger
                 if (result)
                 {           
-                    m_logging.Log(msg, MessageTypeEnum.INFO);
+                    this.m_logging.Log(msg, MessageTypeEnum.INFO);
                 } else
                 {
-                    m_logging.Log(msg, MessageTypeEnum.FAIL);
+                    this.m_logging.Log(msg, MessageTypeEnum.FAIL);
                 }
             }
         }
@@ -74,21 +75,21 @@ namespace ImageService.Controller.Handlers
             m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
             // begin watching .
             m_dirWatcher.EnableRaisingEvents = true;
-            m_logging.Log("Start to handle directory"+dirPath,MessageTypeEnum.INFO);
+            this.m_logging.Log("Start to handle directory"+dirPath,MessageTypeEnum.INFO);
         }
-        public void CloseHandle()
+        public void CloseHandle(object sender, DirectoryCloseEventArgs closeEventArgs)
         {
             try
             {
                 // todo check if the folowing code in needed.
                 //m_dirWatcher.Changed -= new FileSystemEventHandler(OnCreated);
                 //m_dirWatcher.Created -= new FileSystemEventHandler(OnCreated);
-                DirectoryCloseEventArgs closeEventArgs = new DirectoryCloseEventArgs(m_path, "closing directory"+m_path);
+
                 m_dirWatcher.EnableRaisingEvents = false;
                 // we invoke to the server ' that it will know this directory was clossed: CommandRecieved -= this.OnCommandRecieved;
-                DirectoryClose?.Invoke(this, closeEventArgs);
+                DirectoryClose?.Invoke(sender, closeEventArgs);
             } catch (Exception e){
-                m_logging.Log("couldnt close handler" + m_path + " " + e.Message, MessageTypeEnum.FAIL);
+                this.m_logging.Log("couldnt close handler" + this.m_path + " " + e.Message, MessageTypeEnum.FAIL);
 
             }
         }

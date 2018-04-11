@@ -22,11 +22,39 @@ namespace ImageService.Server
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
         #endregion
 
-        public ImageServer(ILoggingService logger)
+        public ImageServer(ILoggingService logger, IImageController controller, String[] directories)
         {
-            this.m_logging = logger;
-            //m_controller = new ImageController(new ImageServiceModal()); 
+            m_logging = logger;
+            m_controller = controller;
+            DirectoyHandler directoyHandler;
+            for( int i = 0; i < directories.Length; i++)
+            {
+                directoyHandler = new DirectoyHandler(m_controller, m_logging, directories[i]);
+                CommandRecieved += directoyHandler.OnCommandRecieved;
+                directoyHandler.DirectoryClose += OnDirectoryClose;
+                m_logging.Log("Created directory handler " + directories[i], Logging.Modal.MessageTypeEnum.INFO);
+            }
+            m_logging.Log("Created server", Logging.Modal.MessageTypeEnum.INFO);
         }
+        public void OnDirectoryClose (object sender, DirectoryCloseEventArgs e)
+        {
+            try
+            {
+                CommandRecieved -= ((DirectoyHandler)sender).OnCommandRecieved;
+                m_logging.Log(e.Message, Logging.Modal.MessageTypeEnum.INFO);
+            } catch
+            {
+                m_logging.Log("failed to close directory handler", Logging.Modal.MessageTypeEnum.FAIL);
 
+            }
+        }
+        // should it be invoked by event ?
+        public void OnClosedService()
+        {
+            string[] args = { "*" };
+            CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs(1,args, "*");
+            CommandRecieved?.Invoke(this, commandRecievedEventArgs);
+            m_logging.Log("Server notify to close directory handler", Logging.Modal.MessageTypeEnum.INFO);
+        }
     }
 }
