@@ -70,10 +70,6 @@ namespace ImageService
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
             // What the function really does
-            // Regidter the the logging model event o when a part of the program
-            // send a request to the logging model in order to write a log.
-            // the funtion writeLog will be invoked and it will write the massage to the event viewer.
-            this.logging.MessageRecieved += this.writeLog;
 
             eventLog1.WriteEntry("In OnStart");
             this.timer.Start();

@@ -1,4 +1,11 @@
 ﻿using System.Diagnostics;
+using System.Configuration;
+using ImageService.Logging;
+using ImageService.Modal;
+using ImageService.Controller;
+using ImageService.Server;
+
+
 
 namespace ImageService
 {
@@ -10,35 +17,63 @@ namespace ImageService
         private System.ComponentModel.IContainer components = null;
         private System.Diagnostics.EventLog eventLog1;
         private System.Timers.Timer timer;
+        //private
         private int eventId = 1;
+
 
         public ImageService()
         {
             InitializeComponent();
+            
+            string sourceDirectoriesKey = "Handler";
+            string outPutDirKey = "OutputDir";
+            string logSourceNameKey = "SourceName";
+            string logNameKey = "LogName";
+            string thumbnailSizeKey = "ThumbnailSize";
 
-            // Evant log staff
+            // Define the evant log, messages from this application will be writeen to.
             eventLog1 = new System.Diagnostics.EventLog();
-            if (!System.Diagnostics.EventLog.SourceExists("MySource"))
+            if (!System.Diagnostics.EventLog.SourceExists(this.getAppConfigValue(logSourceNameKey)))
             {
                 System.Diagnostics.EventLog.CreateEventSource(
-                    "MySource", "MyNewLog");
+                    this.getAppConfigValue(logSourceNameKey), this.getAppConfigValue(logNameKey));
             }
-            eventLog1.Source = "MySource";
-            eventLog1.Log = "MyNewLog";
+            eventLog1.Source = this.getAppConfigValue(logSourceNameKey);
+            eventLog1.Log = this.getAppConfigValue(logNameKey);
 
-            // Timer stauff
+            // Defime the service's timer
             this.timer = new System.Timers.Timer();
             this.timer.Interval = 60000; // 60 seconds  
             this.timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
-            
 
+            // Define the logger
+            this.logging = new LoggingService();
+            // Regidter the the logging model event o when a part of the program
+            // send a request to the logging model in order to write a log.
+            // the funtion writeLog will be invoked and it will write the massage to the event viewer.
+            this.logging.MessageRecieved += this.writeLog;
+
+            // Define the ImageModel
+            int size = int.Parse(this.getAppConfigValue(thumbnailSizeKey));
+            this.modal = new ImageServiceModal(this.getAppConfigValue(outPutDirKey), size);
+
+            // Define the controler
+            this.controller = new ImageController(this.modal);
+
+            // Define the server
+            string directories = this.getAppConfigValue(sourceDirectoriesKey);
+            string[] directoryArray = directories.Split(';');
+            this.m_imageServer = new ImageServer(this.logging, this.controller, directoryArray); 
         }
 
         public ImageService(string[] args)
         {
             InitializeComponent();
-            string eventSourceName = "MySource";
-            string logName = "MyNewLog";
+            string logSourceNameKey = "SourceName";
+            string logNameKey = "LogName";
+
+            string eventSourceName = this.getAppConfigValue(logSourceNameKey);
+            string logName = this.getAppConfigValue(logNameKey);
             if (args.Length > 0)
             {
                 eventSourceName = args[0];
@@ -98,6 +133,11 @@ namespace ImageService
         {
             // TODO: Insert monitoring activities here.  
             eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
+        }
+
+        private string getAppConfigValue(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
         }
     }
 }
