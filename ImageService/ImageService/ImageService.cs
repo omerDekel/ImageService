@@ -70,6 +70,45 @@ namespace ImageService
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
             // What the function really does
+            string sourceDirectoriesKey = "Handler";
+            string outPutDirKey = "OutputDir";
+            string logSourceNameKey = "SourceName";
+            string logNameKey = "LogName";
+            string thumbnailSizeKey = "ThumbnailSize";
+
+            // Define the evant log, messages from this application will be writeen to.
+            eventLog1 = new System.Diagnostics.EventLog();
+            if (!System.Diagnostics.EventLog.SourceExists(this.getAppConfigValue(logSourceNameKey)))
+            {
+                System.Diagnostics.EventLog.CreateEventSource(
+                    this.getAppConfigValue(logSourceNameKey), this.getAppConfigValue(logNameKey));
+            }
+            eventLog1.Source = this.getAppConfigValue(logSourceNameKey);
+            eventLog1.Log = this.getAppConfigValue(logNameKey);
+
+            // Defime the service's timer
+            this.timer = new System.Timers.Timer();
+            this.timer.Interval = 60000; // 60 seconds  
+            this.timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
+
+            // Define the logger
+            this.logging = new LoggingService();
+            // Regidter the the logging model event o when a part of the program
+            // send a request to the logging model in order to write a log.
+            // the funtion writeLog will be invoked and it will write the massage to the event viewer.
+            this.logging.MessageRecieved += this.writeLog;
+
+            // Define the ImageModel
+            int size = int.Parse(this.getAppConfigValue(thumbnailSizeKey));
+            this.modal = new ImageServiceModal(this.getAppConfigValue(outPutDirKey), size);
+
+            // Define the controler
+            this.controller = new ImageController(this.modal);
+
+            // Define the server
+            string directories = this.getAppConfigValue(sourceDirectoriesKey);
+            string[] directoryArray = directories.Split(';');
+            this.m_imageServer = new ImageServer(this.logging, this.controller, directoryArray);
 
             eventLog1.WriteEntry("In OnStart");
             this.timer.Start();
@@ -81,6 +120,7 @@ namespace ImageService
 
         protected override void OnStop()
         {
+            this.m_imageServer.OnClosedService();
             eventLog1.WriteEntry("In onStop.");
         }
 

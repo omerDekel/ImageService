@@ -29,7 +29,7 @@ namespace ImageService.Modal
         {
             try
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(this.m_OutputFolder);
                 DateTime dateTime = File.GetCreationTime(path);
                 Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year);
                 String newPath = m_OutputFolder + "\\" + dateTime.Year + "\\" + dateTime.Month;
@@ -40,7 +40,7 @@ namespace ImageService.Modal
                 Image thumbnail = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
                 thumbnail.Save(Path.ChangeExtension(newPath + "\\" + fileName,"thumb"));
                 result = true;
-                return "A file wa added added" + newPath;
+                return "A file wa added added" + newPath + " year:" + dateTime.Year +"month "+ dateTime.Month;
             } catch (Exception e)
             {
                 result = false;

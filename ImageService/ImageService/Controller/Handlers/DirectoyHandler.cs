@@ -34,12 +34,21 @@ namespace ImageService.Controller.Handlers
 
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
+            if (sender == this) {
+                this.m_logging.Log("a add commnad was recived",MessageTypeEnum.INFO);
+            }
+            else{
+                this.m_logging.Log("a close commnad was recived", MessageTypeEnum.INFO);
+            }
+
             bool result;
+            m_logging.Log("m_path: " + m_path + ", e.Args[0] " + e.Args[0], MessageTypeEnum.WARNING);
             // if the command is relevant to our directory (my directory or all the directorys).
-            if (m_path.Equals(e.Args[0]) || e.Args[0].Equals("*"))
+            if (m_path.Equals(e.RequestDirPath) || e.Args[0].Equals("*"))
             {
+                this.m_logging.Log("relevant to the directory" + this.m_path, MessageTypeEnum.INFO);
                 //if it's clossing directory command
-                if(e.CommandID == 1) {
+                if (e.CommandID == 1) {
                     CloseHandle();
                 }
                 string msg = m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
@@ -69,7 +78,6 @@ namespace ImageService.Controller.Handlers
 
         public void StartHandleDirectory(string dirPath)
         {
-          
             m_dirWatcher.Changed += new FileSystemEventHandler(OnCreated);
             m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
             // begin watching .

@@ -32,6 +32,7 @@ namespace ImageService.Server
                 directoyHandler = new DirectoyHandler(m_controller, m_logging, directories[i]);
                 CommandRecieved += directoyHandler.OnCommandRecieved;
                 directoyHandler.DirectoryClose += OnDirectoryClose;
+                directoyHandler.StartHandleDirectory(directories[i]);
                 m_logging.Log("Created directory handler " + directories[i], Logging.Modal.MessageTypeEnum.INFO);
             }
             m_logging.Log("Created server", Logging.Modal.MessageTypeEnum.INFO);
