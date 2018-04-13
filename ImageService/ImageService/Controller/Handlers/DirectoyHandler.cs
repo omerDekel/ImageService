@@ -89,14 +89,15 @@ namespace ImageService.Controller.Handlers
             try
             {
                 // todo check if the folowing code in needed.
-                //m_dirWatcher.Changed -= new FileSystemEventHandler(OnCreated);
-                //m_dirWatcher.Created -= new FileSystemEventHandler(OnCreated);
-                DirectoryCloseEventArgs closeEventArgs = new DirectoryCloseEventArgs(m_path, "closing directory"+m_path);
                 m_dirWatcher.EnableRaisingEvents = false;
+                m_dirWatcher.Changed -= new FileSystemEventHandler(OnCreated);
+                m_dirWatcher.Created -= new FileSystemEventHandler(OnCreated);
+                DirectoryCloseEventArgs closeEventArgs = new DirectoryCloseEventArgs(m_path, "closing directory"+m_path);
                 // we invoke to the server ' that it will know this directory was clossed: CommandRecieved -= this.OnCommandRecieved;
                 DirectoryClose?.Invoke(this, closeEventArgs);
             } catch (Exception e){
                 m_logging.Log("couldnt close handler" + m_path + " " + e.Message, MessageTypeEnum.FAIL);
+
 
             }
         }
