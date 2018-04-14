@@ -30,19 +30,21 @@ namespace ImageService.Modal
             try
             {
                 Directory.CreateDirectory(this.m_OutputFolder);
-                DateTime dateTime = File.GetCreationTime(path);
+                DateTime dateTime = File.GetLastWriteTime(path);
+
                 Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year);
                 String newPath = m_OutputFolder + "\\" + dateTime.Year + "\\" + dateTime.Month;
                 Directory.CreateDirectory(newPath);
                 String fileName = Path.GetFileName(path);
-                File.Copy(path, newPath + "\\" + fileName);
-                Image image = Image.FromFile(path);
+                File.Move(path, newPath + "\\" + fileName);
+                Image image = Image.FromFile(newPath + "\\" + fileName);
                 Image thumbnail = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
-                thumbnail.Save(Path.ChangeExtension(newPath + "\\" + fileName,"thumb"));
+                string thumbPath = m_OutputFolder + "\\" + "Thumbnails\\" + dateTime.Year + "\\" + dateTime.Month;
+                Directory.CreateDirectory(thumbPath);
+                thumbnail.Save(Path.ChangeExtension(thumbPath + "\\" + fileName,"thumb"+fileName));
                 result = true;
                 return "A file wa added added" + newPath + " year:" + dateTime.Year +"month "+ dateTime.Month;
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 result = false;
                 return "The file adding failed " + e.Message;
             }

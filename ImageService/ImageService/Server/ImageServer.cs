@@ -49,11 +49,9 @@ namespace ImageService.Server
 
             }
         }
-        // should it be invoked by event ?
         public void OnClosedService()
         {
-            string[] args = { "*" };
-            CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs(1,args, "*");
+            CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs(1,null, "*");
             CommandRecieved?.Invoke(this, commandRecievedEventArgs);
             m_logging.Log("Server notify to close directory handler", Logging.Modal.MessageTypeEnum.INFO);
         }
