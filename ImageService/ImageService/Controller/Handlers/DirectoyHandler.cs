@@ -22,7 +22,12 @@ namespace ImageService.Controller.Handlers
         private string m_path;                              // The Path of directory
         #endregion
         public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              // The Event That Notifies that the Directory is being closed
-
+        /// <summary>
+        /// constructor .
+        /// </summary>
+        /// <param name="m_controller"> Image Processing Controller </param>
+        /// <param name="m_logging"></param>
+        /// <param name="m_path">The Path of directory</param>
         public DirectoyHandler(IImageController m_controller, ILoggingService m_logging, string m_path)
         {
             this.m_controller = m_controller;
@@ -31,7 +36,11 @@ namespace ImageService.Controller.Handlers
             m_dirWatcher = new FileSystemWatcher(m_path);
             m_logging.Log("Created new DirectoryHandler", MessageTypeEnum.INFO);
         }
-
+        /// <summary>
+        /// OnCommandRecieved. The Event that will be activated upon new Command.
+        /// </summary>
+        /// <param name="sender"> sender of the event</param>
+        /// <param name="e"> argument of the event</param>
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             if (sender == this) {
@@ -64,7 +73,11 @@ namespace ImageService.Controller.Handlers
                 }
             }
         }
-
+        /// <summary>
+        /// OnCreated. The Event that will be activated upon new file got to the directory.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCreated(object sender, FileSystemEventArgs e)
         {
             string[] fullPath = { e.FullPath };
@@ -76,7 +89,10 @@ namespace ImageService.Controller.Handlers
             }
             m_logging.Log("Created new File" + e.FullPath ,MessageTypeEnum.INFO);
         }
-
+        /// <summary>
+        /// StartHandleDirectory. The Function Recieves the directory to Handle .
+        /// </summary>
+        /// <param name="dirPath">the directory to Handle </param>
         public void StartHandleDirectory(string dirPath)
         {
             m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
@@ -84,6 +100,9 @@ namespace ImageService.Controller.Handlers
             m_dirWatcher.EnableRaisingEvents = true;
             m_logging.Log("Start to handle directory"+dirPath,MessageTypeEnum.INFO);
         }
+        /// <summary>
+        /// close this directory handler close FileSystemWatcher  and invoke the DirectoryClose event .
+        /// </summary>
         public void CloseHandle()
         {
             try

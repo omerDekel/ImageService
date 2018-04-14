@@ -14,7 +14,7 @@ namespace ImageService.Controller
     public class ImageController : IImageController
     {
         private IImageServiceModal m_modal;                      // The Modal Object
-        private Dictionary<int, ICommand> commands;
+        private Dictionary<int, ICommand> commands;             // Dictionary from the command id to the command
 
         public ImageController(IImageServiceModal modal)
         {
@@ -25,6 +25,7 @@ namespace ImageService.Controller
                 {0, new NewFileCommand(m_modal) }
             };
         }
+
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
             try

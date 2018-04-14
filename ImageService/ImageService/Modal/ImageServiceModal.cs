@@ -31,21 +31,26 @@ namespace ImageService.Modal
             {
                 Directory.CreateDirectory(this.m_OutputFolder);
                 DateTime dateTime = File.GetLastWriteTime(path);
-
+                //create directory with the date creation year 
                 Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year);
                 String newPath = m_OutputFolder + "\\" + dateTime.Year + "\\" + dateTime.Month;
+                // create directory with the date creation month 
                 Directory.CreateDirectory(newPath);
                 String fileName = Path.GetFileName(path);
                 File.Move(path, newPath + "\\" + fileName);
+                // creating the thumbnail of the photo
                 Image image = Image.FromFile(newPath + "\\" + fileName);
                 Image thumbnail = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
                 string thumbPath = m_OutputFolder + "\\" + "Thumbnails\\" + dateTime.Year + "\\" + dateTime.Month;
+                // creating the thumbnail directory with year craetion date inside directory (or not if it's allready exist) .
                 Directory.CreateDirectory(thumbPath);
+                // saving the thumbnail.
                 thumbnail.Save(Path.ChangeExtension(thumbPath + "\\" + fileName,"thumb"+fileName));
                 result = true;
                 return "A file wa added added" + newPath + " year:" + dateTime.Year +"month "+ dateTime.Month;
             } catch (Exception e) {
                 result = false;
+                // return the exception message .
                 return "The file adding failed " + e.Message;
             }
 
