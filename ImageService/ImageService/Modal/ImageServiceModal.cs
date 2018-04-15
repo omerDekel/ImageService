@@ -45,7 +45,7 @@ namespace ImageService.Modal
                 Directory.CreateDirectory(newPath);
                 String fileName = Path.GetFileName(path);
 
-
+                // Trying to get to the file if not taken by other process
                 bool isOk = false;
                 while (!isOk)
                 {
