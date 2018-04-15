@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace ImageService.Modal
 {
     public class ImageServiceModal : IImageServiceModal
@@ -18,6 +19,7 @@ namespace ImageService.Modal
         //private logger
         private string m_OutputFolder;            // The Output Folder
         private int m_thumbnailSize;              // The Size Of The Thumbnail Size
+        #endregion
         // prototype
         public ImageServiceModal(string m_OutputFolder, int m_thumbnailSize)
         {
@@ -27,42 +29,114 @@ namespace ImageService.Modal
 
         public string AddFile(string path, out bool result)
         {
+            Image image = null;
+            Image thumbnail = null;
+            DirectoryInfo di = null;
+            Thread.Sleep(500);
             try
             {
-                // from https://stackoverflow.com/questions/92376/creating-hidden-folders
-                // making outputdir hidden directory
-                if (!Directory.Exists(path))
-                {
-                    DirectoryInfo di = Directory.CreateDirectory(path);
-                    di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
-                }
-                DateTime dateTime = File.GetLastWriteTime(path);
+                di =  Directory.CreateDirectory(this.m_OutputFolder);
+                di.Attributes |= FileAttributes.Hidden;
+                DateTime dateTime = GetDateTakenFromImage(path);
                 //create directory with the date creation year 
                 Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year);
                 String newPath = m_OutputFolder + "\\" + dateTime.Year + "\\" + dateTime.Month;
                 // create directory with the date creation month 
                 Directory.CreateDirectory(newPath);
                 String fileName = Path.GetFileName(path);
-                File.Move(path, newPath + "\\" + fileName);
+
+
+                bool isOk = false;
+                while (!isOk)
+                {
+                    try
+                    {
+                        File.Move(path, newPath + "\\" + fileName);
+                        isOk = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Thread.Sleep(500);
+                    }
+                }
+
                 // creating the thumbnail of the photo
-                Image image = Image.FromFile(newPath + "\\" + fileName);
-                Image thumbnail = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
+                isOk = false;
+                while (!isOk)
+                {
+                    try
+                    {
+                        image = Image.FromFile(newPath + "\\" + fileName);
+                        isOk = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Thread.Sleep(500);
+                    }
+                }
+
+                isOk = false;
+                while (!isOk)
+                {
+                    try
+                    {
+                        thumbnail = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
+                        isOk = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Thread.Sleep(500);
+                    }
+                }
+
                 string thumbPath = m_OutputFolder + "\\" + "Thumbnails\\" + dateTime.Year + "\\" + dateTime.Month;
                 // creating the thumbnail directory with year craetion date inside directory (or not if it's allready exist) .
                 Directory.CreateDirectory(thumbPath);
                 // saving the thumbnail.
-                thumbnail.Save(Path.ChangeExtension(thumbPath + "\\" + fileName,"thumb"+fileName));
+                isOk = false;
+                while (!isOk)
+                {
+                    try
+                    {
+                        thumbnail.Save(Path.ChangeExtension(thumbPath + "\\" + fileName, "thumb" + fileName));
+                        isOk = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Thread.Sleep(500);
+                    }
+                }
+              
                 result = true;
                 return "A file wa added added" + newPath + " year:" + dateTime.Year +"month "+ dateTime.Month;
             } catch (Exception e) {
                 result = false;
                 // return the exception message .
-                return "The file adding failed " + e.Message;
+                return "The file adding failed " + path + " " + e.Message;
+            } finally
+            {
+                if (image != null)
+                {
+                    image.Dispose();
+                } if (thumbnail != null)
+                {
+                    thumbnail.Dispose();
+                }
             }
-
+             
         }
-
-        #endregion
-
+        public static DateTime GetDateTakenFromImage(string path)
+        {
+            Regex r = new Regex(":");
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            using (Image myImage = Image.FromStream(fs, false, false))
+            {
+                PropertyItem propItem = myImage.GetPropertyItem(36867);
+                string dateTaken = r.Replace(Encoding.UTF8.GetString(propItem.Value), "-", 2);
+                myImage.Dispose();
+                return DateTime.Parse(dateTaken);
+                
+            }
+        }
     }
 }
