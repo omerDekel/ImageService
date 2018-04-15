@@ -25,5 +25,7 @@ namespace ImageService.Modal
             Message = message;                          // Storing the String
         }
 
+
+
     }
 }
