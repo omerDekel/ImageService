@@ -29,7 +29,13 @@ namespace ImageService.Modal
         {
             try
             {
-                Directory.CreateDirectory(this.m_OutputFolder);
+                // from https://stackoverflow.com/questions/92376/creating-hidden-folders
+                // making outputdir hidden directory
+                if (!Directory.Exists(path))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(path);
+                    di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+                }
                 DateTime dateTime = File.GetLastWriteTime(path);
                 //create directory with the date creation year 
                 Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year);
