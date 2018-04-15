@@ -20,14 +20,18 @@ namespace ImageService
         //private
         private int eventId = 1;
 
-
+        /// <summary>
+        /// An old constractor. Initialize the service's components.
+        /// </summary>
         public ImageService()
         {
-            InitializeComponent();
-            
-           
+            InitializeComponent();  
         }
 
+        /// <summary>
+        /// The old service constractor, only initialize the logging.
+        /// </summary>
+        /// <param name="args"></param>
         public ImageService(string[] args)
         {
             InitializeComponent();
@@ -77,10 +81,6 @@ namespace ImageService
             this.eventLog1 = new System.Diagnostics.EventLog();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             // 
-            // eventLog1
-            // 
-            this.eventLog1.EntryWritten += new System.Diagnostics.EntryWrittenEventHandler(this.eventLog1_EntryWritten);
-            // 
             // ImageService
             // 
             this.ServiceName = "ImageService";
@@ -91,12 +91,22 @@ namespace ImageService
 
         #endregion
 
+        /// <summary>
+        /// The monitoring part of the service.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
         {
             // TODO: Insert monitoring activities here.  
             eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
         }
 
+        /// <summary>
+        /// Return the appconfig value of the key the function recives.
+        /// </summary>
+        /// <param name="key">The key to be ask.</param>
+        /// <returns></returns>
         private string getAppConfigValue(string key)
         {
             return ConfigurationManager.AppSettings[key];

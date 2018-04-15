@@ -60,7 +60,11 @@ namespace ImageService
         private IImageController controller;
         private ILoggingService logging;
 
-
+        /// <summary>
+        /// This function is called when the service starts.
+        /// The functions initialized the sercice components and starts listning to the folders.
+        /// </summary>
+        /// <param name="args"></param>
         protected override void OnStart(string[] args)
         {
             // Update the service state to Start Pending.  
@@ -118,12 +122,19 @@ namespace ImageService
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
         }
 
+        /// <summary>
+        /// This functions is called when the service stops.
+        /// The function make the service stop listening the the folders.
+        /// </summary>
         protected override void OnStop()
         {
             this.m_imageServer.OnClosedService();
             eventLog1.WriteEntry("In onStop.");
         }
 
+        /// <summary>
+        /// This function is called when the service is continue working after it sttopped.
+        /// </summary>
         protected override void OnContinue()
         {
             eventLog1.WriteEntry("In OnContinue.");
@@ -132,11 +143,11 @@ namespace ImageService
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
 
-        private void eventLog1_EntryWritten(object sender, EntryWrittenEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// The function writes a log to the service's event log.
+        /// </summary>
+        /// <param name="sender">The object that sent the massage</param>
+        /// <param name="args">The massage argumnts.</param>
         private void writeLog(object sender, MessageRecievedEventArgs args)
         {
             switch (args.Status)
