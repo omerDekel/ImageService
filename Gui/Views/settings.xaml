@@ -7,7 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid TextBlock.FontSize="14">
+
         <Grid.RowDefinitions>
+
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -24,7 +26,9 @@
         <TextBlock Grid.Row="1" FontWeight="Heavy" Padding="3" Margin="3">Source Name:</TextBlock>
         <TextBlock Grid.Row="2" FontWeight="Heavy" Padding="3" Margin="3">Log Name:</TextBlock>
         <TextBlock Grid.Row="3" FontWeight="Heavy" Padding="3" Margin="3">Thumbnail Size:</TextBlock>
-
+            <Button Grid.Row="4"  Command="{Binding RemoveCommand}" Grid.ColumnSpan="2">Remove</Button>
+            <ListBox Grid.Row="5" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding }"/>
 
     </Grid>
+
 </UserControl>

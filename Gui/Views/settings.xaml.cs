@@ -24,5 +24,10 @@ namespace Gui.Views
         {
             InitializeComponent();
         }
+
+        private void lst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
