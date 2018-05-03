@@ -51,6 +51,7 @@ namespace ImageService.Modal
                 {
                     try
                     {
+                        // move the picture
                         File.Move(path, newPath + "\\" + fileName);
                         isOk = true;
                     }
@@ -74,7 +75,7 @@ namespace ImageService.Modal
                         Thread.Sleep(500);
                     }
                 }
-
+                // Trying to get to the file if not taken by other process
                 isOk = false;
                 while (!isOk)
                 {
@@ -125,6 +126,12 @@ namespace ImageService.Modal
             }
              
         }
+        /// <summary>
+        /// return the Date the picture was taken .
+        /// from https://stackoverflow.com/questions/180030/how-can-i-find-out-when-a-picture-was-actually-taken-in-c-sharp-running-on-vista
+        /// </summary>
+        /// <param name="path">the path</param>
+        /// <returns></returns>
         public static DateTime GetDateTakenFromImage(string path)
         {
             Regex r = new Regex(":");
