@@ -34,5 +34,10 @@ namespace Gui.ViewModels
                 OnPropertyChanged("chosenDir");
             }
         }
+
+        private void OnPropertyChanged(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
