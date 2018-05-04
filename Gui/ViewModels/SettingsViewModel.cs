@@ -5,23 +5,64 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Gui.Model;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Gui.ViewModels
 {
     class SettingsViewModel : ISettingsViewModel
     {
-        public ObservableCollection<string> DirectoryHandlers => throw new NotImplementedException();
-
-        public string OutputDirectory => throw new NotImplementedException();
-
-        public string SourceName => throw new NotImplementedException();
-
-        public string LogName => throw new NotImplementedException();
-
-        public string ThumbnailSize => throw new NotImplementedException();
-
-        public event PropertyChangedEventHandler PropertyChanged;
         private string chosenDir;
+        private ISettingsModel settingsModel;
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ICommand RemoveCommand
+        {
+            get;
+            set;
+        }
+        // clientmemeber 
+        public ObservableCollection<string> DirectoryHandlers
+        {
+            get
+            {
+                return settingsModel.DirectoryHandlers;
+            }
+        }
+
+        public string OutputDirectory
+        {
+            get
+            {
+                return settingsModel.OutputDirectory;
+            }
+        }
+
+        public string SourceName
+        {
+            get
+            {
+                return settingsModel.SourceName;
+            }
+        }
+
+
+        public string LogName
+        {
+            get
+            {
+                return settingsModel.LogName;
+            }
+        }
+
+        public string ThumbnailSize
+        {
+            get
+            {
+                return settingsModel.ThumbnailSize;
+            }
+        }
+
         public string ChosenDir
         {
             get
@@ -31,13 +72,16 @@ namespace Gui.ViewModels
             set
             {
                 chosenDir = value;
-                OnPropertyChanged("chosenDir");
+                //OnPropertyChanged("chosenDir");
+                var command = this.RemoveCommand as DelegateCommand<object>;
+                command.RaiseCanExecuteChanged();
             }
         }
 
         private void OnPropertyChanged(string v)
         {
-            throw new NotImplementedException();
+            /**/
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
     }
 }
