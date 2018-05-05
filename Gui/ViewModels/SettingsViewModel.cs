@@ -23,7 +23,7 @@ namespace Gui.ViewModels
             this.settingsModel = new SettingsModel();
             settingsModel.PropertyChanged += OnPropertyChanged;
             this.RemoveCommand = new DelegateCommand<object>(OnRemove, CanRemove);
-            
+            ViewMOutputDirectory = "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand RemoveCommand
@@ -41,12 +41,13 @@ namespace Gui.ViewModels
             }
         }
 
-        public string OutputDirectory
+        public string ViewMOutputDirectory
         {
             get
             {
-                return settingsModel.OutputDirectory;
+                return "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
             }
+            set {; }
         }
 
         public string SourceName
@@ -78,7 +79,7 @@ namespace Gui.ViewModels
         {
             get
             {
-                return this.chosenDir;
+                return chosenDir;
             }
             set
             {
@@ -97,11 +98,11 @@ namespace Gui.ViewModels
         private void OnRemove(Object obj)
         {
             //sending command to the imageservice client to close the directory handler
-            this.DirectoryHandlers.Remove(chosenDir);
+            settingsModel.DirectoryHandlers.Remove(chosenDir);
         }
         private bool CanRemove(object obj)
         {
-            if (chosenDir == null)
+            if (ChosenDir == null)
             {
                 return false;
             }

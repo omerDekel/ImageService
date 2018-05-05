@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Gui.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +22,17 @@ namespace Gui.Views
     /// </summary>
     public partial class settings : UserControl
     {
+        public ObservableCollection<string> DirectoryHandlers { get; set; }
         public settings()
         {
+
             InitializeComponent();
+            DataContext = new SettingsViewModel();
         }
 
-        private void lst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /*private void lst_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
+        }*/
     }
 }

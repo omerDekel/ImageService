@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Gui.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid TextBlock.FontSize="14">
@@ -22,11 +21,16 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row ="0" FontWeight="Heavy" Margin="3">Output Directory:</TextBlock>
+        <TextBlock Padding="3" Grid.Row ="0" FontWeight="Heavy" Margin="3">Output Directory:</TextBlock>
+        <TextBlock Padding="3" Grid.Row="0" Grid.Column="1"  Text="{Binding ViewMOutputDirectory}" Margin="3"></TextBlock>
         <TextBlock Grid.Row="1" FontWeight="Heavy" Padding="3" Margin="3">Source Name:</TextBlock>
+        <TextBlock Padding="3" Grid.Row="1" Grid.Column="1"  Text="{Binding SourceName}" Margin="3"></TextBlock>
+
         <TextBlock Grid.Row="2" FontWeight="Heavy" Padding="3" Margin="3">Log Name:</TextBlock>
+        <TextBlock Padding="3" Grid.Row="2" Grid.Column="1"  Text="{Binding LogName}" Margin="3"></TextBlock>
         <TextBlock Grid.Row="3" FontWeight="Heavy" Padding="3" Margin="3">Thumbnail Size:</TextBlock>
-            <Button Grid.Row="4"  Command="{Binding RemoveCommand}" Grid.ColumnSpan="2">Remove</Button>
+        <TextBlock Padding="3" Grid.Row="3" Grid.Column="1"  Text="{Binding ThumbnailSize}" Margin="3"></TextBlock>
+        <Button Grid.Row="4"  Command="{Binding RemoveCommand}" Grid.ColumnSpan="2">Remove</Button>
         <ListBox Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding DirectoryHandlers}" SelectedItem="{Binding chosenDir}"/>
 
     </Grid>

@@ -11,7 +11,7 @@ namespace Gui.ViewModels
     interface ISettingsViewModel: INotifyPropertyChanged 
     {
         ObservableCollection<string> DirectoryHandlers { get; }
-        string OutputDirectory { get; }
+        string ViewMOutputDirectory { get; }
         string SourceName { get; }
         string LogName { get; }
         string ThumbnailSize { get; }

@@ -10,13 +10,74 @@ namespace Gui.Model
 {
     class SettingsModel : ISettingsModel
     {
-        public SettingsModel() { }
-        public ObservableCollection<string> DirectoryHandlers { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string OutputDirectory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string SourceName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string LogName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string ThumbnailSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private String outputDirectory;
+        private String sourceName;
+        private String logName;
+        private String thumbnailSize;
+        public SettingsModel() {
+            //todo: taking the config arguments by the GetConfigCommand
+            this.outputDirectory = "OutputDirectory";
+            this.sourceName = "SourceName";
+            logName = "LogName";
+            thumbnailSize = "ThumbnailSize";
+            DirectoryHandlers = new ObservableCollection<string>();
+            DirectoryHandlers.Add("hi");
+            DirectoryHandlers.Add("shalom");
+            DirectoryHandlers.Add("hishuv");
+        }
+        public ObservableCollection<string> DirectoryHandlers { get ; set ; }
+        public string OutputDirectory {
+            get
+            {
+                return outputDirectory;
+            }
+            set
+            {
+                outputDirectory = value;
+                OnPropertyChanged("OutputDirectory");
+            }
+        }
+        public string SourceName
+        {
+            get
+            {
+                return sourceName;
+            }
+            set
+            {
+                sourceName = value;
+                OnPropertyChanged("SourceName");
+            }
+        }
 
+        public string LogName
+        {
+            get
+            {
+                return logName;
+            }
+            set
+            {
+                logName = value;
+                OnPropertyChanged("LogName");
+            }
+        }
+        public string ThumbnailSize
+        {
+            get
+            {
+                return thumbnailSize;
+            }
+            set
+            {
+                thumbnailSize = value;
+                OnPropertyChanged("ThumbnailSize");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, e: new PropertyChangedEventArgs(name));
+        }
     }
 }
