@@ -15,13 +15,24 @@ namespace Gui.ViewModels
     {
         private string chosenDir;
         private ISettingsModel settingsModel;
+        /// <summary>
+        /// constructor 
+        /// </summary>
+        public SettingsViewModel ()
+        {
+            this.settingsModel = new SettingsModel();
+            settingsModel.PropertyChanged += OnPropertyChanged;
+            this.RemoveCommand = new DelegateCommand<object>(OnRemove, CanRemove);
+            
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand RemoveCommand
+        // todo: clientmemeber 
         {
             get;
             set;
         }
-        // clientmemeber 
+
         public ObservableCollection<string> DirectoryHandlers
         {
             get
@@ -78,10 +89,26 @@ namespace Gui.ViewModels
             }
         }
 
-        private void OnPropertyChanged(string v)
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             /**/
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(e.PropertyName));
         }
+        private void OnRemove(Object obj)
+        {
+            //sending command to the imageservice client to close the directory handler
+            this.DirectoryHandlers.Remove(chosenDir);
+        }
+        private bool CanRemove(object obj)
+        {
+            if (chosenDir == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
     }
+
 }
