@@ -20,9 +20,9 @@ namespace Gui.ViewModels
         /// </summary>
         public SettingsViewModel ()
         {
-            this.settingsModel = new SettingsModel();
+            settingsModel = new SettingsModel();
             settingsModel.PropertyChanged += OnPropertyChanged;
-            this.RemoveCommand = new DelegateCommand<object>(OnRemove, CanRemove);
+            RemoveCommand = new DelegateCommand<object>(OnRemove, CanRemove);
             ViewMOutputDirectory = "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -32,7 +32,9 @@ namespace Gui.ViewModels
             get;
             set;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public ObservableCollection<string> DirectoryHandlers
         {
             get
@@ -40,7 +42,9 @@ namespace Gui.ViewModels
                 return settingsModel.DirectoryHandlers;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string ViewMOutputDirectory
         {
             get
@@ -49,7 +53,9 @@ namespace Gui.ViewModels
             }
             set {; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string SourceName
         {
             get
@@ -58,7 +64,9 @@ namespace Gui.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string LogName
         {
             get
@@ -66,7 +74,9 @@ namespace Gui.ViewModels
                 return settingsModel.LogName;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string ThumbnailSize
         {
             get
@@ -74,7 +84,9 @@ namespace Gui.ViewModels
                 return settingsModel.ThumbnailSize;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string ChosenDir
         {
             get
@@ -85,11 +97,15 @@ namespace Gui.ViewModels
             {
                 chosenDir = value;
                 //OnPropertyChanged("chosenDir");
-                var command = this.RemoveCommand as DelegateCommand<object>;
+                var command = RemoveCommand as DelegateCommand<object>;
                 command.RaiseCanExecuteChanged();
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             /**/
@@ -100,6 +116,11 @@ namespace Gui.ViewModels
             //sending command to the imageservice client to close the directory handler
             settingsModel.DirectoryHandlers.Remove(chosenDir);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         private bool CanRemove(object obj)
         {
             if (ChosenDir == null)
