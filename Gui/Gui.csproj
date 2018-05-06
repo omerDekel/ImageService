@@ -62,6 +62,8 @@
     <Compile Include="Model\ILogsModels.cs" />
     <Compile Include="Model\ISettingsModel.cs" />
     <Compile Include="Model\LogsModel.cs" />
+    <Compile Include="Model\Modal\MessageRecievedEventArgs.cs" />
+    <Compile Include="Model\Modal\MessageTypeEnum.cs" />
     <Compile Include="Model\SettingsModel.cs" />
     <Compile Include="ViewModels\ISettingsViewModel.cs" />
     <Compile Include="ViewModels\LogsViewModel.cs" />

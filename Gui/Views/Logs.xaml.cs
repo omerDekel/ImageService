@@ -26,5 +26,10 @@ namespace Gui.Views
             InitializeComponent();
             DataContext = new LogsViewModel();
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
