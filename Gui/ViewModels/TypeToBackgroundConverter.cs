@@ -9,14 +9,13 @@ using System.Windows.Media;
 
 namespace Gui.ViewModels
 {
-    class TypeToBackgroundConverter : System.Windows.Data.IValueConverter
+    public class TypeToBackgroundConverter : System.Windows.Data.IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (targetType != typeof(Brush))
                 throw new InvalidOperationException("Must convert to a brush!");
-            MessageRecievedEventArgs messageRecived = (MessageRecievedEventArgs)value;
-            MessageTypeEnum messageType = messageRecived.Status;
+            MessageTypeEnum messageType = (MessageTypeEnum)value;
             switch(messageType)
             {
                 case MessageTypeEnum.FAIL:
