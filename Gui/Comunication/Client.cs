@@ -23,15 +23,18 @@ namespace Gui.Comunication
 
         public void CommandToServer(CommandRecievedEventArgs e)
         {
-            NetworkStream stream = tcpClient.GetStream();
-            BinaryReader reader = new BinaryReader(stream);
-            BinaryWriter writer = new BinaryWriter(stream);
-            string jStr = JsonConvert.SerializeObject(e);
-            Console.WriteLine($"Send {jStr} to Server");
-            writer.Write(jStr);
-        }
+            new Task(() =>
+            {
+                NetworkStream stream = tcpClient.GetStream();
+                BinaryReader reader = new BinaryReader(stream);
+                BinaryWriter writer = new BinaryWriter(stream);
+                string jStr = JsonConvert.SerializeObject(e);
+                Console.WriteLine($"Send {jStr} to Server");
+                writer.Write(jStr);
+            }).Start();
+        }
 
-    public void ConnectServer()
+        public void ConnectServer()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
             TcpClient tcpClient = new TcpClient();
