@@ -15,7 +15,9 @@ namespace Gui.Comunication
     class Client : IClient
     {
         private TcpClient tcpClient;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void CommandFromServer()
         {
             throw new NotImplementedException();
