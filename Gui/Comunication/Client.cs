@@ -30,16 +30,16 @@ namespace Gui.Comunication
         }
         public void CommandFromServer()
         {
-            string commandStr;            new Task(() =>
+            string commandStr;
+            new Task(() =>
             {
                 while (!stop)
                 {
-                    TcpClient client = listener.AcceptTcpClient();
-                    Console.WriteLine("Got new connection");
                     NetworkStream stream = tcpClient.GetStream();
                     BinaryReader reader = new BinaryReader(stream);
-                    BinaryWriter writer = new BinaryWriter(stream);
+                    //BinaryWriter writer = new BinaryWriter(stream);
                     commandStr = reader.ReadString();
+                    Console.WriteLine($"Recieve {commandStr} from Server");
                     //string jStr = JsonConvert.SerializeObject(e);
                     //writer.Write(jStr);
                     CommandRecievedEventArgs responseObj = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandStr);
@@ -54,7 +54,6 @@ namespace Gui.Comunication
             new Task(() =>
             {
                 NetworkStream stream = tcpClient.GetStream();
-                BinaryReader reader = new BinaryReader(stream);
                 BinaryWriter writer = new BinaryWriter(stream);
                 string jStr = JsonConvert.SerializeObject(e);
                 Console.WriteLine($"Send {jStr} to Server");
