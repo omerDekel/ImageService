@@ -1,4 +1,5 @@
 ﻿using ImageService.Controller;
+using ImageService.Infrastructure.Enums;
 using ImageService.Modal;
 using Newtonsoft.Json;
 using System;
@@ -15,12 +16,37 @@ namespace Gui.Comunication
     class Client : IClient
     {
         private TcpClient tcpClient;
+        private TcpListener listener;
+        private bool stop;
+        public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
+
         /// <summary>
         /// 
         /// </summary>
+        /// 
+        public Client()
+        {
+            ConnectServer();
+        }
         public void CommandFromServer()
         {
-            throw new NotImplementedException();
+            string commandStr;            new Task(() =>
+            {
+                while (!stop)
+                {
+                    TcpClient client = listener.AcceptTcpClient();
+                    Console.WriteLine("Got new connection");
+                    NetworkStream stream = tcpClient.GetStream();
+                    BinaryReader reader = new BinaryReader(stream);
+                    BinaryWriter writer = new BinaryWriter(stream);
+                    commandStr = reader.ReadString();
+                    //string jStr = JsonConvert.SerializeObject(e);
+                    //writer.Write(jStr);
+                    CommandRecievedEventArgs responseObj = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandStr);
+                    CommandRecieved?.Invoke(this, responseObj);
+
+                }
+            }).Start();
         }
 
         public void CommandToServer(CommandRecievedEventArgs e)
@@ -41,6 +67,12 @@ namespace Gui.Comunication
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
             TcpClient tcpClient = new TcpClient();
             tcpClient.Connect(ep);
-            Console.WriteLine("You are connected");        }
+            Console.WriteLine("You are connected");
+            stop = false;
+        }
+        public void Closing()
+        {
+
+        }
     }
 }
