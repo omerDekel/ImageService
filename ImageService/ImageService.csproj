@@ -55,8 +55,12 @@
     <Compile Include="ImageService.Infrastructure\Enums\CommandEnum.cs" />
     <Compile Include="ImageService.Logging\ILoggingService.cs" />
     <Compile Include="ImageService.Logging\LoggingService.cs" />
+    <Compile Include="ImageService.Logging\LogingBuffer.cs" />
     <Compile Include="ImageService.Logging\Modal\MessageRecievedEventArgs.cs" />
     <Compile Include="ImageService.Logging\Modal\MessageTypeEnum.cs" />
+    <Compile Include="ImageService.Server\ClientHandler.cs" />
+    <Compile Include="ImageService.Server\IClientHandler.cs" />
+    <Compile Include="ImageService.Server\Server.cs" />
     <Compile Include="ImageService\Commands\ICommand.cs" />
     <Compile Include="ImageService\Commands\NewFileCommand.cs" />
     <Compile Include="ImageService\Controller\Handlers\DirectoyHandler.cs" />
@@ -94,5 +98,6 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
