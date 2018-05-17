@@ -38,7 +38,9 @@
       <HintPath>..\..\..\..\Downloads\Microsoft.Practices.Prism\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.SharePoint.Commands, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -59,14 +61,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Client.cs" />
-    <Compile Include="Model\ILogsModels.cs" />
+    <Compile Include="Comunication\Client.cs" />
+    <Compile Include="Comunication\IClient.cs" />
     <Compile Include="Model\ISettingsModel.cs" />
     <Compile Include="Model\LogsModel.cs" />
     <Compile Include="Model\SettingsModel.cs" />
     <Compile Include="ViewModels\ISettingsViewModel.cs" />
     <Compile Include="ViewModels\LogsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\TypeToBackgroundConverter.cs" />
     <Compile Include="Views\Logs.xaml.cs">
       <DependentUpon>Logs.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -120,6 +124,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ImageService\ImageService.csproj">
+      <Project>{A4848D2B-9B09-4669-AF4B-AF862FF4A828}</Project>
+      <Name>ImageService</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

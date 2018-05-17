@@ -26,5 +26,6 @@ namespace Gui.Views
             InitializeComponent();
             DataContext = new LogsViewModel();
         }
+
     }
 }
