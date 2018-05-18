@@ -65,6 +65,9 @@ namespace Gui.Model
                 OnPropertyChanged("LogName");
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public string ThumbnailSize
         {
             get
