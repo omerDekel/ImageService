@@ -11,12 +11,15 @@ namespace Gui.Model
 {
     class SettingsModel : ISettingsModel
     {
-        private IClient client;
         private String outputDirectory;
         private String sourceName;
         private String logName;
         private String thumbnailSize;
+        private IClient clientGui;
+        //public IClient ClientGui { get; set; }
         public SettingsModel() {
+            clientGui = Client.Instance;
+            clientGui.CommandFromServer();
             //todo: taking the config arguments by the GetConfigCommand
             this.outputDirectory = "OutputDirectory";
             this.sourceName = "SourceName";
@@ -27,7 +30,6 @@ namespace Gui.Model
             DirectoryHandlers.Add("shalom");
             DirectoryHandlers.Add("hishuv");
         }
-        public IClient Client { get; set; }
         public ObservableCollection<string> DirectoryHandlers { get ; set ; }
         public string OutputDirectory {
             get
@@ -80,6 +82,16 @@ namespace Gui.Model
                 OnPropertyChanged("ThumbnailSize");
             }
         }
+
+        public IClient ClientGui {
+            get
+            {
+                return this.clientGui;
+            }
+            
+            set => throw new NotImplementedException();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {

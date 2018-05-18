@@ -18,6 +18,7 @@ namespace Gui.Comunication
         private TcpClient tcpClient;
         private TcpListener listener;
         private bool stop;
+        private static Client instance;
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
 
         /// <summary>
@@ -28,6 +29,18 @@ namespace Gui.Comunication
         {
             ConnectServer();
         }
+        public static Client Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Client();
+                }
+                return instance;
+            }
+        }
+
         public void CommandFromServer()
         {
             string commandStr;

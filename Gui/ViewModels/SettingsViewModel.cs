@@ -17,7 +17,7 @@ namespace Gui.ViewModels
 {
     class SettingsViewModel : ISettingsViewModel
     {
-        private Client guiClient;
+        //private Client guiClient;
         private string chosenDir;
         private ISettingsModel settingsModel;
         /// <summary>
@@ -25,7 +25,8 @@ namespace Gui.ViewModels
         /// </summary>
         public SettingsViewModel ()
         {
-            guiClient = new Client();
+            //guiClient = Client.Instance;
+
             settingsModel = new SettingsModel();
             settingsModel.PropertyChanged += OnPropertyChanged;
             RemoveCommand = new DelegateCommand<object>(OnRemove, CanRemove);
@@ -118,9 +119,9 @@ namespace Gui.ViewModels
         }
         private void OnRemove(Object obj)
         {
-            CommandRecievedEventArgs command = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand,null,"");
-            guiClient.CommandToServer(command);
             //sending command to the imageservice client to close the directory handler
+            CommandRecievedEventArgs command = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand,null,"");
+            settingsModel.ClientGui.CommandToServer(command);
             settingsModel.DirectoryHandlers.Remove(chosenDir);
         }
         /// <summary>
