@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gui.Comunication;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ namespace Gui.Model
 {
     class SettingsModel : ISettingsModel
     {
+        private IClient client;
         private String outputDirectory;
         private String sourceName;
         private String logName;
@@ -25,6 +27,7 @@ namespace Gui.Model
             DirectoryHandlers.Add("shalom");
             DirectoryHandlers.Add("hishuv");
         }
+        public IClient Client { get; set; }
         public ObservableCollection<string> DirectoryHandlers { get ; set ; }
         public string OutputDirectory {
             get
