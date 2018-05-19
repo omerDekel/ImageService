@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gui.Comunication;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -14,7 +15,11 @@ namespace Gui.Model
         private String sourceName;
         private String logName;
         private String thumbnailSize;
+        private IClient clientGui;
+        //public IClient ClientGui { get; set; }
         public SettingsModel() {
+            clientGui = Client.Instance;
+            clientGui.CommandFromServer();
             //todo: taking the config arguments by the GetConfigCommand
             this.outputDirectory = "OutputDirectory";
             this.sourceName = "SourceName";
@@ -62,6 +67,9 @@ namespace Gui.Model
                 OnPropertyChanged("LogName");
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public string ThumbnailSize
         {
             get
@@ -74,6 +82,16 @@ namespace Gui.Model
                 OnPropertyChanged("ThumbnailSize");
             }
         }
+
+        public IClient ClientGui {
+            get
+            {
+                return this.clientGui;
+            }
+            
+            set => throw new NotImplementedException();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {

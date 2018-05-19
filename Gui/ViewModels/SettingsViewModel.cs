@@ -6,13 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Gui.Comunication;
 using Gui.Model;
+using ImageService.Modal;
+using ImageService.Infrastructure;
 using Microsoft.Practices.Prism.Commands;
+using ImageService.Infrastructure.Enums;
 
 namespace Gui.ViewModels
 {
     class SettingsViewModel : ISettingsViewModel
     {
+        //private Client guiClient;
         private string chosenDir;
         private ISettingsModel settingsModel;
         /// <summary>
@@ -20,6 +25,8 @@ namespace Gui.ViewModels
         /// </summary>
         public SettingsViewModel ()
         {
+            //guiClient = Client.Instance;
+
             settingsModel = new SettingsModel();
             settingsModel.PropertyChanged += OnPropertyChanged;
             RemoveCommand = new DelegateCommand<object>(OnRemove, CanRemove);
@@ -27,7 +34,6 @@ namespace Gui.ViewModels
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand RemoveCommand
-        // todo: clientmemeber 
         {
             get;
             set;
@@ -114,6 +120,8 @@ namespace Gui.ViewModels
         private void OnRemove(Object obj)
         {
             //sending command to the imageservice client to close the directory handler
+            CommandRecievedEventArgs command = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand,null,"");
+            settingsModel.ClientGui.CommandToServer(command);
             settingsModel.DirectoryHandlers.Remove(chosenDir);
         }
         /// <summary>

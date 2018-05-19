@@ -8,11 +8,14 @@ namespace Gui.Model
         public LogsModel()
         {
             logsCollection = new ObservableCollection<MessageRecievedEventArgs>();
-            MessageRecievedEventArgs messageRecievedEventArgs = new MessageRecievedEventArgs() { Status = MessageTypeEnum.INFO, Message = "hiiiii" };
+            MessageRecievedEventArgs messageRecievedEventArgs = new MessageRecievedEventArgs() { Status = MessageTypeEnum.WARNING, Message = "hiiiii" };
+            MessageRecievedEventArgs messaeRecievedEventArgs = new MessageRecievedEventArgs() { Status = MessageTypeEnum.INFO, Message = "hiiiii" };
+
             //messageRecievedEventArgs.Message = "hiiiii";
             //messageRecievedEventArgs.Status = 0;
             LogsCollection.Add(messageRecievedEventArgs);
-            
+            LogsCollection.Add(messaeRecievedEventArgs);
+
         }
 
             
