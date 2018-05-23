@@ -13,14 +13,15 @@ namespace ImageService.ImageService.Server
     {
         private TcpClient client;
 
+
         public ClientHandler(TcpClient clientToHandle)
         {
             this.client = clientToHandle;
         }
 
-        public void HandleClient()
+        public void HandleClient(TcpClient client)
         {
-
+            this.client = client;
         }
     }
 }
