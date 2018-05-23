@@ -1,6 +1,4 @@
 ﻿using Gui.Comunication;
-using ImageService.Infrastructure.Enums;
-using ImageService.Modal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,27 +19,23 @@ namespace Gui.Model
 <<<<<<< HEAD
         private IClient clientGui;
         //public IClient ClientGui { get; set; }
-        public SettingsModel()
-        {
+        public SettingsModel() {
             clientGui = Client.Instance;
-            ClientGui.CommandRecieved += OnCommandRecieved;
             clientGui.CommandFromServer();
 =======
         public SettingsModel() {
 >>>>>>> parent of e3ced37... HEYUSH
             //todo: taking the config arguments by the GetConfigCommand
-            /*this.outputDirectory = "OutputDirectory";
+            this.outputDirectory = "OutputDirectory";
             this.sourceName = "SourceName";
             logName = "LogName";
-            thumbnailSize = "ThumbnailSize";*/
+            thumbnailSize = "ThumbnailSize";
             DirectoryHandlers = new ObservableCollection<string>();
-            /*DirectoryHandlers.Add("hi");
+            DirectoryHandlers.Add("hi");
             DirectoryHandlers.Add("shalom");
-            DirectoryHandlers.Add("hishuv");*/
-            string[] arguments = new string[5];
-            CommandRecievedEventArgs getConfigCommand = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, arguments, "");
-            ClientGui.CommandToServer(getConfigCommand);
+            DirectoryHandlers.Add("hishuv");
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
         public ObservableCollection<string> DirectoryHandlers { get; set; }
         public string OutputDirectory
@@ -51,6 +45,10 @@ namespace Gui.Model
         public ObservableCollection<string> DirectoryHandlers { get ; set ; }
         public string OutputDirectory {
 >>>>>>> parent of e3ced37... HEYUSH
+=======
+        public ObservableCollection<string> DirectoryHandlers { get ; set ; }
+        public string OutputDirectory {
+>>>>>>> parent of 10b194c... Settings model  get commands from the server
             get
             {
                 return outputDirectory;
@@ -103,13 +101,12 @@ namespace Gui.Model
         }
 <<<<<<< HEAD
 
-        public IClient ClientGui
-        {
+        public IClient ClientGui {
             get
             {
                 return this.clientGui;
             }
-
+            
             set => throw new NotImplementedException();
         }
 
@@ -118,38 +115,7 @@ namespace Gui.Model
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
-
             PropertyChanged?.Invoke(this, e: new PropertyChangedEventArgs(name));
-        }
-        public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
-        {
-            try
-            {
-                if (e.CommandID == (int)CommandEnum.GetConfigCommand)
-                {
-                    this.outputDirectory = e.Args[0];
-                    this.sourceName = e.Args[1];
-                    logName = e.Args[2];
-                    thumbnailSize = e.Args[3];
-                    string[] directoryArray = e.Args[4].Split(';');
-                    for (int i = 0; i < directoryArray.Length; i++)
-                    {
-                        string deleteDir = directoryArray[i];
-                        if (deleteDir !=null && DirectoryHandlers!=null && DirectoryHandlers.Contains(deleteDir)) {
-                        DirectoryHandlers.Add(deleteDir);
-                      
-                        }
-                    }
-                }
-                else if (e.CommandID == (int)CommandEnum.CloseCommand)
-                {
-                    this.DirectoryHandlers.Remove(e.Args[0]);
-                }
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
         }
     }
 }

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿using Gui.Comunication;
 using ImageService.Infrastructure.Enums;
 using ImageService.Logging.Modal;
@@ -13,27 +14,30 @@ using System.Text;
 using System.Threading.Tasks;
 >>>>>>> parent of ed5b55d... after merge
 
+=======
+﻿using ImageService.Logging.Modal;
+using System.Collections.ObjectModel;
+>>>>>>> parent of 10b194c... Settings model  get commands from the server
 namespace Gui.Model
 {
-    class LogsModel: INotifyPropertyChanged
+    class LogsModel
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         public IClient GuiClient { get; set; }
+=======
+>>>>>>> parent of 10b194c... Settings model  get commands from the server
         private ObservableCollection<MessageRecievedEventArgs> logsCollection;
         public LogsModel()
         {
-            GuiClient = Client.Instance;
-            GuiClient.CommandRecieved += OnCommandRecieved;
-            CommandRecievedEventArgs command = new CommandRecievedEventArgs((int)CommandEnum.LogCommand,null,"");
             logsCollection = new ObservableCollection<MessageRecievedEventArgs>();
-            GuiClient.CommandToServer(command);
-            /*MessageRecievedEventArgs messageRecievedEventArgs = new MessageRecievedEventArgs() { Status = MessageTypeEnum.WARNING, Message = "hiiiii" };
+            MessageRecievedEventArgs messageRecievedEventArgs = new MessageRecievedEventArgs() { Status = MessageTypeEnum.WARNING, Message = "hiiiii" };
             MessageRecievedEventArgs messaeRecievedEventArgs = new MessageRecievedEventArgs() { Status = MessageTypeEnum.INFO, Message = "hiiiii" };
 
             //messageRecievedEventArgs.Message = "hiiiii";
             //messageRecievedEventArgs.Status = 0;
             LogsCollection.Add(messageRecievedEventArgs);
-            LogsCollection.Add(messaeRecievedEventArgs);*/
+            LogsCollection.Add(messaeRecievedEventArgs);
 
         }
 
@@ -43,6 +47,7 @@ namespace Gui.Model
             get { return logsCollection; }
             set { }
         }
+<<<<<<< HEAD
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
@@ -50,5 +55,7 @@ namespace Gui.Model
         }
 =======
 >>>>>>> parent of ed5b55d... after merge
+=======
+>>>>>>> parent of 10b194c... Settings model  get commands from the server
     }
 }

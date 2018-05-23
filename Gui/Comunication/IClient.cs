@@ -11,7 +11,6 @@ namespace Gui.Comunication
 {
     interface IClient
     {
-        event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
         void ConnectServer();
         void CommandToServer(CommandRecievedEventArgs e);
         void CommandFromServer();
