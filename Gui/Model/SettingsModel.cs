@@ -16,15 +16,13 @@ namespace Gui.Model
         private String sourceName;
         private String logName;
         private String thumbnailSize;
-<<<<<<< HEAD
         private IClient clientGui;
         //public IClient ClientGui { get; set; }
         public SettingsModel() {
             clientGui = Client.Instance;
             clientGui.CommandFromServer();
-=======
+
         public SettingsModel() {
->>>>>>> parent of e3ced37... HEYUSH
             //todo: taking the config arguments by the GetConfigCommand
             this.outputDirectory = "OutputDirectory";
             this.sourceName = "SourceName";
@@ -35,20 +33,15 @@ namespace Gui.Model
             DirectoryHandlers.Add("shalom");
             DirectoryHandlers.Add("hishuv");
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
         public ObservableCollection<string> DirectoryHandlers { get; set; }
         public string OutputDirectory
         {
-=======
+
         public IClient Client { get; set; }
         public ObservableCollection<string> DirectoryHandlers { get ; set ; }
         public string OutputDirectory {
->>>>>>> parent of e3ced37... HEYUSH
-=======
         public ObservableCollection<string> DirectoryHandlers { get ; set ; }
         public string OutputDirectory {
->>>>>>> parent of 10b194c... Settings model  get commands from the server
             get
             {
                 return outputDirectory;
@@ -99,8 +92,6 @@ namespace Gui.Model
                 OnPropertyChanged("ThumbnailSize");
             }
         }
-<<<<<<< HEAD
-
         public IClient ClientGui {
             get
             {
@@ -110,8 +101,6 @@ namespace Gui.Model
             set => throw new NotImplementedException();
         }
 
-=======
->>>>>>> parent of e3ced37... HEYUSH
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
