@@ -15,15 +15,15 @@ namespace ImageService.Server
         private int port;
         private IPEndPoint ep;
         private TcpListener listener;//,nmhjvfjyhtf
-        private IClientHandler handler;
+       // private IClientHandler handler;
 
-        public Server(string ip, int port, IClientHandler clientHandler)
+        public Server(string ip, int port)
         {
             this.ipAdd = ip;
             this.port = port;
             this.ep = new IPEndPoint(IPAddress.Parse(this.ipAdd), this.port);
             this.listener = new TcpListener(this.ep);
-            this.handler = clientHandler;
+         //   this.handler = new ClientHandler();
         }
 
         public void StartListening()
@@ -36,7 +36,11 @@ namespace ImageService.Server
             try {
                 // Gets a new client.
                 TcpClient client = this.listener.AcceptTcpClient();
-                this.handler.HandleClient(client);
+
+                // Creates a new client handler and send the client as a task for the client hanbdler.
+                ClientHandler handler = new ClientHandler(client);
+                Task t = new Task(handler.HandleClient);
+                t.Start();
             }
             catch (SocketException e)
             {
