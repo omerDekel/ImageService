@@ -48,16 +48,21 @@ namespace Gui.Comunication
             {
                 while (!stop)
                 {
-                    NetworkStream stream = tcpClient.GetStream();
-                    BinaryReader reader = new BinaryReader(stream);
-                    //BinaryWriter writer = new BinaryWriter(stream);
-                    commandStr = reader.ReadString();
-                    Console.WriteLine($"Recieve {commandStr} from Server");
-                    //string jStr = JsonConvert.SerializeObject(e);
-                    //writer.Write(jStr);
-                    CommandRecievedEventArgs responseObj = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandStr);
-                    CommandRecieved?.Invoke(this, responseObj);
+                    try
+                    {
+                        NetworkStream stream = tcpClient.GetStream();
+                        BinaryReader reader = new BinaryReader(stream);
+                        //BinaryWriter writer = new BinaryWriter(stream);
+                        commandStr = reader.ReadString();
+                        Console.WriteLine($"Recieve {commandStr} from Server");
+                        //string jStr = JsonConvert.SerializeObject(e);
+                        //writer.Write(jStr);
+                        CommandRecievedEventArgs responseObj = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandStr);
+                        CommandRecieved?.Invoke(this, responseObj);
+                    } catch (Exception e)
+                    {
 
+                    }
                 }
             }).Start();
         }
@@ -66,21 +71,33 @@ namespace Gui.Comunication
         {
             new Task(() =>
             {
-                NetworkStream stream = tcpClient.GetStream();
-                BinaryWriter writer = new BinaryWriter(stream);
-                string jStr = JsonConvert.SerializeObject(e);
-                Console.WriteLine($"Send {jStr} to Server");
-                writer.Write(jStr);
+                try
+                {
+                    NetworkStream stream = tcpClient.GetStream();
+                    BinaryWriter writer = new BinaryWriter(stream);
+                    string jStr = JsonConvert.SerializeObject(e);
+                    Console.WriteLine($"Send {jStr} to Server");
+                    writer.Write(jStr);
+                } catch (Exception exception)
+                {
+
+                }
             }).Start();
         }
 
         public void ConnectServer()
         {
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
-            TcpClient tcpClient = new TcpClient();
-            tcpClient.Connect(ep);
-            Console.WriteLine("You are connected");
-            stop = false;
+            try
+            {
+                IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
+                TcpClient tcpClient = new TcpClient();
+                tcpClient.Connect(ep);
+                Console.WriteLine("You are connected");
+                stop = false;
+            } catch (Exception e)
+            {
+
+            }
         }
         public void Closing()
         {
