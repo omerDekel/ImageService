@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gui.ViewModels
+namespace Gui.Model
 {
-    class LogsViewModel
+    interface ILogsModels
     {
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,11 +14,6 @@ namespace ImageService.Modal
         public int CommandID { get; set; }      // The Command ID
         public string[] Args { get; set; }
         public string RequestDirPath { get; set; }  // The Request Directory
-
-        public NetworkStream GetStream()
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// constructor . 
