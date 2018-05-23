@@ -1,5 +1,4 @@
-﻿using Gui.Comunication;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -16,6 +15,6 @@ namespace Gui.Model
         string SourceName { get; set; }
         string LogName { get; set; }
         string ThumbnailSize { get; set; }
-        IClient ClientGui { get; set; }
+
     }
 }
