@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ImageService.Logging.Modal;
 using System.Collections;
 
-namespace ImageService.Logging
+namespace ImageService.ImageService.Logging
 {
     class LogingBuffer
     {
