@@ -100,9 +100,6 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-<<<<<<< HEAD
-=======
   <ItemGroup />
->>>>>>> parent of 4896ccd... Finish get log command, continue with clients hadlers.
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
