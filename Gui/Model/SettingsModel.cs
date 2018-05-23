@@ -18,17 +18,14 @@ namespace Gui.Model
         private String logName;
         private String thumbnailSize;
         private IClient clientGui;
-        //public IClient ClientGui { get; set; }
 
         public SettingsModel()
         {
             clientGui = Client.Instance;
             ClientGui.CommandRecieved += OnCommandRecieved;
             clientGui.CommandFromServer();
-            //todo: taking the config arguments by the GetConfigCommand
-            
+            //taking the config arguments by the GetConfigCommand
             DirectoryHandlers = new ObservableCollection<string>();
-            
             string[] arguments = new string[5];
             CommandRecievedEventArgs getConfigCommand = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, arguments, "");
             ClientGui.CommandToServer(getConfigCommand);
