@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 ﻿using Gui.Comunication;
 using ImageService.Infrastructure.Enums;
 using ImageService.Logging.Modal;
