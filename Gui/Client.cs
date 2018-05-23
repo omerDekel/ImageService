@@ -9,13 +9,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Gui.Comunication
 {
     class Client : IClient
     {
-
+        private static Mutex mutex;
         private TcpClient tcpClient;
         private TcpListener listener;
         private bool stop;
@@ -52,11 +53,8 @@ namespace Gui.Comunication
                     {
                         NetworkStream stream = tcpClient.GetStream();
                         BinaryReader reader = new BinaryReader(stream);
-                        //BinaryWriter writer = new BinaryWriter(stream);
                         commandStr = reader.ReadString();
                         Console.WriteLine($"Recieve {commandStr} from Server");
-                        //string jStr = JsonConvert.SerializeObject(e);
-                        //writer.Write(jStr);
                         CommandRecievedEventArgs responseObj = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandStr);
                         CommandRecieved?.Invoke(this, responseObj);
                     } catch (Exception e)
@@ -80,7 +78,9 @@ namespace Gui.Comunication
                     BinaryWriter writer = new BinaryWriter(stream);
                     string jStr = JsonConvert.SerializeObject(e);
                     Console.WriteLine($"Send {jStr} to Server");
+                    mutex.WaitOne();
                     writer.Write(jStr);
+                    mutex.ReleaseMutex();
                 } catch (Exception exception)
                 {
 
@@ -101,10 +101,6 @@ namespace Gui.Comunication
             {
 
             }
-        }
-        public void Closing()
-        {
-
         }
     }
 }
