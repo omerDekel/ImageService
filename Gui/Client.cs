@@ -66,7 +66,10 @@ namespace Gui.Comunication
                 }
             }).Start();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         public void CommandToServer(CommandRecievedEventArgs e)
         {
             new Task(() =>
