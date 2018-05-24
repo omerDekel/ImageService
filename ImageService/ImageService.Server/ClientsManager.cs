@@ -23,7 +23,6 @@ namespace ImageService.ImageService.Server
             //  Creates a new client handler and let it handle the client
             ClientHandler clientHandler = new ClientHandler(this.controller);
             clientHandler.HandleClient(client);
-
         }
     }
 }

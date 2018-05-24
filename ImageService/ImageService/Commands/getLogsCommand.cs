@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 using ImageService.Modal;
 using ImageService.Logging;
 using System.Collections;
+using ImageService.Logging.Modal;
+using ImageService.Infrastructure.Enums;
 
 namespace ImageService.Commands
 {
@@ -28,12 +30,21 @@ namespace ImageService.Commands
         public string Execute(string[] args, out bool result)
         {
             int logNumber;
-
             if (int.TryParse(args[0], out logNumber))
             {
                 result = true;
                 ArrayList logsArray = this.logsBuffer.getLogsFromNumber(logNumber);
-                string str = JsonConvert.SerializeObject(logsArray);
+                string[] logs = new string[logsArray.Count * 2];
+                
+                for (int i = 0; i < logsArray.Count; i++)
+                {
+                    logs[2 * i] = (logsArray[i] as MessageRecievedEventArgs).Status.ToString();
+                    logs[2 * i + 1] = (logsArray[i] as MessageRecievedEventArgs).Message;
+                }
+
+                CommandRecievedEventArgs commandRecievedEvent = new CommandRecievedEventArgs((int)CommandEnum.LogCommand, logs, "");
+
+                string str = JsonConvert.SerializeObject(commandRecievedEvent);
                 return str;
             }
             else

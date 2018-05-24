@@ -17,12 +17,13 @@ namespace ImageService.Commands
             CommandRecievedEventArgs commandRecievedEvent;
             try
             {
-                args[0] = ConfigurationManager.AppSettings.Get("OutputDir");
-                args[1] = ConfigurationManager.AppSettings.Get("SourceName");
-                args[2] = ConfigurationManager.AppSettings.Get("LogName");
-                args[3] = ConfigurationManager.AppSettings.Get("ThumbnailSize");
+                string []argsToCommand = new string[4];
+                argsToCommand[0] = ConfigurationManager.AppSettings.Get("OutputDir");
+                argsToCommand[1] = ConfigurationManager.AppSettings.Get("SourceName");
+                argsToCommand[2] = ConfigurationManager.AppSettings.Get("LogName");
+                argsToCommand[3] = ConfigurationManager.AppSettings.Get("ThumbnailSize");
                 result = true;
-                commandRecievedEvent = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, args, "");
+                commandRecievedEvent = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, argsToCommand, "");
                 string jStr = JsonConvert.SerializeObject(commandRecievedEvent);
                 return jStr;
             } catch (Exception e)
