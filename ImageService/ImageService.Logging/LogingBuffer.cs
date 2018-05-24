@@ -6,32 +6,32 @@ using System.Threading.Tasks;
 using ImageService.Logging.Modal;
 using System.Collections;
 
-namespace ImageService.ImageService.Logging
+namespace ImageService.Logging
 {
     class LogingBuffer
     {
-        private List<MessageRecievedEventArgs> logsList;
+        private ArrayList logsList;
 
         public LogingBuffer()
         {
-            this.logsList = new List<MessageRecievedEventArgs>();
+            this.logsList = new ArrayList();
         }
 
         public LogingBuffer(List<MessageRecievedEventArgs> copy)
         {
-            this.logsList = new List<MessageRecievedEventArgs>();
+            this.logsList = new ArrayList();
             this.logsList.AddRange(copy);
         }
 
-        public List<MessageRecievedEventArgs> getLogsList()
+        public ArrayList getLogsList()
         {
             return this.logsList;
         }
 
-        public List<MessageRecievedEventArgs> FlushlogsList()
+        public ArrayList FlushlogsList()
         {
-            List<MessageRecievedEventArgs> listToReturn = this.logsList;
-            this.logsList = new List<MessageRecievedEventArgs>();
+            ArrayList listToReturn = this.logsList;
+            this.logsList = new ArrayList();
             return this.logsList;
         }
 
@@ -40,5 +40,17 @@ namespace ImageService.ImageService.Logging
             this.logsList.Add(args);
         }
 
+        public ArrayList getLogsFromNumber(int number)
+        {
+            ArrayList logsToRrturn = new ArrayList();
+            if(this.logsList.Count - number > 50)
+            {
+                logsList.AddRange(this.logsList.GetRange(number, number + 50));
+            } else
+            {
+                logsList.AddRange(this.logsList.GetRange(number, logsList.Count -1));
+            }
+            return logsToRrturn;
+        }
     }
 }
