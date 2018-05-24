@@ -38,6 +38,15 @@ namespace Gui.Model
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
+            /*if(e.CommandID == (int)CommandEnum.LogCommand)
+            {
+
+               for( int i = 0; i < e.Args.Length; i++)
+                {
+                    MessageRecievedEventArgs log = (MessageRecievedEventArgs)e.
+                    logsCollection.Add((MessageRecievedEventArgs)(e.Args[i]));
+                }*/
+            }
         }
     }
 }

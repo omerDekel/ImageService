@@ -29,6 +29,7 @@ namespace Gui.Comunication
         public Client()
         {
             ConnectServer();
+            CommandFromServer();
         }
                 public static Client Instance
         {
