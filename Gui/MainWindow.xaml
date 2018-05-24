@@ -6,9 +6,28 @@
         xmlns:local="clr-namespace:Gui"
         xmlns:views="clr-namespace:Gui.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" >
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
+        <Grid.Style>
+            <Style TargetType="Grid">
+
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ConnectedToServer}" 
+                                 Value="True">
+                        <Setter Property="Background"
+                                Value="White" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ConnectedToServer}" 
+                                 Value="False">
+                        <Setter Property="Background"
+                                Value="LightGray" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+        </Grid.Style>
+
+        <TabControl HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="772" >
             <TabItem Header="Settings">
                 <views:settings/>
             </TabItem>
