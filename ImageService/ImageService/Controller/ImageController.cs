@@ -2,6 +2,7 @@
 using ImageService.Infrastructure;
 using ImageService.Infrastructure.Enums;
 using ImageService.Modal;
+using ImageService.Logging;
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -9,20 +10,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ImageService.Controller
 {
     public class ImageController : IImageController
     {
         private IImageServiceModal m_modal;                      // The Modal Object
+        private LogingBuffer loggingBuffer;
         private Dictionary<int, ICommand> commands;             // Dictionary from the command id to the command
-
-        public ImageController(IImageServiceModal modal)
+        
+        public ImageController(IImageServiceModal modal, LogingBuffer logsBuffer)
         {
             m_modal = modal;                    // Storing the Modal Of The System
+            this.loggingBuffer = logsBuffer;
             commands = new Dictionary<int, ICommand>()
             {
                 // For Now will contain NEW_FILE_COMMAND
-                {0, new NewFileCommand(m_modal) }
+                {(int)CommandEnum.NewFileCommand, new NewFileCommand(m_modal) },
+                {(int)CommandEnum.LogCommand, new GetLogsCommand(logsBuffer)},
+                {(int)CommandEnum.GetConfigCommand, new GetConfigCommand()}
             };
         }
 

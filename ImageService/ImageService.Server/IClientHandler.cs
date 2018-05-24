@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
-namespace ImageService.ImageService.Server
+namespace ImageService.Server
 {
-    interface IClientHandler
+    public interface IClientHandler
     {
         void HandleClient(TcpClient client);
     }

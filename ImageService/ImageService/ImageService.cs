@@ -23,6 +23,7 @@ using ImageService.Controller;
 using ImageService.Modal;
 using ImageService.Logging;
 using ImageService.Logging.Modal;
+using ImageService.Server;
 using ImageService.Logging.Modal;
 using System.Configuration;
 using ImageService.Infrastructure;
@@ -59,6 +60,7 @@ namespace ImageService
         private IImageServiceModal modal;
         private IImageController controller;
         private ILoggingService logging;
+        private ComunicationServer comServer;
 
         /// <summary>
         /// This function is called when the service starts.
@@ -102,17 +104,26 @@ namespace ImageService
             // the funtion writeLog will be invoked and it will write the massage to the event viewer.
             this.logging.MessageRecieved += this.writeLog;
 
+            // Define the logging buffer helps to send logs to the clients
+            LogingBuffer logsBuffer = new LogingBuffer();
+
             // Define the ImageModel
             int size = int.Parse(this.getAppConfigValue(thumbnailSizeKey));
             this.modal = new ImageServiceModal(this.getAppConfigValue(outPutDirKey), size);
 
             // Define the controler
-            this.controller = new ImageController(this.modal);
+            this.controller = new ImageController(this.modal, logsBuffer);
+
+            // Define the ClientsManagget that will manage the coimunication with the diffrent clients.
+            ClientsManager managger = new ClientsManager(this.controller, this.logging);
+
+            // Define the cominication server
+            this.comServer = new ComunicationServer("127.0.0.1", 8000, managger);
 
             // Define the server
             string directories = this.getAppConfigValue(sourceDirectoriesKey);
             string[] directoryArray = directories.Split(';');
-            this.m_imageServer = new ImageServer(this.logging, this.controller, directoryArray);
+            this.m_imageServer = new ImageServer(this.logging, this.controller, directoryArray, comServer, managger);
 
             eventLog1.WriteEntry("In OnStart");
             this.timer.Start();

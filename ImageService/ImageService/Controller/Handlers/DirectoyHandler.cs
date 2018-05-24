@@ -56,7 +56,7 @@ namespace ImageService.Controller.Handlers
             {
                 this.m_logging.Log("relevant to the directory" + this.m_path, MessageTypeEnum.INFO);
                 //if it's clossing directory command
-                if (e.CommandID == 1)
+                if (e.CommandID == (int)CommandEnum.CloseCommand)
                 {
                     CloseHandle();
                 }  else  {

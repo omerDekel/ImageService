@@ -3,6 +3,7 @@ using ImageService.Controller.Handlers;
 using ImageService.Infrastructure.Enums;
 using ImageService.Logging;
 using ImageService.Modal;
+using ImageService.Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace ImageService.Server
         #region Members
         private IImageController m_controller;
         private ILoggingService m_logging;
+        private ComunicationServer m_commServer;
         #endregion
 
         #region Properties
@@ -30,10 +32,11 @@ namespace ImageService.Server
         /// <param name="logger">the loger that take cares the messages</param>
         /// <param name="controller">The Image Processing Controller</param>
         /// <param name="directories"> the paths of the directories we want to listen .</param>
-        public ImageServer(ILoggingService logger, IImageController controller, String[] directories)
+        public ImageServer(ILoggingService logger, IImageController controller, String[] directories, ComunicationServer server, ClientsManager manager)
         {
             m_logging = logger; // setting the logger
             m_controller = controller; // setting the controller
+            m_commServer = server;
             DirectoyHandler directoyHandler; 
             // for each directory path we create directory handler.
             for( int i = 0; i < directories.Length; i++)
@@ -47,6 +50,9 @@ namespace ImageService.Server
                 // start to listen to the directory
                 directoyHandler.StartHandleDirectory(directories[i]);
                 m_logging.Log("Created directory handler " + directories[i], Logging.Modal.MessageTypeEnum.INFO);
+
+                // Add the directroty the list of directories that the client mannager has.
+                manager.addDirectoryHandler(directoyHandler);
             }
             m_logging.Log("Created server", Logging.Modal.MessageTypeEnum.INFO);
         }
@@ -75,7 +81,7 @@ namespace ImageService.Server
         /// </summary>
         public void OnClosedService()
         {
-            CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs(1,null, "*");
+            CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand,null, "*");
             CommandRecieved?.Invoke(this, commandRecievedEventArgs);
             m_logging.Log("Server notify to close directory handler", Logging.Modal.MessageTypeEnum.INFO);
         }

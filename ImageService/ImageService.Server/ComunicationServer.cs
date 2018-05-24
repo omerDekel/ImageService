@@ -7,23 +7,23 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImageService.ImageService.Server
+namespace ImageService.Server
 {
-    class Server
+   public class ComunicationServer
     {
         private string ipAdd;
         private int port;
         private IPEndPoint ep;
-        private TcpListener listener;//,nmhjvfjyhtf
-       // private IClientHandler handler;
+        private TcpListener listener;
+        private IClientHandler handler;
 
-        public Server(string ip, int port)
+        public ComunicationServer(string ip, int port, IClientHandler clientHanler)
         {
             this.ipAdd = ip;
             this.port = port;
             this.ep = new IPEndPoint(IPAddress.Parse(this.ipAdd), this.port);
             this.listener = new TcpListener(this.ep);
-         //   this.handler = new ClientHandler();
+            this.handler = clientHanler;
         }
 
         public void StartListening()
@@ -38,9 +38,7 @@ namespace ImageService.ImageService.Server
                 TcpClient client = this.listener.AcceptTcpClient();
 
                 // Creates a new client handler and send the client as a task for the client hanbdler.
-                ClientHandler handler = new ClientHandler(client);
-                Task t = new Task(handler.HandleClient);
-                t.Start();
+                this.handler.HandleClient(client);
             }
             catch (SocketException e)
             {

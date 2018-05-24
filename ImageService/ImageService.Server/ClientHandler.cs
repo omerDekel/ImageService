@@ -10,10 +10,11 @@ using System.IO;
 using Newtonsoft.Json;
 using ImageService.Modal;
 using ImageService.Infrastructure.Enums;
+using ImageService.Logging.Modal;
 
-namespace ImageService.ImageService.Server
+namespace ImageService.Server
 {
-    class ClientHandler : IClientHandler
+    public class ClientHandler : IClientHandler
     {
         private TcpClient client;
         private IImageController controller;
@@ -21,8 +22,9 @@ namespace ImageService.ImageService.Server
         private NetworkStream stream;
         private BinaryReader reader;
         private BinaryWriter writer;
-        private 
         private int logNum;
+        private bool isListeningToLogger;
+        private bool isTaskCanceled;
 
         public ClientHandler(IImageController imageController)
         {
@@ -31,6 +33,7 @@ namespace ImageService.ImageService.Server
             this.reader = null;
             this.writer = null;
             this.controller = imageController;
+            this.isListeningToLogger = false;
             logNum = 0;
         }
 
@@ -41,9 +44,10 @@ namespace ImageService.ImageService.Server
             this.stream = this.client.GetStream();
             this.reader = new BinaryReader(this.stream);
             this.writer = new BinaryWriter(this.stream);
+            this.isTaskCanceled = false;
 
             // Set the task that will handle the cumunication.
-            this.comuniationTask = new Task(this.HandleClient);
+            this.comuniationTask = new Task(this.HandleClient, new System.Threading.CancellationToken (isTaskRunuing));
             comuniationTask.Start();
         }
 
@@ -76,7 +80,32 @@ namespace ImageService.ImageService.Server
             }
 
             // Set the logging listener.
+            this.isListeningToLogger = true;
 
+            while (true)
+            {
+                //Gets commands and execute them.
+                string commandFromClient = this.reader.ReadString();
+                CommandRecievedEventArgs commandArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandFromClient);
+                this.controller.ExecuteCommand(commandArgs.CommandID, commandArgs.Args, out result);
+            }
+        }
+
+        public void ReciveLog(object sender, MessageRecievedEventArgs args)
+        {
+            if (this.isListeningToLogger)
+            {
+                string[] logsToSend = new string[2];
+                logsToSend[0] = ((int)args.Status).ToString();
+                logsToSend[1] = args.Message;
+            }
+        }
+
+        public void OnDirectoryClose(object sender, DirectoryCloseEventArgs e)
+        {
+            CommandRecievedEventArgs commandArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, null, e.DirectoryPath);
+            string command = JsonConvert.SerializeObject(commandArgs);
+            this.writer.Write(command);
         }
     }
 }

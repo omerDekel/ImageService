@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace ImageService.Logging
 {
-    class LogingBuffer
+    public class LogingBuffer
     {
         private ArrayList logsList;
 
