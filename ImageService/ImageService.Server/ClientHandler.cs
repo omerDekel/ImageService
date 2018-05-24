@@ -47,7 +47,7 @@ namespace ImageService.Server
             this.isTaskCanceled = false;
 
             // Set the task that will handle the cumunication.
-            this.comuniationTask = new Task(this.HandleClient, new System.Threading.CancellationToken (isTaskRunuing));
+            this.comuniationTask = new Task(this.HandleClient, new System.Threading.CancellationToken (isTaskCanceled));
             comuniationTask.Start();
         }
 
