@@ -11,8 +11,12 @@
         <Grid.Style>
             <Style TargetType="Grid">
 
-                <Setter Property="Background" Value="White" />
                 <Style.Triggers>
+                    <DataTrigger Binding="{Binding ConnectedToServer}" 
+                                 Value="True">
+                        <Setter Property="Background"
+                                Value="White" />
+                    </DataTrigger>
                     <DataTrigger Binding="{Binding ConnectedToServer}" 
                                  Value="False">
                         <Setter Property="Background"
