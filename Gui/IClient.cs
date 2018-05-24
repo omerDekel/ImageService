@@ -15,6 +15,7 @@ namespace Gui.Comunication
          void ConnectServer();
          void CommandToServer(CommandRecievedEventArgs e);
          void CommandFromServer();
+        bool Stop { get; }
 
     }
 }

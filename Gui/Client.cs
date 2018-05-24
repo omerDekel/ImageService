@@ -41,7 +41,13 @@ namespace Gui.Comunication
                return instance;
            }
         }
-
+        public bool Stop
+        {
+            get
+            {
+                return this.stop;
+            }
+        }
         public void CommandFromServer()
         {
             string commandStr;
@@ -87,7 +93,6 @@ namespace Gui.Comunication
                 }
             }).Start();
         }
-
         public void ConnectServer()
         {
             try
@@ -99,7 +104,7 @@ namespace Gui.Comunication
                 stop = false;
             } catch (Exception e)
             {
-
+                stop = true;
             }
         }
     }
