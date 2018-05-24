@@ -13,6 +13,7 @@ namespace ImageService.ImageService.Server
     {
         private IImageController controller;
 
+
         public ClientsManager(IImageController control)
         {
             this.controller = control;

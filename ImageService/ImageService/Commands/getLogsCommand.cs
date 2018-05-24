@@ -32,10 +32,17 @@ namespace ImageService.Commands
             int logNumber;
             if (int.TryParse(args[0], out logNumber))
             {
-                result = true;
                 ArrayList logsArray = this.logsBuffer.getLogsFromNumber(logNumber);
+                if(logsArray.Count < 50)
+                {
+                    result = true;
+                } else
+                {
+                    result = false;
+                }
+
                 string[] logs = new string[logsArray.Count * 2];
-                
+
                 for (int i = 0; i < logsArray.Count; i++)
                 {
                     logs[2 * i] = (logsArray[i] as MessageRecievedEventArgs).Status.ToString();
