@@ -124,7 +124,7 @@ namespace Gui.Model
                 }
                 else if (e.CommandID == (int)CommandEnum.CloseCommand)
                 {
-                    this.DirectoryHandlers.Remove(e.Args[0]);
+                    this.DirectoryHandlers.Remove(e.RequestDirPath);
                 }
             }
             catch (Exception exception)

@@ -27,6 +27,7 @@
         <TextBlock Grid.Row="3" FontWeight="Heavy" Padding="3" Margin="3">Thumbnail Size:</TextBlock>
         <TextBlock Padding="3" Grid.Row="3" Grid.Column="1"  Text="{Binding ThumbnailSize}" Margin="3"></TextBlock>
         <Button Grid.Row="4"  Command="{Binding RemoveCommand}" Grid.ColumnSpan="2">Remove</Button>
-        <ListBox Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding DirectoryHandlers}" SelectedItem="{Binding ChosenDir}"/>
+        <ListBox Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding DirectoryHandlers}" SelectedItem="{Binding ChosenDir}"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"/>
     </Grid>
 </UserControl>
