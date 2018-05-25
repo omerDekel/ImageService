@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Gui.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     interface ISettingsModel: INotifyPropertyChanged
     {
         ObservableCollection<string> DirectoryHandlers { get; set; }
