@@ -90,6 +90,7 @@ namespace ImageService.Server
                 this.logger.Log("Start listening to commands from the gui",MessageTypeEnum.INFO);
                 //Gets commands and execute them.
                 string commandFromClient = this.reader.ReadString();
+                this.logger.Log("Got a command from the client", MessageTypeEnum.INFO);
                 CommandRecievedEventArgs commandArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandFromClient);
                 this.controller.ExecuteCommand(commandArgs.CommandID, commandArgs.Args, out result);
             }
@@ -102,6 +103,9 @@ namespace ImageService.Server
                 string[] logsToSend = new string[2];
                 logsToSend[0] = ((int)args.Status).ToString();
                 logsToSend[1] = args.Message;
+                CommandRecievedEventArgs commandArgs = new CommandRecievedEventArgs((int)CommandEnum.LogCommand, logsToSend, "");
+                string command = JsonConvert.SerializeObject(commandArgs);
+                this.writer.Write(command);
             }
         }
 
