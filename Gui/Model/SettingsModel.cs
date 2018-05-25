@@ -19,11 +19,11 @@ namespace Gui.Model
         private String logName;
         private String thumbnailSize;
         private IClient clientGui;
-
+        private ObservableCollection<string> directoryHandlers;
         public SettingsModel()
         {
             clientGui = Client.Instance;
-            ClientGui.CommandRecieved += OnCommandRecieved;
+            clientGui.CommandRecieved += OnCommandRecieved;
             clientGui.CommandFromServer();
             //taking the config arguments by the GetConfigCommand
             DirectoryHandlers = new ObservableCollection<string>();
@@ -32,7 +32,18 @@ namespace Gui.Model
             ClientGui.CommandToServer(getConfigCommand);
         }
 
-        public ObservableCollection<string> DirectoryHandlers { get; set; }
+        public ObservableCollection<string> DirectoryHandlers
+        {
+            get
+            {
+                return this.directoryHandlers;
+            }
+            set
+            {
+                directoryHandlers = value;
+                OnPropertyChanged("DirectoryHandlers");
+            }
+        }
         public string OutputDirectory
         {
             get
@@ -41,6 +52,7 @@ namespace Gui.Model
             }
             set
             {
+                Console.Write("IN SET OF OUTPUT DIRECTORY ");
                 outputDirectory = value;
                 OnPropertyChanged("OutputDirectory");
             }
@@ -107,24 +119,31 @@ namespace Gui.Model
             {
                 if (e.CommandID == (int)CommandEnum.GetConfigCommand)
                 {
-                    this.outputDirectory = e.Args[0];
-                    this.sourceName = e.Args[1];
-                    logName = e.Args[2];
-                    thumbnailSize = e.Args[3];
+                    OutputDirectory = e.Args[0];
+                    Console.Write("OUTPUT DIRECTORY IS:");
+                    Console.WriteLine(e.Args[0]);
+                    SourceName = e.Args[1];
+                    LogName = e.Args[2];
+                    ThumbnailSize = e.Args[3];
                     string[] directoryArray = e.Args[4].Split(';');
                     for (int i = 0; i < directoryArray.Length; i++)
                     {
-                        string deleteDir = directoryArray[i];
-                        if (deleteDir != null && DirectoryHandlers != null && DirectoryHandlers.Contains(deleteDir))
-                        {
-                            DirectoryHandlers.Add(deleteDir);
+                        string dir = directoryArray[i];
+                        Console.WriteLine("dir name" + dir);
 
+                        if (dir != null && DirectoryHandlers != null && !DirectoryHandlers.Contains(dir))
+                        {
+                            Console.WriteLine("dir was added " +dir );
+                            DirectoryHandlers.Add(dir);
                         }
                     }
                 }
                 else if (e.CommandID == (int)CommandEnum.CloseCommand)
                 {
-                    this.DirectoryHandlers.Remove(e.RequestDirPath);
+                      if (e.RequestDirPath != null && DirectoryHandlers != null && DirectoryHandlers.Contains(e.RequestDirPath))
+                        {
+                        this.DirectoryHandlers.Remove(e.RequestDirPath);
+                    }
                 }
             }
             catch (Exception exception)

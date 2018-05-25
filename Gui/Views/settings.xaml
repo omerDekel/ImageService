@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Padding="3" Grid.Row ="0" FontWeight="Heavy" Margin="3">Output Directory:</TextBlock>
-        <TextBlock Padding="3" Grid.Row="0" Grid.Column="1"  Text="{Binding ViewMOutputDirectory}" Margin="3"></TextBlock>
+        <TextBlock Padding="3" Grid.Row="0" Grid.Column="1"  Text="{Binding OutputDirectory}" Margin="3"></TextBlock>
         <TextBlock Grid.Row="1" FontWeight="Heavy" Padding="3" Margin="3">Source Name:</TextBlock>
         <TextBlock Padding="3" Grid.Row="1" Grid.Column="1"  Text="{Binding SourceName}" Margin="3"></TextBlock>
         <TextBlock Grid.Row="2" FontWeight="Heavy" Padding="3" Margin="3">Log Name:</TextBlock>

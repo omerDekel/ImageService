@@ -34,20 +34,7 @@ namespace ImageService.Controller
 
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
-            try
-            {
-                if (File.Exists(args[0]))
-                {
-                    return commands[commandID].Execute(args, out resultSuccesful);
-                } else {
-                    throw new Exception ("Wrong path!");
-                }
-
-            } catch (Exception e)
-            {
-                resultSuccesful = false;
-                return e.Message;
-            }
+            return commands[commandID].Execute(args, out resultSuccesful);
         }
     }
 }

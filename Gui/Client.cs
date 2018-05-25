@@ -54,6 +54,7 @@ namespace Gui.Comunication
             string commandStr;
             new Task(() =>
             {
+                Console.WriteLine("listening to the server ");
                 while (!stop)
                 {
                     try
@@ -77,6 +78,61 @@ namespace Gui.Comunication
         /// <param name="e"></param>
         public void CommandToServer(CommandRecievedEventArgs e)
         {
+            Console.WriteLine("Send command to server by a diffrent task");
+       /*     try
+            {
+                if (tcpClient == null)
+                {
+                    Console.WriteLine("Tcp Client is null");
+                }
+                else
+                {
+                    Console.WriteLine("Tcp Client is not null");
+                }
+
+                NetworkStream stream = tcpClient.GetStream();
+                if (stream == null)
+                {
+                    Console.WriteLine("stream is null");
+                }
+                else
+                {
+                    Console.WriteLine("stream Client is not null");
+                }
+
+                BinaryWriter writer = new BinaryWriter(stream);
+
+                if (writer == null)
+                {
+                    Console.WriteLine("writer is null");
+                }
+                else
+                {
+                    Console.WriteLine("writer Client is not null");
+                }
+
+                if (e == null)
+                {
+                    Console.WriteLine("command args is null");
+                }
+                else
+                {
+                    Console.WriteLine("command args is not null");
+                }
+                string jStr = JsonConvert.SerializeObject(e);
+                Console.WriteLine(jStr);
+                Console.WriteLine($"Send {jStr} to Server");
+       //         mutex.WaitOne();
+                writer.Write(jStr);
+         //       mutex.ReleaseMutex();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                Console.WriteLine(exception.Source);
+
+            }*/
+            
             new Task(() =>
             {
                 try
@@ -84,23 +140,25 @@ namespace Gui.Comunication
                     NetworkStream stream = tcpClient.GetStream();
                     BinaryWriter writer = new BinaryWriter(stream);
                     string jStr = JsonConvert.SerializeObject(e);
+                    Console.WriteLine(jStr);
                     Console.WriteLine($"Send {jStr} to Server");
-                    mutex.WaitOne();
+                    //mutex.WaitOne();
                     writer.Write(jStr);
-                    mutex.ReleaseMutex();
-                } catch (Exception exception)
-                {
-
+                    //mutex.ReleaseMutex();
+                } catch (Exception exception) {
+                    Console.WriteLine(exception.Message);
+                    Console.WriteLine(exception.Source);
                 }
             }).Start();
         }
+
         public void ConnectServer()
         {
             try
             {
                 IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
-                TcpClient tcpClient = new TcpClient();
-                tcpClient.Connect(ep);
+                this.tcpClient = new TcpClient();
+                this.tcpClient.Connect(ep);
                 Console.WriteLine("You are connected");
                 stop = false;
             } catch (Exception e)
@@ -108,5 +166,6 @@ namespace Gui.Comunication
                 stop = true;
             }
         }
+        
     }
 }

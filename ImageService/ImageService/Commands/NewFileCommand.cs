@@ -2,6 +2,7 @@
 using ImageService.Modal;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,8 +31,25 @@ namespace ImageService.Commands
         /// <returns> the message of the path , if the command succeed or the exception message if the function failed</returns>
         public string Execute(string[] args, out bool result)
         {
-			// The String Will Return the New Path if result = true, and will return the error message
-            return m_modal.AddFile(args[0], out result);
+            try
+            {
+                if (File.Exists(args[0]))
+                {
+                    // The String Will Return the New Path if result = true, and will return the error message
+                    return m_modal.AddFile(args[0], out result);
+                }
+                else
+                {
+                    throw new Exception("Wrong path!");
+                }
+
+            }
+            catch (Exception e)
+            {
+                result = false;
+                return e.Message;
+            }
+
         }
     }
 }

@@ -30,7 +30,6 @@ namespace Gui.ViewModels
             settingsModel = new SettingsModel();
             settingsModel.PropertyChanged += OnPropertyChanged;
             RemoveCommand = new DelegateCommand<object>(OnRemove, CanRemove);
-            //ViewMOutputDirectory = "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand RemoveCommand
@@ -51,7 +50,7 @@ namespace Gui.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        public string ViewMOutputDirectory
+        public string OutputDirectory
         {
             get
             {

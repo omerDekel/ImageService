@@ -58,7 +58,7 @@ namespace ImageService.Server
 
 
             // Make the comunication server start listening and acccepting clients.
-            this.m_commServer.AcceptClients();
+            this.m_commServer.StartListening();
             this.m_serverTask = new Task(this.m_commServer.AcceptClients);
             this.m_serverTask.Start();
 
