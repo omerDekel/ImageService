@@ -35,7 +35,6 @@ namespace ImageService.Controller
 
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
-            this.logger.Log("In executecommand of the comtroller", Logging.Modal.MessageTypeEnum.INFO);
             return commands[commandID].Execute(args, out resultSuccesful);
         }
     }
