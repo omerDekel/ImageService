@@ -18,8 +18,11 @@ namespace Gui.Model
         private String sourceName;
         private String logName;
         private String thumbnailSize;
+        // the client we comunicate through it with the server .
         private IClient clientGui;
-        //private ObservableCollection<string> directoryHandlers;
+        /// <summary>
+        /// Constructor .
+        /// </summary>
         public SettingsModel()
         {
             clientGui = Client.Instance;
@@ -83,9 +86,6 @@ namespace Gui.Model
                 OnPropertyChanged("LogName");
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
         public string ThumbnailSize
         {
             get
@@ -108,6 +108,9 @@ namespace Gui.Model
 
             set => throw new NotImplementedException();
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
