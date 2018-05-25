@@ -73,15 +73,11 @@ namespace ImageService.Server
                 string[] argsToCommand = new string[1];
                 argsToCommand[0] = this.logNum.ToString();
                 CommandRecievedEventArgs evantArgs = new CommandRecievedEventArgs((int)CommandEnum.LogCommand, argsToCommand, "");
-                this.logger.Log("The event args are" + evantArgs.CommandID.ToString() + ", " + evantArgs.Args[0], MessageTypeEnum.INFO);
                 answer = this.controller.ExecuteCommand(evantArgs.CommandID, evantArgs.Args, out isMoreLogs);
-                this.logger.Log("The command answer was" + answer , MessageTypeEnum.INFO);
                 if (answer.Equals(""))
                 {
-                    this.logger.Log("Falied to get logs  from the buffer", MessageTypeEnum.WARNING);
                     break;
                 }
-                this.logger.Log("Logs have been sent to the client", MessageTypeEnum.INFO);
                 this.logNum += 50;
                 this.writer.Write(answer);
             }
@@ -91,6 +87,7 @@ namespace ImageService.Server
 
             while (true)
             {
+                this.logger.Log("Start listening to commands from the gui",MessageTypeEnum.INFO);
                 //Gets commands and execute them.
                 string commandFromClient = this.reader.ReadString();
                 CommandRecievedEventArgs commandArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandFromClient);
