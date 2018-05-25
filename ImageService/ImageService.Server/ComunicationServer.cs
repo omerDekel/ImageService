@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using ImageService.Logging;
+using ImageService.Logging.Modal;
 
 namespace ImageService.Server
 {
@@ -16,33 +18,42 @@ namespace ImageService.Server
         private IPEndPoint ep;
         private TcpListener listener;
         private IClientHandler handler;
+        private ILoggingService logger;
 
-        public ComunicationServer(string ip, int port, IClientHandler clientHanler)
+
+        public ComunicationServer(string ip, int port, IClientHandler clientHanler, ILoggingService loggingService)
         {
             this.ipAdd = ip;
             this.port = port;
             this.ep = new IPEndPoint(IPAddress.Parse(this.ipAdd), this.port);
             this.listener = new TcpListener(this.ep);
             this.handler = clientHanler;
-        }
+            this.logger = loggingService;
+       }
 
         public void StartListening()
         {
             this.listener.Start();
+            this.logger.Log("The Connserver has start listening to clients", MessageTypeEnum.INFO);
         }
 
         public void AcceptClients()
         {
-            try {
-                // Gets a new client.
-                TcpClient client = this.listener.AcceptTcpClient();
-
-                // Creates a new client handler and send the client as a task for the client hanbdler.
-                this.handler.HandleClient(client);
-            }
-            catch (SocketException e)
+            while (true)
             {
-                Console.WriteLine(e.Message);
+                try
+                {
+                    // Gets a new client.
+                    TcpClient client = this.listener.AcceptTcpClient();
+
+                    // Creates a new client handler and send the client as a task for the client hanbdler.
+                    this.handler.HandleClient(client);
+                }
+                catch (SocketException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                this.logger.Log("A new client has eceepted", MessageTypeEnum.INFO);
             }
         }
 

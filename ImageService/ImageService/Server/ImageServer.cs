@@ -21,6 +21,7 @@ namespace ImageService.Server
         private IImageController m_controller;
         private ILoggingService m_logging;
         private ComunicationServer m_commServer;
+        private Task m_serverTask;
         #endregion
 
         #region Properties
@@ -54,7 +55,14 @@ namespace ImageService.Server
                 // Add the directroty the list of directories that the client mannager has.
                 manager.addDirectoryHandler(directoyHandler);
             }
-            m_logging.Log("Created server", Logging.Modal.MessageTypeEnum.INFO);
+
+
+            // Make the comunication server start listening and acccepting clients.
+            this.m_commServer.AcceptClients();
+            this.m_serverTask = new Task(this.m_commServer.AcceptClients);
+            this.m_serverTask.Start();
+
+            m_logging.Log("Service has created", Logging.Modal.MessageTypeEnum.INFO);
         }
         /// <summary>
         /// OnDirectoryClose.  The Event that will be activated upon Directory handler Closed.

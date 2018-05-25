@@ -118,7 +118,7 @@ namespace ImageService
             ClientsManager managger = new ClientsManager(this.controller, this.logging);
 
             // Define the cominication server
-            this.comServer = new ComunicationServer("127.0.0.1", 8000, managger);
+            this.comServer = new ComunicationServer("127.0.0.1", 8000, managger,this.logging);
 
             // Define the server
             string directories = this.getAppConfigValue(sourceDirectoriesKey);
