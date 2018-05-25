@@ -40,16 +40,21 @@ namespace ImageService.Logging
             this.logsList.Add(args);
         }
 
-        public ArrayList getLogsFromNumber(int number)
+        public ArrayList getLogsFromNumber(int number, ILoggingService logger)
         {
+            logger.Log("In getLodsfromNumber in loggongBuffer",MessageTypeEnum.INFO);
             ArrayList logsToRrturn = new ArrayList();
             if(this.logsList.Count - number > 50)
             {
-                logsList.AddRange(this.logsList.GetRange(number, number + 50));
+                logger.Log("logsList.Count - number > 50", MessageTypeEnum.INFO);
+                logsToRrturn.AddRange(this.logsList.GetRange(number, number + 50));
             } else
             {
-                logsList.AddRange(this.logsList.GetRange(number, logsList.Count -1));
+                logger.Log("logsList.Count - number < 50", MessageTypeEnum.INFO);
+                logger.Log("get logs from number " + number + "to number" + logsList.Count, MessageTypeEnum.INFO);
+                logsToRrturn.AddRange(this.logsList.GetRange(number, logsList.Count -1));
             }
+            logger.Log("In logging buffer, got thge ranges of logs ffrom the array", MessageTypeEnum.INFO);
             return logsToRrturn;
         }
     }

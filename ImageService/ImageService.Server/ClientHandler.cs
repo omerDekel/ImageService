@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using ImageService.Modal;
 using ImageService.Infrastructure.Enums;
 using ImageService.Logging.Modal;
+using ImageService.Logging;
 
 namespace ImageService.Server
 {
@@ -25,8 +26,8 @@ namespace ImageService.Server
         private int logNum;
         private bool isListeningToLogger;
         private bool isTaskCanceled;
-
-        public ClientHandler(IImageController imageController)
+        private ILoggingService logger;
+        public ClientHandler(IImageController imageController, ILoggingService logging)
         {
             this.client = null;
             this.stream = null;
@@ -34,6 +35,7 @@ namespace ImageService.Server
             this.writer = null;
             this.controller = imageController;
             this.isListeningToLogger = false;
+            this.logger = logging;
             logNum = 0;
         }
 
@@ -67,14 +69,19 @@ namespace ImageService.Server
             bool isMoreLogs = false;
             while (!isMoreLogs)
             {
+                this.logger.Log("Trying to get logs from the buffer", MessageTypeEnum.INFO);
                 string[] argsToCommand = new string[1];
                 argsToCommand[0] = this.logNum.ToString();
                 CommandRecievedEventArgs evantArgs = new CommandRecievedEventArgs((int)CommandEnum.LogCommand, argsToCommand, "");
+                this.logger.Log("The event args are" + evantArgs.CommandID.ToString() + ", " + evantArgs.Args[0], MessageTypeEnum.INFO);
                 answer = this.controller.ExecuteCommand(evantArgs.CommandID, evantArgs.Args, out isMoreLogs);
+                this.logger.Log("The command answer was" + answer , MessageTypeEnum.INFO);
                 if (answer.Equals(""))
                 {
+                    this.logger.Log("Falied to get logs  from the buffer", MessageTypeEnum.WARNING);
                     break;
                 }
+                this.logger.Log("Logs have been sent to the client", MessageTypeEnum.INFO);
                 this.logNum += 50;
                 this.writer.Write(answer);
             }

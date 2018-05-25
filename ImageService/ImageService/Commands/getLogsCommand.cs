@@ -9,15 +9,18 @@ using ImageService.Logging;
 using System.Collections;
 using ImageService.Logging.Modal;
 using ImageService.Infrastructure.Enums;
+using ImageService.Logging;
 
 namespace ImageService.Commands
 {
     class GetLogsCommand : ICommand
     {
         private LogingBuffer logsBuffer;
+        private ILoggingService logger;
 
-        public GetLogsCommand(LogingBuffer buffer)
+        public GetLogsCommand(LogingBuffer buffer, ILoggingService logging)
         {
+            this.logger = logging;
             this.logsBuffer = buffer;
         }
 
@@ -29,11 +32,14 @@ namespace ImageService.Commands
         /// <returns> the message of the path , if the command succeed or the exception message if the function failed</returns>
         public string Execute(string[] args, out bool result)
         {
+            this.logger.Log("In execute in logs command", MessageTypeEnum.INFO);
             int logNumber;
             if (int.TryParse(args[0], out logNumber))
             {
-                ArrayList logsArray = this.logsBuffer.getLogsFromNumber(logNumber);
-                if(logsArray.Count < 50)
+                this.logger.Log("Seccessfully parse the log number to int", MessageTypeEnum.INFO);
+                ArrayList logsArray = this.logsBuffer.getLogsFromNumber(logNumber, this.logger);
+                this.logger.Log("after getting the log array!!!!", MessageTypeEnum.INFO);
+                if (logsArray.Count < 50)
                 {
                     result = true;
                 } else

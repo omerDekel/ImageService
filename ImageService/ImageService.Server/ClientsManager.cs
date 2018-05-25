@@ -33,7 +33,7 @@ namespace ImageService.Server
         public void HandleClient(TcpClient client)
         {
             //  Creates a new client handler and let it handle the client
-            ClientHandler clientHandler = new ClientHandler(this.controller);
+            ClientHandler clientHandler = new ClientHandler(this.controller, this.logging);
 
             // Make the client recive logs.
             this.logging.MessageRecieved += clientHandler.ReciveLog;

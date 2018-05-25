@@ -44,19 +44,33 @@ namespace Gui.Model
             if(e.CommandID == (int)CommandEnum.LogCommand)
             {
                 int messageType;
-               for( int i = 0; i < e.Args.Length; i++)
+               for( int i = 0; i < e.Args.Length; i+=2)
                 {
-
-                    if(int.TryParse(e.Args[2 * i], out messageType))
+                        
+                    MessageRecievedEventArgs log = new MessageRecievedEventArgs();
+                    log.Status = this.fromString(e.Args[i]);
+                    log.Message = e.Args[i + 1];
+                    App.Current.Dispatcher.Invoke((Action)delegate
                     {
-                        MessageRecievedEventArgs log = new MessageRecievedEventArgs();
-                        log.Status = (MessageTypeEnum)messageType;
-                        log.Message = e.Args[2 * i + 1];
-                        LogsCollection.Add(log);
-                    }
-
+                        this.LogsCollection.Add(log);
+                    });
                     //log = (MessageRecievedEventArgs)e.logsCollection.Add((MessageRecievedEventArgs)(e.Args[i]));
                 }
+            }
+        }
+
+        private MessageTypeEnum fromString(string type)
+        {
+            if (type.Equals("INFO"))
+            {
+                return MessageTypeEnum.INFO;
+            } else if(type.Equals("FAIL"))
+            {
+                return MessageTypeEnum.FAIL;
+            }
+            else
+            {
+                return MessageTypeEnum.WARNING;
             }
         }
     }

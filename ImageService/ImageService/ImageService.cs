@@ -106,13 +106,14 @@ namespace ImageService
 
             // Define the logging buffer helps to send logs to the clients
             LogingBuffer logsBuffer = new LogingBuffer();
+            this.logging.MessageRecieved += logsBuffer.AddLog;
 
             // Define the ImageModel
             int size = int.Parse(this.getAppConfigValue(thumbnailSizeKey));
             this.modal = new ImageServiceModal(this.getAppConfigValue(outPutDirKey), size);
 
             // Define the controler
-            this.controller = new ImageController(this.modal, logsBuffer);
+            this.controller = new ImageController(this.modal, logsBuffer, logging);
 
             // Define the ClientsManagget that will manage the coimunication with the diffrent clients.
             ClientsManager managger = new ClientsManager(this.controller, this.logging);
