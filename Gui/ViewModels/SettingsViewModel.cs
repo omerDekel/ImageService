@@ -119,7 +119,7 @@ namespace Gui.ViewModels
         private void OnRemove(Object obj)
         {
             //sending command to the imageservice client to close the directory handler
-            CommandRecievedEventArgs command = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, null, "");
+            CommandRecievedEventArgs command = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, null, chosenDir);
             settingsModel.ClientGui.CommandToServer(command);
             settingsModel.DirectoryHandlers.Remove(chosenDir);
         }

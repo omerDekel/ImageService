@@ -132,11 +132,13 @@ namespace Gui.Model
                         string dir = directoryArray[i];
                         Console.WriteLine("dir name" + dir);
 
-                        /*if (dir != null && DirectoryHandlers != null && !DirectoryHandlers.Contains(dir))
-                        {*/
+                        
                             Console.WriteLine("dir was added " +dir );
-                            DirectoryHandlers.Add(dir);
-                        //}
+                        App.Current.Dispatcher.Invoke((Action)delegate
+                        {
+                        DirectoryHandlers.Add(dir);
+
+                        });                      
                     }
                 }
                 else if (e.CommandID == (int)CommandEnum.CloseCommand)
