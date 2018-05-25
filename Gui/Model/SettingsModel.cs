@@ -19,7 +19,7 @@ namespace Gui.Model
         private String logName;
         private String thumbnailSize;
         private IClient clientGui;
-        private ObservableCollection<string> directoryHandlers;
+        //private ObservableCollection<string> directoryHandlers;
         public SettingsModel()
         {
             clientGui = Client.Instance;
@@ -32,18 +32,19 @@ namespace Gui.Model
             ClientGui.CommandToServer(getConfigCommand);
         }
 
-        public ObservableCollection<string> DirectoryHandlers
+        /*public ObservableCollection<string> DirectoryHandlers
         {
             get
             {
-                return this.directoryHandlers;
+                /*return this.directoryHandlers;
             }
             set
             {
-                directoryHandlers = value;
+                /*directoryHandlers = value;
                 OnPropertyChanged("DirectoryHandlers");
             }
-        }
+        }*/
+        public ObservableCollection<string> DirectoryHandlers { get; set; }
         public string OutputDirectory
         {
             get
@@ -131,11 +132,11 @@ namespace Gui.Model
                         string dir = directoryArray[i];
                         Console.WriteLine("dir name" + dir);
 
-                        if (dir != null && DirectoryHandlers != null && !DirectoryHandlers.Contains(dir))
-                        {
+                        /*if (dir != null && DirectoryHandlers != null && !DirectoryHandlers.Contains(dir))
+                        {*/
                             Console.WriteLine("dir was added " +dir );
                             DirectoryHandlers.Add(dir);
-                        }
+                        //}
                     }
                 }
                 else if (e.CommandID == (int)CommandEnum.CloseCommand)
