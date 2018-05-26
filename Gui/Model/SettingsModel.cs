@@ -166,14 +166,9 @@ namespace Gui.Model
                 Console.WriteLine(exception.Message);
             }
         }
-        void CommandToServer(CommandRecievedEventArgs e)
+        public void CommandToServer(CommandRecievedEventArgs e)
         {
             ClientGui.CommandToServer(e);
-        }
-
-        void ISettingsModel.CommandToServer(CommandRecievedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public void RemoveDirectory(string dir)
