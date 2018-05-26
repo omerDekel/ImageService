@@ -109,18 +109,26 @@ namespace Gui.Model
             set => throw new NotImplementedException();
         }
         /// <summary>
-        /// 
+        /// NotifyPropertyChanged invoke event of PropertyChangedEventHandler.
         /// </summary>
+        /// <param name="name"> name of the changed property</param>
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
 
             PropertyChanged?.Invoke(this, e: new PropertyChangedEventArgs(name));
         }
+        /// <summary>
+        /// OnCommandRecieved. The Event that will be activated upon new Command.
+        /// </summary>
+        /// <param name="sender"> sender of the event</param>
+        /// <param name="e"> argument of the event</param>
+
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             try
             {
+                //if it's command of get config .
                 if (e.CommandID == (int)CommandEnum.GetConfigCommand)
                 {
                     OutputDirectory = e.Args[0];
@@ -144,6 +152,7 @@ namespace Gui.Model
                         });                      
                     }
                 }
+                //if it's event of close directory command .
                 else if (e.CommandID == (int)CommandEnum.CloseCommand)
                 {
                       if (e.RequestDirPath != null && DirectoryHandlers != null && DirectoryHandlers.Contains(e.RequestDirPath))
@@ -156,6 +165,20 @@ namespace Gui.Model
             {
                 Console.WriteLine(exception.Message);
             }
+        }
+        void CommandToServer(CommandRecievedEventArgs e)
+        {
+            ClientGui.CommandToServer(e);
+        }
+
+        void ISettingsModel.CommandToServer(CommandRecievedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveDirectory(string dir)
+        {
+            DirectoryHandlers.Remove(dir);
         }
     }
 }

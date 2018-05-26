@@ -9,6 +9,9 @@ using System.Windows.Media;
 
 namespace Gui.ViewModels
 {
+    /// <summary>
+    /// this class responsible for convert message type to color .
+    /// </summary>
     public class TypeToBackgroundConverter : System.Windows.Data.IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -16,6 +19,7 @@ namespace Gui.ViewModels
             if (targetType != typeof(Brush))
                 throw new InvalidOperationException("Must convert to a brush!");
             MessageTypeEnum messageType = (MessageTypeEnum)value;
+            // returns the color according to the message type : red for fail, green for info, yellow for warrning.
             switch (messageType)
             {
                 case MessageTypeEnum.FAIL:
@@ -29,7 +33,7 @@ namespace Gui.ViewModels
             return Brushes.Transparent;
 
         }
-
+      
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

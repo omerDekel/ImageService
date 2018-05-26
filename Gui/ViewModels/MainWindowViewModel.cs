@@ -13,7 +13,9 @@ namespace Gui.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
         private MainWindowModel model;
-
+        /// <summary>
+        /// constructor .
+        /// </summary>
         public MainWindowViewModel()
         {
             model = new MainWindowModel();
@@ -26,9 +28,13 @@ namespace Gui.ViewModels
                 return model.ConnectedToServer;
             }
         }
+        /// <summary>
+        /// NotifyPropertyChanged invoke event of PropertyChangedEventHandler.
+        /// </summary>
+        /// <param name="name"> name of the changed property</param>
+
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            /**/
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(e.PropertyName));
         }
 

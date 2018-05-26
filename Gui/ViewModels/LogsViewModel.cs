@@ -13,7 +13,9 @@ namespace Gui.ViewModels
     class LogsViewModel //: INotifyPropertyChanged
     {
         private LogsModel model;
-        //constructor
+        /// <summary>
+        /// constructor .
+        /// </summary>
         public LogsViewModel()
         {
             model = new LogsModel();
