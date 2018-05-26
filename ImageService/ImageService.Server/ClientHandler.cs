@@ -183,6 +183,7 @@ namespace ImageService.Server
             this.writer.Close();
             this.reader.Close();
             this.stream.Close();
+            // Stop listening to close hadler, and to the logger
         }
     }
 }
