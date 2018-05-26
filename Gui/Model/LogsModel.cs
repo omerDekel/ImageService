@@ -14,7 +14,10 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 namespace Gui.Model
 {
-    class LogsModel:INotifyPropertyChanged
+    /// <summary>
+    /// 
+    /// </summary>
+    class LogsModel//:INotifyPropertyChanged
     {
         public IClient GuiClient { get; set; }
         private ObservableCollection<MessageRecievedEventArgs> logsCollection;
@@ -37,7 +40,7 @@ namespace Gui.Model
             set { }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
 
@@ -53,7 +56,6 @@ namespace Gui.Model
                     {
                         this.LogsCollection.Add(log);
                     });
-                    //log = (MessageRecievedEventArgs)e.logsCollection.Add((MessageRecievedEventArgs)(e.Args[i]));
                 }
             }
         }

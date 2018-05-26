@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Gui.Model
 {
     /// <summary>
-    /// 
+    /// unterfacce for the model of the settings .
     /// </summary>
     interface ISettingsModel: INotifyPropertyChanged
     {
@@ -19,6 +19,7 @@ namespace Gui.Model
         string SourceName { get; set; }
         string LogName { get; set; }
         string ThumbnailSize { get; set; }
+        // the client we connect thougth it with image Service  
         IClient ClientGui { get; set; }
     }
 }
