@@ -8,25 +8,11 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.ServiceProcess;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using ImageService.Server;
 using ImageService.Controller;
 using ImageService.Modal;
 using ImageService.Logging;
 using ImageService.Logging.Modal;
-using ImageService.Server;
-using ImageService.Logging.Modal;
-using System.Configuration;
-using ImageService.Infrastructure;
 
 namespace ImageService
 {

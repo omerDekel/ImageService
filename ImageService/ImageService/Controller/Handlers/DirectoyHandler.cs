@@ -59,6 +59,10 @@ namespace ImageService.Controller.Handlers
                 if (e.CommandID == (int)CommandEnum.CloseCommand)
                 {
                     CloseHandle();
+                    string[] argsToCommand = new string[1];
+                    argsToCommand[0] = this.m_path;
+                    CommandRecievedEventArgs commandArgs = new CommandRecievedEventArgs((int)CommandEnum.RemoveDirectoryFromConfigurationCommand, argsToCommand, "");
+                    this.m_controller.ExecuteCommand(commandArgs.CommandID, commandArgs.Args, out result);
                 }  else  {
                     string msg = m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
                     //here we need to check the result and send to the logger

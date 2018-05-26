@@ -12,5 +12,6 @@ namespace ImageService.Infrastructure.Enums
         CloseCommand,
         GetConfigCommand,
         LogCommand,
+        RemoveDirectoryFromConfigurationCommand
     }
 }

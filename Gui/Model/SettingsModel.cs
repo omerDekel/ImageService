@@ -155,9 +155,13 @@ namespace Gui.Model
                 //if it's event of close directory command .
                 else if (e.CommandID == (int)CommandEnum.CloseCommand)
                 {
-                      if (e.RequestDirPath != null && DirectoryHandlers != null && DirectoryHandlers.Contains(e.RequestDirPath))
+                    if (e.RequestDirPath != null && DirectoryHandlers != null && DirectoryHandlers.Contains(e.RequestDirPath))
+                    { 
+                        App.Current.Dispatcher.Invoke((Action)delegate
                         {
-                        this.DirectoryHandlers.Remove(e.RequestDirPath);
+                            this.DirectoryHandlers.Remove(e.RequestDirPath);
+
+                        });
                     }
                 }
             }

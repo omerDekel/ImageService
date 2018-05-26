@@ -61,10 +61,12 @@
     <Compile Include="ImageService.Logging\LogingBuffer.cs" />
     <Compile Include="ImageService.Logging\Modal\MessageRecievedEventArgs.cs" />
     <Compile Include="ImageService.Logging\Modal\MessageTypeEnum.cs" />
+    <Compile Include="ImageService.Server\ClientClosedEventArgs.cs" />
     <Compile Include="ImageService.Server\ClientHandler.cs" />
     <Compile Include="ImageService.Server\ClientsManager.cs" />
     <Compile Include="ImageService.Server\IClientHandler.cs" />
     <Compile Include="ImageService.Server\ComunicationServer.cs" />
+    <Compile Include="ImageService\Commands\RemoveDirectoryFromConfigurationCommand.cs" />
     <Compile Include="ImageService\Commands\GetConfigCommand.cs" />
     <Compile Include="ImageService\Commands\GetLogsCommand.cs" />
     <Compile Include="ImageService\Commands\ICommand.cs" />

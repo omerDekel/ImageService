@@ -7,6 +7,8 @@ using ImageService.Modal;
 using ImageService.Infrastructure.Enums;
 using ImageService.Logging.Modal;
 using ImageService.Logging;
+using ImageService.Controller.Handlers;
+using System;
 
 namespace ImageService.Server
 {
@@ -22,6 +24,10 @@ namespace ImageService.Server
         private bool isListeningToLogger;
         private bool isTaskCanceled;
         private ILoggingService logger;
+
+        public event EventHandler<CommandRecievedEventArgs> CommandRecieved;
+        public event EventHandler<ClientClosedEventArgs> ClientClosed;
+
         public ClientHandler(IImageController imageController, ILoggingService logging)
         {
             this.client = null;
@@ -122,7 +128,16 @@ namespace ImageService.Server
                     this.logger.Log("Got a command from the client", MessageTypeEnum.INFO);
                     this.logger.Log("The command is" + commandFromClient, MessageTypeEnum.INFO);
                     CommandRecievedEventArgs commandArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandFromClient);
-                    this.controller.ExecuteCommand(commandArgs.CommandID, commandArgs.Args, out result);
+
+                    // If the command is a close directory hadler command.
+                    if (commandArgs.CommandID == (int)CommandEnum.CloseCommand)
+                    {
+                        CommandRecieved?.Invoke(this, commandArgs);
+                    }
+                    else
+                    {
+                        this.controller.ExecuteCommand(commandArgs.CommandID, commandArgs.Args, out result);
+                    }
                 }
                 catch (IOException e)
                 {
@@ -159,6 +174,9 @@ namespace ImageService.Server
 
         public void OnDirectoryClose(object sender, DirectoryCloseEventArgs e)
         {
+            // Remove the directory from the event of "CommandRecieved" of this client
+            this.CommandRecieved -= ((DirectoyHandler)sender).OnCommandRecieved;
+
             this.logger.Log("A client get that a directory was closed", MessageTypeEnum.INFO);
             CommandRecievedEventArgs commandArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, null, e.DirectoryPath);
             string command = JsonConvert.SerializeObject(commandArgs);
@@ -182,8 +200,7 @@ namespace ImageService.Server
             this.isTaskCanceled = true;
             this.writer.Close();
             this.reader.Close();
-            this.stream.Close();
-            // Stop listening to close hadler, and to the logger
+            this.ClientClosed?.Invoke(this, new ClientClosedEventArgs(this));
         }
     }
 }

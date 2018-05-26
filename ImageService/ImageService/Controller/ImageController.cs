@@ -24,12 +24,14 @@ namespace ImageService.Controller
             m_modal = modal;                    // Storing the Modal Of The System
             this.loggingBuffer = logsBuffer;
             this.logger = logger;
+            ConfigurationModal config = new ConfigurationModal();
             commands = new Dictionary<int, ICommand>()
             {
                 // For Now will contain NEW_FILE_COMMAND
                 {(int)CommandEnum.NewFileCommand, new NewFileCommand(m_modal) },
                 {(int)CommandEnum.LogCommand, new GetLogsCommand(logsBuffer, this.logger)},
-                {(int)CommandEnum.GetConfigCommand, new GetConfigCommand()}
+                {(int)CommandEnum.GetConfigCommand, new GetConfigCommand(config)},
+                {(int)CommandEnum.RemoveDirectoryFromConfigurationCommand, new RemoveDirectoryFromConfigurationCommand(config)}
             };
         }
 

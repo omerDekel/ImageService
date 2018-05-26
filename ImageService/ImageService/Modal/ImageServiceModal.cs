@@ -70,7 +70,7 @@ namespace ImageService.Modal
                         image = Image.FromFile(newPath + "\\" + fileName);
                         isOk = true;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         Thread.Sleep(500);
                     }
@@ -84,7 +84,7 @@ namespace ImageService.Modal
                         thumbnail = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
                         isOk = true;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         Thread.Sleep(500);
                     }
@@ -102,7 +102,7 @@ namespace ImageService.Modal
                         thumbnail.Save(Path.ChangeExtension(thumbPath + "\\" + fileName, "thumb" + fileName));
                         isOk = true;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         Thread.Sleep(500);
                     }
