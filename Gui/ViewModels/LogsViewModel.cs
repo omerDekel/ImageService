@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 
 namespace Gui.ViewModels
 {
-    class LogsViewModel : INotifyPropertyChanged
+    class LogsViewModel //: INotifyPropertyChanged
     {
         private LogsModel model;
-        //constructor
+        /// <summary>
+        /// constructor .
+        /// </summary>
         public LogsViewModel()
         {
             model = new LogsModel();
@@ -28,6 +30,6 @@ namespace Gui.ViewModels
 
         public LogsModel Model { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
     }
 }

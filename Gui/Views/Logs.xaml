@@ -11,9 +11,11 @@
     </UserControl.Resources>
 
     <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            
         <StackPanel>
 
-            <DataGrid Grid.ColumnSpan="3" ItemsSource="{Binding Logs}" IsReadOnly="True" AutoGenerateColumns="False"   VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Width="Auto" Height="Auto" Margin="0,0,0,10">
+            <DataGrid Grid.ColumnSpan="3" ItemsSource="{Binding Logs}" IsReadOnly="True" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Type" Width="4*" Binding = "{Binding Status}" >
                         <DataGridTextColumn.ElementStyle>
@@ -27,16 +29,8 @@
                 </DataGrid.Columns>
 
             </DataGrid>
-            <!--
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="79*"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="721*"/>
-        </Grid.ColumnDefinitions>
-                            -->
-
         </StackPanel>
+        </ScrollViewer>
 
     </Grid>
 </UserControl>

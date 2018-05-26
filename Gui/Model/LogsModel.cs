@@ -14,20 +14,20 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 namespace Gui.Model
 {
-    class LogsModel:INotifyPropertyChanged
+    /// <summary>
+    /// the model class of the logs.
+    /// </summary>
+    class LogsModel//:INotifyPropertyChanged
     {
+        // cliet to connect with image service
         public IClient GuiClient { get; set; }
         private ObservableCollection<MessageRecievedEventArgs> logsCollection;
         public LogsModel()
         {
             GuiClient = Client.Instance;
+            // register to CommandRecived event of the client 
             GuiClient.CommandRecieved += OnCommandRecieved;
             logsCollection = new ObservableCollection<MessageRecievedEventArgs>();
-            MessageRecievedEventArgs messageRecievedEventArgs = new MessageRecievedEventArgs() { Status = MessageTypeEnum.WARNING, Message = "hiiiii" };
-            MessageRecievedEventArgs messaeRecievedEventArgs = new MessageRecievedEventArgs() { Status = MessageTypeEnum.INFO, Message = "hiiiii" };
-            LogsCollection.Add(messageRecievedEventArgs);
-            LogsCollection.Add(messaeRecievedEventArgs);
-
         }
 
             
@@ -37,29 +37,32 @@ namespace Gui.Model
             set { }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
-
+            // if it's get log command
             if(e.CommandID == (int)CommandEnum.LogCommand)
             {
-                int messageType;
-               for( int i = 0; i < e.Args.Length; i+=2)
+                // translate the Args array of CommandRecievedEventArgs to logs and add them to logCollection
+                for ( int i = 0; i < e.Args.Length; i+=2)
                 {
                         
                     MessageRecievedEventArgs log = new MessageRecievedEventArgs();
-                    log.Status = this.fromString(e.Args[i]);
+                    log.Status = this.FromString(e.Args[i]);
                     log.Message = e.Args[i + 1];
                     App.Current.Dispatcher.Invoke((Action)delegate
                     {
                         this.LogsCollection.Add(log);
                     });
-                    //log = (MessageRecievedEventArgs)e.logsCollection.Add((MessageRecievedEventArgs)(e.Args[i]));
                 }
             }
         }
-
-        private MessageTypeEnum fromString(string type)
+        /// <summary>
+        /// Convert string of the message to MessageType Enum. 
+        /// </summary>
+        /// <param name="type">string of the message</param>
+        /// <returns>converted string to MessageT</returns>
+        private MessageTypeEnum FromString(string type)
         {
             if (type.Equals("INFO"))
             {

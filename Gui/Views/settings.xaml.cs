@@ -20,10 +20,10 @@ namespace Gui.Views
     /// <summary>
     /// Interaction logic for settings.xaml
     /// </summary>
-    public partial class settings : UserControl
+    public partial class Settings : UserControl
     {
         public ObservableCollection<string> DirectoryHandlers { get; set; }
-        public settings()
+        public Settings()
         {
 
             InitializeComponent();
