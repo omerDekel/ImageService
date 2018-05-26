@@ -20,7 +20,7 @@ namespace Gui.ViewModels
         {
             model = new MainWindowModel();
             model.PropertyChanged += OnPropertyChanged;
-         }
+        }
         public bool ConnectedToServer
         {
             get
