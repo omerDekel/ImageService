@@ -13,7 +13,8 @@
     <Grid>
         <StackPanel>
 
-            <DataGrid Grid.ColumnSpan="3" ItemsSource="{Binding Logs}" IsReadOnly="True" AutoGenerateColumns="False"   VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Width="Auto" Height="Auto" Margin="0,0,0,10">
+            <DataGrid Grid.ColumnSpan="3" ItemsSource="{Binding Logs}" IsReadOnly="True" AutoGenerateColumns="False" 
+                     ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Type" Width="4*" Binding = "{Binding Status}" >
                         <DataGridTextColumn.ElementStyle>

@@ -43,7 +43,6 @@ namespace Gui.Model
 
             if(e.CommandID == (int)CommandEnum.LogCommand)
             {
-                int messageType;
                for( int i = 0; i < e.Args.Length; i+=2)
                 {
                         
