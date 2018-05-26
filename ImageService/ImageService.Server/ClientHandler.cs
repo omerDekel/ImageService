@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
+﻿using System.Threading.Tasks;
 using System.Net.Sockets;
 using ImageService.Controller;
 using System.IO;
@@ -49,21 +44,43 @@ namespace ImageService.Server
             this.isTaskCanceled = false;
 
             // Set the task that will handle the cumunication.
-            this.comuniationTask = new Task(this.HandleClient, new System.Threading.CancellationToken (isTaskCanceled));
+            this.comuniationTask = new Task(this.HandleClient, new System.Threading.CancellationToken(isTaskCanceled));
             comuniationTask.Start();
         }
 
         private void HandleClient()
         {
             bool result;
-            
+
             // Send the client all the cueent information about the service.
 
             // Wait for the first command. would be get configuration.
-            string command = this.reader.ReadString();
+            string command;
+            try
+            {
+                command = this.reader.ReadString();
+            }
+            catch (IOException e)
+            {
+                this.CloseConnectionToClient();
+                this.logger.Log("Exeption with writing to client at client.HandleClient, disconnectiong from client", MessageTypeEnum.FAIL);
+                this.logger.Log(e.Message, MessageTypeEnum.FAIL);
+                return;
+            }
+            
             CommandRecievedEventArgs args = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(command);
             string answer = this.controller.ExecuteCommand(args.CommandID, args.Args, out result);
-            this.writer.Write(answer);
+            try
+            {
+                this.writer.Write(answer);
+            }
+            catch (IOException e)
+            {
+                this.CloseConnectionToClient();
+                this.logger.Log("Exeption with writing to client at client.HandleClient, disconnectiong from client", MessageTypeEnum.FAIL);
+                this.logger.Log(e.Message, MessageTypeEnum.FAIL);
+                return;
+            }
 
             // Send the logs to the client.
             bool isMoreLogs = false;
@@ -79,7 +96,17 @@ namespace ImageService.Server
                     break;
                 }
                 this.logNum += 50;
-                this.writer.Write(answer);
+
+                try
+                {
+                   this.writer.Write(answer);
+                } catch(IOException e)
+                {
+                    this.CloseConnectionToClient();
+                    this.logger.Log("Exeption with writing to client at client.HandleClient, disconnectiong from client", MessageTypeEnum.FAIL);
+                    this.logger.Log(e.Message, MessageTypeEnum.FAIL);
+                }
+
             }
 
             // Set the logging listener.
@@ -87,12 +114,24 @@ namespace ImageService.Server
 
             while (true)
             {
-                this.logger.Log("Start listening to commands from the gui",MessageTypeEnum.INFO);
+                this.logger.Log("Start listening to commands from the gui", MessageTypeEnum.INFO);
                 //Gets commands and execute them.
-                string commandFromClient = this.reader.ReadString();
-                this.logger.Log("Got a command from the client", MessageTypeEnum.INFO);
-                CommandRecievedEventArgs commandArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandFromClient);
-                this.controller.ExecuteCommand(commandArgs.CommandID, commandArgs.Args, out result);
+                try
+                {
+                    string commandFromClient = this.reader.ReadString();
+                    this.logger.Log("Got a command from the client", MessageTypeEnum.INFO);
+                    this.logger.Log("The command is" + commandFromClient, MessageTypeEnum.INFO);
+                    CommandRecievedEventArgs commandArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandFromClient);
+                    this.controller.ExecuteCommand(commandArgs.CommandID, commandArgs.Args, out result);
+                }
+                catch (IOException e)
+                {
+                    this.CloseConnectionToClient();
+                    this.logger.Log("Exeption with reading from client at client.OnDirectoryClose, disconnecting from client", MessageTypeEnum.FAIL);
+                    this.logger.Log(e.Message, MessageTypeEnum.FAIL);
+                    
+                    return;
+                }
             }
         }
 
@@ -105,15 +144,45 @@ namespace ImageService.Server
                 logsToSend[1] = args.Message;
                 CommandRecievedEventArgs commandArgs = new CommandRecievedEventArgs((int)CommandEnum.LogCommand, logsToSend, "");
                 string command = JsonConvert.SerializeObject(commandArgs);
-                this.writer.Write(command);
+                try
+                {
+                    this.writer.Write(command);
+                }
+                catch (IOException e)
+                {
+                    this.CloseConnectionToClient();
+                    this.logger.Log("Exeption with writing to client at client.ReciveLog , disconnectiong from client", MessageTypeEnum.FAIL);
+                    this.logger.Log(e.Message, MessageTypeEnum.FAIL);
+                }
             }
         }
 
         public void OnDirectoryClose(object sender, DirectoryCloseEventArgs e)
         {
+            this.logger.Log("A client get that a directory was closed", MessageTypeEnum.INFO);
             CommandRecievedEventArgs commandArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, null, e.DirectoryPath);
             string command = JsonConvert.SerializeObject(commandArgs);
-            this.writer.Write(command);
+            try
+            {
+                this.writer.Write(command);
+            }
+            catch (IOException ex)
+            {
+                this.CloseConnectionToClient();
+                this.logger.Log("Exeption with writing to client at client.OnDirectoryClose, disconnectiong from client", MessageTypeEnum.FAIL);
+                this.logger.Log(ex.Message, MessageTypeEnum.FAIL);
+                return;
+            }
+            this.logger.Log("An information about directory was closed, has been sent to the client", MessageTypeEnum.INFO);
+        }
+
+        private void CloseConnectionToClient()
+        {
+            this.isListeningToLogger = false;
+            this.isTaskCanceled = true;
+            this.writer.Close();
+            this.reader.Close();
+            this.stream.Close();
         }
     }
 }
