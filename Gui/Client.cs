@@ -23,24 +23,26 @@ namespace Gui.Comunication
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
         private static Client instance;
         /// <summary>
-        /// 
+        /// constructor .
         /// </summary>
         /// 
         public Client()
         {
             ConnectServer();
-            //CommandFromServer();
         }
-                public static Client Instance
+        /// <summary>
+        /// instance for creating singleton of the client.
+        /// </summary>
+        public static Client Instance
         {
             get
             {
-               if (instance == null)
-               {
-                   instance = new Client();
-               }
-               return instance;
-           }
+                if (instance == null)
+                {
+                    instance = new Client();
+                }
+                return instance;
+            }
         }
         public bool Stop
         {
@@ -49,6 +51,10 @@ namespace Gui.Comunication
                 return this.stop;
             }
         }
+
+        /// <summary>
+        /// task that listenning to the server to get command .
+        /// </summary>
         public void CommandFromServer()
         {
             string commandStr;
@@ -65,74 +71,22 @@ namespace Gui.Comunication
                         Console.WriteLine($"Recieve {commandStr} from Server");
                         CommandRecievedEventArgs responseObj = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandStr);
                         CommandRecieved?.Invoke(this, responseObj);
-                    } catch (Exception e)
+                    }
+                    catch (Exception e)
                     {
-
+                        Console.WriteLine(e.Message);
                     }
                 }
             }).Start();
         }
         /// <summary>
-        /// 
+        /// sending command to the server .
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">arguments for the recieved command</param>
         public void CommandToServer(CommandRecievedEventArgs e)
         {
             Console.WriteLine("Send command to server by a diffrent task");
-       /*     try
-            {
-                if (tcpClient == null)
-                {
-                    Console.WriteLine("Tcp Client is null");
-                }
-                else
-                {
-                    Console.WriteLine("Tcp Client is not null");
-                }
 
-                NetworkStream stream = tcpClient.GetStream();
-                if (stream == null)
-                {
-                    Console.WriteLine("stream is null");
-                }
-                else
-                {
-                    Console.WriteLine("stream Client is not null");
-                }
-
-                BinaryWriter writer = new BinaryWriter(stream);
-
-                if (writer == null)
-                {
-                    Console.WriteLine("writer is null");
-                }
-                else
-                {
-                    Console.WriteLine("writer Client is not null");
-                }
-
-                if (e == null)
-                {
-                    Console.WriteLine("command args is null");
-                }
-                else
-                {
-                    Console.WriteLine("command args is not null");
-                }
-                string jStr = JsonConvert.SerializeObject(e);
-                Console.WriteLine(jStr);
-                Console.WriteLine($"Send {jStr} to Server");
-       //         mutex.WaitOne();
-                writer.Write(jStr);
-         //       mutex.ReleaseMutex();
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-                Console.WriteLine(exception.Source);
-
-            }*/
-            
             new Task(() =>
             {
                 try
@@ -142,16 +96,18 @@ namespace Gui.Comunication
                     string jStr = JsonConvert.SerializeObject(e);
                     Console.WriteLine(jStr);
                     Console.WriteLine($"Send {jStr} to Server");
-                    //mutex.WaitOne();
                     writer.Write(jStr);
-                    //mutex.ReleaseMutex();
-                } catch (Exception exception) {
+                }
+                catch (Exception exception)
+                {
                     Console.WriteLine(exception.Message);
                     Console.WriteLine(exception.Source);
                 }
             }).Start();
         }
-
+        /// <summary>
+        /// connecting the client to server .
+        /// </summary>
         public void ConnectServer()
         {
             try
@@ -161,11 +117,13 @@ namespace Gui.Comunication
                 this.tcpClient.Connect(ep);
                 Console.WriteLine("You are connected");
                 stop = false;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 stop = true;
             }
         }
-        
+
     }
 }

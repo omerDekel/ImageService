@@ -34,19 +34,6 @@ namespace Gui.Model
             CommandRecievedEventArgs getConfigCommand = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, arguments, "");
             ClientGui.CommandToServer(getConfigCommand);
         }
-
-        /*public ObservableCollection<string> DirectoryHandlers
-        {
-            get
-            {
-                /*return this.directoryHandlers;
-            }
-            set
-            {
-                /*directoryHandlers = value;
-                OnPropertyChanged("DirectoryHandlers");
-            }
-        }*/
         public ObservableCollection<string> DirectoryHandlers { get; set; }
         public string OutputDirectory
         {
@@ -56,7 +43,6 @@ namespace Gui.Model
             }
             set
             {
-                Console.Write("IN SET OF OUTPUT DIRECTORY ");
                 outputDirectory = value;
                 OnPropertyChanged("OutputDirectory");
             }

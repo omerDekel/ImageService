@@ -91,7 +91,7 @@ namespace Gui.ViewModels
         }
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(e.PropertyName));
         }
         private void OnRemove(Object obj)

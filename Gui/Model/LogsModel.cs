@@ -5,19 +5,19 @@ using ImageService.Modal;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-﻿using ImageService.Logging.Modal;
+using ImageService.Logging.Modal;
 using System.Collections.ObjectModel;
 namespace Gui.Model
 {
     /// <summary>
     /// the model class of the logs.
     /// </summary>
-    class LogsModel//:INotifyPropertyChanged
+    class LogsModel
     {
         // cliet to connect with image service
         public IClient GuiClient { get; set; }
@@ -30,7 +30,7 @@ namespace Gui.Model
             logsCollection = new ObservableCollection<MessageRecievedEventArgs>();
         }
 
-            
+
         public ObservableCollection<MessageRecievedEventArgs> LogsCollection
         {
             get { return logsCollection; }
@@ -41,12 +41,12 @@ namespace Gui.Model
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             // if it's get log command
-            if(e.CommandID == (int)CommandEnum.LogCommand)
+            if (e.CommandID == (int)CommandEnum.LogCommand)
             {
                 // translate the Args array of CommandRecievedEventArgs to logs and add them to logCollection
-                for ( int i = 0; i < e.Args.Length; i+=2)
+                for (int i = 0; i < e.Args.Length; i += 2)
                 {
-                        
+
                     MessageRecievedEventArgs log = new MessageRecievedEventArgs();
                     log.Status = this.FromString(e.Args[i]);
                     log.Message = e.Args[i + 1];
@@ -67,7 +67,8 @@ namespace Gui.Model
             if (type.Equals("INFO"))
             {
                 return MessageTypeEnum.INFO;
-            } else if(type.Equals("FAIL"))
+            }
+            else if (type.Equals("FAIL"))
             {
                 return MessageTypeEnum.FAIL;
             }

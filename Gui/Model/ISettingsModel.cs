@@ -13,7 +13,7 @@ namespace Gui.Model
     /// <summary>
     /// interfacce for the model of the settings .
     /// </summary>
-    interface ISettingsModel: INotifyPropertyChanged
+    interface ISettingsModel : INotifyPropertyChanged
     {
         ObservableCollection<string> DirectoryHandlers { get; set; }
         string OutputDirectory { get; set; }
