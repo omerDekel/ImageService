@@ -30,9 +30,5 @@ namespace Gui.Views
             DataContext = new SettingsViewModel();
         }
 
-        /*private void lst_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }*/
     }
 }
