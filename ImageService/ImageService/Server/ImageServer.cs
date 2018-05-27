@@ -49,7 +49,7 @@ namespace ImageService.Server
                 m_logging.Log("Created directory handler " + directories[i], Logging.Modal.MessageTypeEnum.INFO);
 
                 // Add the directroty the list of directories that the client mannager has.
-                manager.addDirectoryHandler(directoyHandler);
+                manager.AddDirectoryHandler(directoyHandler);
             }
 
 

@@ -10,6 +10,10 @@ namespace ImageService.Server
     {
         public ClientHandler Client { get; set; }
 
+        /// <summary>
+        /// The constrator of ClientClosedEventArgs.
+        /// </summary>
+        /// <param name="client">The clientHandler that ClientClosedEventArgs holdes.</param>
         public ClientClosedEventArgs(ClientHandler client)
         {
             Client = client;

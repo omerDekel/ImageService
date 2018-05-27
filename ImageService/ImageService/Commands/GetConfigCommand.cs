@@ -14,11 +14,21 @@ namespace ImageService.Commands
     {
         private ConfigurationModal config;
 
+        /// <summary>
+        /// This is the constractor of GetConfigCommand. 
+        /// </summary>
+        /// <param name="configModal">The configuration model that stores the conciguration, this command will work with.</param>
         public GetConfigCommand(ConfigurationModal configModal)
         {
             this.config = configModal;
         }
 
+        /// <summary>
+        /// The function executes the command.
+        /// </summary>
+        /// <param name="args">The arguments to the command, this commans ignores this parameter.</param>
+        /// <param name="result"> result , if the command executed or failed.</param>
+        /// <returns>A string representation of the configurations.</returns>
         public string Execute(string[] args, out bool result)
         {
             try

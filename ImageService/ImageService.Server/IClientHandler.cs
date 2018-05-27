@@ -8,6 +8,10 @@ namespace ImageService.Server
 {
     public interface IClientHandler
     {
+        /// <summary>
+        /// The function handles a client comunication.
+        /// </summary>
+        /// <param name="client">The TcpClient the fuction will handle the comuniation of.</param>
         void HandleClient(TcpClient client);
     }
 }

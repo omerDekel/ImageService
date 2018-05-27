@@ -16,10 +16,12 @@ namespace ImageService.Server
         private IImageController controller;
         private ILoggingService logging;
         private List<IDirectoryHandler> handlersList;
-        // TODO an event that the clint hadndler tell the client manger that communiction is over.
 
-        
-
+        /// <summary>
+        /// This is the constractor of ClientsManager. 
+        /// </summary>
+        /// <param name="control">The service controler, repsosible to execute the command on the data</param>
+        /// <param name="logs">The logging service that send the logs the program generate.</param>
         public ClientsManager(IImageController control, ILoggingService logs)
         {
             this.controller = control;
@@ -27,11 +29,21 @@ namespace ImageService.Server
             this.handlersList = new List<IDirectoryHandler>();
         }
 
-        public void addDirectoryHandler(IDirectoryHandler directory)
+        /// <summary>
+        /// The clientsManager hold a list of the directory hadlers, the service listen to,
+        /// this function adds a directoryHandel to the list.
+        /// </summary>
+        /// <param name="directory">A directory hadler will be added to the list of directory hadlers
+        /// the ClientsManager holds.</param>
+        public void AddDirectoryHandler(IDirectoryHandler directory)
         {
             this.handlersList.Add(directory);
         }
 
+        /// <summary>
+        /// This function handles a cliet that connetes to the server.
+        /// </summary>
+        /// <param name="client">The TcpClient that connected to the server.</param>
         public void HandleClient(TcpClient client)
         {
             //  Creates a new client handler and let it handle the client
@@ -53,6 +65,11 @@ namespace ImageService.Server
             clientHandler.HandleClient(client);
         }
 
+        /// <summary>
+        /// This is a funcrion the being invoked when a client of the server is closed.
+        /// </summary>
+        /// <param name="sender">The object called the function.</param>
+        /// <param name="args">The arguments the function gets.</param>
         public void OnClientClosed(object sender, ClientClosedEventArgs args)
         {
             this.logging.MessageRecieved -= (sender as ClientHandler).ReciveLog;

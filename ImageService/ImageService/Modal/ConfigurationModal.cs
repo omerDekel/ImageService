@@ -11,6 +11,10 @@ namespace ImageService.Modal
     {
         private string[] configurations;
 
+        /// <summary>
+        /// This is constrator of ConfigurationModal, it reads the configuration from the appconfig file
+        /// of the service, and stoes the information.
+        /// </summary>
         public ConfigurationModal()
         {
             this.configurations = new string[5];
@@ -31,6 +35,12 @@ namespace ImageService.Modal
             set => throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// This function gets a directory name and removes the directory from the list of
+        /// the directories the service listens to.
+        /// </summary>
+        /// <param name="dir">A directory name.</param>
+        /// <returns></returns>
         public bool RemoveDirectoryFromList(string dir)
         {
             if (this.configurations[4].Contains(dir))

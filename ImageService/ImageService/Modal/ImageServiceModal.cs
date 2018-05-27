@@ -55,7 +55,7 @@ namespace ImageService.Modal
                         File.Move(path, newPath + "\\" + fileName);
                         isOk = true;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         Thread.Sleep(500);
                     }
