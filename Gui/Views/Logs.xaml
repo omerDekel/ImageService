@@ -15,7 +15,7 @@
             
         <StackPanel>
 
-            <DataGrid Grid.ColumnSpan="3" ItemsSource="{Binding Logs}" IsReadOnly="True" AutoGenerateColumns="False" >
+            <DataGrid ItemsSource="{Binding Logs}" IsReadOnly="True" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Type" Width="4*" Binding = "{Binding Status}" >
                         <DataGridTextColumn.ElementStyle>
