@@ -30,11 +30,17 @@ namespace WebApplication2.Models
             clientGui.CommandFromServer();*/
             //taking the config arguments by the GetConfigCommand
             DirectoryHandlers = new ObservableCollection<string>();
+            OutputDirectory = "heyyyyyyyyy";
+            SourceName = "SourceName"; 
+             DirectoryHandlers.Add("shalom");
+             DirectoryHandlers.Add("hishuv");
+
             /*string[] arguments = new string[5];
             CommandRecievedEventArgs getConfigCommand = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, arguments, "");
             clientGui.CommandToServer(getConfigCommand);*/
+
         }
-        public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
+    public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             /*try
             {
@@ -80,6 +86,11 @@ namespace WebApplication2.Models
                 Console.WriteLine(exception.Message);
             }*/
         }
+        [Required]
+        [DataType(DataType.Text)]
+        public bool Enabled { get; set; }
+
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "DirectoryHandlers")]
