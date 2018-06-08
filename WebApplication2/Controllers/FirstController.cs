@@ -10,6 +10,7 @@ namespace WebApplication2.Controllers
 {
     public class FirstController : Controller
     {
+        static Config configModel = new Config();
         static List<Employee> employees = new List<Employee>()
         {
           new Employee  { FirstName = "Moshe", LastName = "Aron", Email = "Stam@stam", Salary = 10000, Phone = "08-8888888" },
@@ -19,9 +20,10 @@ namespace WebApplication2.Controllers
           new Employee   { FirstName = "Dor", LastName = "Nisim", Email = "Stam@stam", Salary = 700, Phone = "08-8888888" }
         };
         // GET: First
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View(configModel);
         }
 
         [HttpGet]

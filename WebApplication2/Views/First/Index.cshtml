@@ -19,17 +19,30 @@
         <th>
             @Html.DisplayNameFor(model => model.ThumbnailSize)
         </th>
+    </tr>
+    <tr>
+        <td>@Model.OutputDirectory</td>
+        <td>@Model.LogName</td>
+        <td>@Model.SourceName</td>
+        <td>@Model.ThumbnailSize</td>
+
+    </tr>
+    <tr>
         <th>
             @Html.DisplayNameFor(model => model.DirectoryHandlers)
         </th>
-        <th></th>
     </tr>
+    </table>
+<table class="table">
 
-    @*foreach (var item in Model.DirectoryHandlers)
+    @foreach (var item in Model.DirectoryHandlers)
     {
         <tr>
-                Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            <td>
+                @item
+            </td>
+            @*Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
         </tr>
-    }*@
+    }
 
 </table>

@@ -31,7 +31,9 @@ namespace WebApplication2.Models
             //taking the config arguments by the GetConfigCommand
             DirectoryHandlers = new ObservableCollection<string>();
             OutputDirectory = "heyyyyyyyyy";
-            SourceName = "SourceName"; 
+            SourceName = "SourceName";
+            LogName = "LogName";
+            ThumbnailSize = 120;
              DirectoryHandlers.Add("shalom");
              DirectoryHandlers.Add("hishuv");
 
@@ -115,7 +117,7 @@ namespace WebApplication2.Models
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "ThumbnailSize")]
-        public string ThumbnailSize { get; set; }
+        public int ThumbnailSize { get; set; }
 
     }
 }
