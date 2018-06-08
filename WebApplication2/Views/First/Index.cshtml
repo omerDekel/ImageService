@@ -1,7 +1,35 @@
-﻿
+﻿@model WebApplication2.Models.Config
 @{
     ViewBag.Title = "Config";
 }
 
 <h2>Config</h2>
-Welcome to Example!!!!
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OutputDirectory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SourceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThumbnailSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DirectoryHandlers)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.DirectoryHandlers)
+    {
+        <tr>
+                @*Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+        </tr>
+    }
+
+</table>
