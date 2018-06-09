@@ -13,7 +13,7 @@ namespace WebApplication2.Models
 {
     public class Config
     {
-        //public event NotifyAbouChange 
+        //public event  
         public string ChosenDir { get; set; }
         private IClient clientGui;
         /// <summary>
@@ -25,8 +25,8 @@ namespace WebApplication2.Models
             clientGui.CommandRecieved += OnCommandRecieved;
             clientGui.CommandFromServer();
             //taking the config arguments by the GetConfigCommand
-            /*DirectoryHandlers = new ObservableCollection<string>();
-            OutputDirectory = "heyyyyyyyyy";
+            DirectoryHandlers = new ObservableCollection<string>();
+            /*OutputDirectory = "heyyyyyyyyy";
             SourceName = "SourceName";
             LogName = "LogName";
             ThumbnailSize = 120;
