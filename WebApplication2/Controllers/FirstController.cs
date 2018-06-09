@@ -25,7 +25,19 @@ namespace WebApplication2.Controllers
         {
             return View(configModel);
         }
-
+        [HttpGet]
+        public ActionResult DeleteClicked(string chosenDir)
+        {
+            configModel.ChosenDir = chosenDir;
+            return RedirectToAction("DeleteHandlerUserApproval");
+            
+        }
+        public ActionResult DeleteApproved()
+        {
+            configModel.DeleteDirectoryHandler();
+            //s
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public ActionResult AjaxView()
         {

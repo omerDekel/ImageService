@@ -13,38 +13,44 @@ namespace WebApplication2.Models
 {
     public class Config
     {
-        
-        /*private String outputDirectory;
-        private String sourceName;
-        private String logName;
-        private String thumbnailSize;*/
-        // the client we comunicate through it with the server .
-       private IClient clientGui;
+        //public event NotifyAbouChange 
+        public string ChosenDir { get; set; }
+        private IClient clientGui;
         /// <summary>
         /// Constructor .
         /// </summary>
         public Config()
         {
-            /*clientGui = Client.Instance;
+            clientGui = Client.Instance;
             clientGui.CommandRecieved += OnCommandRecieved;
-            clientGui.CommandFromServer();*/
+            clientGui.CommandFromServer();
             //taking the config arguments by the GetConfigCommand
-            DirectoryHandlers = new ObservableCollection<string>();
+            /*DirectoryHandlers = new ObservableCollection<string>();
             OutputDirectory = "heyyyyyyyyy";
             SourceName = "SourceName";
             LogName = "LogName";
             ThumbnailSize = 120;
              DirectoryHandlers.Add("shalom");
-             DirectoryHandlers.Add("hishuv");
+             DirectoryHandlers.Add("hishuv");*/
 
-            /*string[] arguments = new string[5];
+            string[] arguments = new string[5];
             CommandRecievedEventArgs getConfigCommand = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, arguments, "");
-            clientGui.CommandToServer(getConfigCommand);*/
+            clientGui.CommandToServer(getConfigCommand);
 
+        }
+        public void DeleteDirectoryHandler()
+        {
+            if (this.DirectoryHandlers.Contains(ChosenDir))
+            {
+
+                //DirectoryHandlers.Remove(ChosenDir);
+                CommandRecievedEventArgs closeCommand = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, null, ChosenDir);
+                clientGui.CommandToServer(closeCommand);
+            }
         }
     public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
-            /*try
+            try
             {
                 //if it's command of get config .
                 if (e.CommandID == (int)CommandEnum.GetConfigCommand)
@@ -86,7 +92,7 @@ namespace WebApplication2.Models
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
-            }*/
+            }
         }
         [Required]
         [DataType(DataType.Text)]
@@ -117,7 +123,7 @@ namespace WebApplication2.Models
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "ThumbnailSize")]
-        public int ThumbnailSize { get; set; }
+        public string ThumbnailSize { get; set; }
 
     }
 }
