@@ -16,7 +16,6 @@ using ImageService.Logging.Modal;
 
 namespace ImageService
 {
-
     public enum ServiceState
     {
         SERVICE_STOPPED = 0x00000001,
