@@ -1,22 +1,45 @@
-﻿
+﻿@model  WebApplication2.Models.Logs
 @{
-    ViewBag.Title = "LogView";
+
+    ViewBag.Title = "Log";
+
 }
 
 <h2>LogView</h2>
 
 <div>
-    <ul id = "logsList">
-        <li>try li</li>
+    <ul id="logsList">
+        @{
+            foreach (var log in Model.logArr)
+            {
+                <li> @log.Type: @log.Message</li>
+            }
+        }
     </ul>
- </div>
+
+    <br />
+    <p>Search log </p>
+    <input type="text" width="20" id="filter"><br>
+    <button type="button" id="sreachLog"> search! </button>
+</div>
 
 <script>
-  //  $.get("@Url.Action("GetLogs")", function (data) {
-   //     for (var index = 0; infrx < 2; inedex++) {
-   //         $("#logsList").append("<li>" + data[index] + "</li>");
-   //     }    
-   //     }, "json")();
-    $.get("@Url.Action("GetLogs")";
+    $("#sreachLog").click(function () {
+        $("#sreachLog").html("BLALA");
+        var logslist, filter, logText, i;
+        logslist = document.getElementById('logsList');
+        logslist = logslist.children;
+        filter = document.getElementById('filter').value;
 
+        $("#sreachLog").html(logslist.length);
+        for (i = 0; i < logslist.length; i++) {
+           // $("#sreachLog").html(logslist[i].innerHTML);
+            logText = logslist[i].innerHTML;
+            if (logText.indexOf("") > 0) {
+                $("#sreachLog").html("KIKI");
+                //logslist[i].style.desplay = "none";
+            } 
+        }
+
+    });
 </script>

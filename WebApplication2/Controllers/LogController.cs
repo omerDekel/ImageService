@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication2.Models;
-using ImageService.Logging.Modal;
 
 namespace WebApplication2.Controllers
 {
@@ -19,7 +18,7 @@ namespace WebApplication2.Controllers
         }
 
         [HttpGet]
-        public List<MessageRecievedEventArgs> GetLogs()
+        public List<LogTypeAndMessage> GetLogs()
         {
             return logsList.logArr;
         }

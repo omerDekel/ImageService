@@ -161,6 +161,7 @@
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Logs.cs" />
+    <Compile Include="Models\LogTypeAndMessage.cs" />
     <Compile Include="Models\Photos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

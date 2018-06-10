@@ -13,6 +13,8 @@ namespace WebApplication2.Controllers
     {
         static Config configModel = new Config();
         static List<Employee> employees = new List<Employee>();
+        static Logs logsModel = new Logs();
+
         public FirstController()
         {
             configModel.PropertyChanged += OnPropertyChanged;
@@ -155,7 +157,7 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public ActionResult Log()
         {
-            return View();
+            return View(logsModel);
         }
     }
 }
