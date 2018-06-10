@@ -15,7 +15,6 @@ namespace WebApplication2.Controllers
         static List<Employee> employees = new List<Employee>();
         public FirstController()
         {
-            //configModel.PropertyChanged -= OnPropertyChanged;
             configModel.PropertyChanged += OnPropertyChanged;
         }
 
