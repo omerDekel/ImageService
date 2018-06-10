@@ -8,9 +8,14 @@ namespace WebApplication2.Models
 {
     public class Student
     {
+        public Student(string firstName, string last, string id){
+            FirstName = firstName;
+            LastName = last;
+            ID = id;
+            }
         [Required]
         [Display(Name = "ID")]
-        public int ID { get; set; }
+        public string ID { get; set; }
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "FirstName")]
