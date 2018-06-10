@@ -10,9 +10,11 @@
 <div>
     <ul id="logsList">
         @{
+            var index = 0;
             foreach (var log in Model.logArr)
             {
-                <li> @log.Type: @log.Message</li>
+                <li id="log_@index"> @log.Type: @log.Message</li>
+                index++;
             }
         }
     </ul>
@@ -31,13 +33,17 @@
         logslist = logslist.children;
         filter = document.getElementById('filter').value;
 
+        for (i = 0; i < logslist.length; i++) {
+            var logid = logslist[i].id;
+            $("#" + logid.toString()).show();
+        }
+
         $("#sreachLog").html(logslist.length);
         for (i = 0; i < logslist.length; i++) {
-           // $("#sreachLog").html(logslist[i].innerHTML);
-            logText = logslist[i].innerHTML;
-            if (logText.indexOf("") > 0) {
-                $("#sreachLog").html("KIKI");
-                //logslist[i].style.desplay = "none";
+            logText = logslist[i].innerHTML.toString();
+            if (logText.indexOf(filter) < 0) {
+                var logid = logslist[i].id;
+                $("#" + logid.toString()).hide();
             } 
         }
 
