@@ -6,24 +6,17 @@
 
 <h2>Are you sure you want to delete this directory handler?</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Enabled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OutputDirectory)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SourceName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LogName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ThumbnailSize)
-        </th>
-        <th></th>
-    </tr>
+<button type="button" id="yes">yes</button>
+<button type="button" id="cancel">cancel</button>
+<script>
+ var yes = document.getElementById("yes");
+ yes.onclick = function () {
+     $(':button').prop('disabled', true)
+     location.href = '@Url.Action("DeleteApproved", "First")';
+    };
+ var cancel = document.getElementById("cancel");
+ cancel.onclick = function () {
+     location.href = "Index";
+    };
 
-</table>
+</script>

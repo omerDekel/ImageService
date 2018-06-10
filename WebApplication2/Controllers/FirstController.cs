@@ -22,7 +22,7 @@ namespace WebApplication2.Controllers
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-
+            ConfigBack();
         }
 
         // GET: First
@@ -31,12 +31,16 @@ namespace WebApplication2.Controllers
         {
             return View(configModel);
         }
-        [HttpGet]
-        public ActionResult DeleteClicked(string chosenDir)
+        //[HttpGet]
+        public ActionResult DeleteHandlerUserApproval(string chosenDir)
         {
             configModel.ChosenDir = chosenDir;
-            return RedirectToAction("DeleteHandlerUserApproval");
+            return View(configModel);
             
+        }
+        public ActionResult ConfigBack()
+        {
+            return View(configModel);
         }
         public ActionResult DeleteApproved()
         {
