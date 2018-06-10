@@ -8,12 +8,13 @@ using System.Collections.ObjectModel;
 using ImageService.Infrastructure;
 using ImageService.Modal;
 using ImageService.Infrastructure.Enums;
+using System.ComponentModel;
 
 namespace WebApplication2.Models
 {
     public class Config
     {
-        //public event  
+        public event PropertyChangedEventHandler PropertyChanged;
         public string ChosenDir { get; set; }
         private IClient clientGui;
         /// <summary>
@@ -84,8 +85,9 @@ namespace WebApplication2.Models
                         //App.Current.Dispatcher.Invoke((Action)delegate
                        //// {
                             this.DirectoryHandlers.Remove(e.RequestDirPath);
+                        PropertyChanged?.Invoke(this, e: new PropertyChangedEventArgs(e.RequestDirPath));
 
-                      //  });
+                        //  });
                     }
                 }
             }
