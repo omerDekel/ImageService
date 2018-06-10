@@ -154,12 +154,14 @@
     <Compile Include="Comunication\Client.cs" />
     <Compile Include="Comunication\IClient.cs" />
     <Compile Include="Controllers\FirstController.cs" />
+    <Compile Include="Controllers\ImageWebController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\ImageWeb.cs" />
     <Compile Include="Models\Logs.cs" />
     <Compile Include="Models\LogTypeAndMessage.cs" />
     <Compile Include="Models\Photos.cs" />
@@ -185,6 +187,7 @@
     <Content Include="scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Views\First\DeleteHandlerUserApproval.cshtml" />
     <Content Include="Views\First\Log.cshtml" />
+    <Content Include="Views\ImageWeb\ImageWebView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
