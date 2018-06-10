@@ -154,6 +154,7 @@
     <Compile Include="Comunication\Client.cs" />
     <Compile Include="Comunication\IClient.cs" />
     <Compile Include="Controllers\FirstController.cs" />
+    <Compile Include="Controllers\ImageWebController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,7 +185,8 @@
     <Content Include="scripts\jquery-3.0.0.min.map" />
     <Content Include="scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Views\First\DeleteHandlerUserApproval.cshtml" />
-    <Content Include="Views\First\Log.cshtml" />
+    <Content Include="Views\Log\Log.cshtml" />
+    <Content Include="Views\ImageWeb\ImageWebView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -194,7 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Log\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ImageService\ImageService.csproj">

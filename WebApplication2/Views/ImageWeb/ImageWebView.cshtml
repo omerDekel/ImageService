@@ -1,0 +1,18 @@
+﻿@model WebApplication2.Models.ImageWeb
+
+@{
+    ViewBag.Title = "ImageWebView";
+}
+
+<h2>Image Web</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IsConnected)
+        </th>
+    </tr>
+    <tr>
+        <td>@Model.IsConnected</td>
+    </tr>
+
+</table>
