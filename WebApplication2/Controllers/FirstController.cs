@@ -147,5 +147,11 @@ namespace WebApplication2.Controllers
             }
             return RedirectToAction("Error");
         }
+
+        [HttpGet]
+        public ActionResult Log()
+        {
+            return View();
+        }
     }
 }

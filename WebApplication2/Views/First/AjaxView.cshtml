@@ -29,6 +29,9 @@
         <ul id="lstProducts"></ul>
     </div>
 
+    <div>
+        <p id="goToLogs">@Html.ActionLink("Go to Logs", "Log", "First")</p>
+    </div>
 </div>
 
 <script>
@@ -48,5 +51,7 @@
             $("#lstProducts").append("<li>" + data.FirstName + " " + data.LastName + " : $" + data.Salary + "</li>");
         }, "json");
     });
+
+    
 
 </script>
