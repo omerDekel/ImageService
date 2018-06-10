@@ -17,6 +17,7 @@ namespace WebApplication2.Controllers
 
         public FirstController()
         {
+            //configModel.PropertyChanged -= OnPropertyChanged;
             configModel.PropertyChanged += OnPropertyChanged;
         }
 
