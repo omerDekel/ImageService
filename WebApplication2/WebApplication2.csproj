@@ -157,6 +157,7 @@
     <Compile Include="Controllers\FirstController.cs" />
     <Compile Include="Controllers\ImageWebController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +191,7 @@
     <Content Include="Views\First\DeleteHandlerUserApproval.cshtml" />
     <Content Include="Views\First\Log.cshtml" />
     <Content Include="Views\ImageWeb\ImageWebView.cshtml" />
+    <Content Include="Views\Photos\PhotosView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
