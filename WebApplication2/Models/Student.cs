@@ -7,12 +7,8 @@ using System.Web;
 namespace WebApplication2.Models
 {
     public class Student
-    {
-        public Student(string firstName, string last, string id){
-            FirstName = firstName;
-            LastName = last;
-            ID = id;
-            }
+    {   
+        public Student() { }
         [Required]
         [Display(Name = "ID")]
         public string ID { get; set; }

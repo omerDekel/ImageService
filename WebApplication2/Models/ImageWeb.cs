@@ -33,13 +33,17 @@ namespace WebApplication2.Models
 
             try
             {
-                stream = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/details.txt"));
+                stream = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/students.txt"));
                 currentLine = stream.ReadLine();
                 while(currentLine != null)
                 {
-                    strArr = currentLine.Split(',');
-                    st = new Student(strArr[0], strArr[1], strArr[2]);
+                    strArr = currentLine.Split(' ');
+                    st = new Student();
+                    st.FirstName = strArr[0];
+                    st.LastName = strArr[1];
+                    st.ID = strArr[2];
                     Students.Add(st);
+                    currentLine = stream.ReadLine();
                 }
                 stream.Close();
             }
