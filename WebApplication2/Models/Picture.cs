@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -8,6 +9,9 @@ namespace WebApplication2.Models
 {
     public class Picture
     {
+        public Picture()
+        { }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Name")]
@@ -27,16 +31,19 @@ namespace WebApplication2.Models
         [DataType(DataType.ImageUrl)]
         [Display(Name = "ThumbPath")]
         public string ThumbPath { get; set; }
+        [Required]
+        [DataType(DataType.ImageUrl)]
+        [Display(Name = "RelativeThumbPath")]
+        public string RelativeThumbPath { get; set; }
 
         [Required]
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Path")]
         public string Path { get; set; }
-
         [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "ThumbnailSize")]
-        public string ThumbnailSize { get; set; }
-
+        [DataType(DataType.ImageUrl)]
+        [Display(Name = "RelativePath")]
+        public string RelativePath { get; set; }
     }
+
 }
