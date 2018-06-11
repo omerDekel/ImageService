@@ -200,6 +200,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="md\" />
     <Folder Include="Views\Log\" />
   </ItemGroup>
   <ItemGroup>
