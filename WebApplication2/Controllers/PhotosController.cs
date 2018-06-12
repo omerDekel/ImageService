@@ -17,5 +17,19 @@ namespace WebApplication2.Controllers
             PhotosModel.GetPictures(configModel.OutputDirectory);
             return View(PhotosModel);
         }
+        public ActionResult DeleteAprroved(Picture picture, string path)
+        {
+            PhotosModel.RemovePhoto(picture);
+            try
+            {
+                System.IO.File.Delete(path);
+                System.IO.File.Delete(path);
+            }
+            catch
+            {
+
+            }
+            return RedirectToAction("PhotosView");
+        }
     }
 }

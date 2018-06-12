@@ -17,12 +17,12 @@ namespace WebApplication2.Models
             Picture pict;
             try
             {
-
+                pictures.Clear();
                 di = new DirectoryInfo(directory);
                 List<DirectoryInfo> years = di.GetDirectories().ToList();
                 foreach (DirectoryInfo year in years)
                 {
-                    if (year.Name=="Thumbnails")
+                    if (year.Name == "Thumbnails")
                     {
                         continue;
                     }
@@ -31,12 +31,12 @@ namespace WebApplication2.Models
                     foreach (DirectoryInfo month in months)
                     {
                         List<FileInfo> fileInfos = month.GetFiles().ToList();
-                        pictures.Clear();
                         foreach (FileInfo fi in fileInfos)
                         {
                             pict = new Picture();
                             pict.RelativePath = "~/" + year.Parent.Name + "/" + year.Name + "/" + month.Name + "/" + fi.Name;
-                            pict.RelativeThumbPath ="~/" + year.Parent.Name + "/Thumbnails/" + year.Name +" /" + month.Name + "/" + fi.Name;
+                            pict.RelativeThumbPath = "~/" + year.Parent.Name + "/Thumbnails/" + year.Name + " /" + month.Name + "/" + fi.Name;
+                            Path.ChangeExtension(pict.RelativeThumbPath, "thumb" + fi.Name);
                             pict.Path = fi.FullName;
                             pict.ThumbPath = fi.FullName.Replace(pict.RelativePath, pict.RelativeThumbPath);
 
@@ -54,12 +54,17 @@ namespace WebApplication2.Models
                 Console.WriteLine(e.Message);
             }
         }
+        public void RemovePhoto(Picture picture)
+        {
+            pictures.Remove(picture);
+        }
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Pictures")]
-        public List<Picture> Pictures {
+        public List<Picture> Pictures
+        {
             get { return this.pictures; }
-            set {this.pictures = value; }
+            set { this.pictures = value; }
         }
 
     }
