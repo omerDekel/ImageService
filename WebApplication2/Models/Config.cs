@@ -18,7 +18,9 @@ namespace WebApplication2.Models
         public string ChosenDir { get; set; }
         private IClient clientGui;
         private static Config instance;
-        
+
+        public List<LogTypeAndMessage> logArr { get; }
+
         /// <summary>
         /// Constructor .
         /// </summary>
@@ -26,7 +28,20 @@ namespace WebApplication2.Models
         {
             clientGui = Client.Instance;
             clientGui.CommandRecieved += OnCommandRecieved;
-            
+
+            this.logArr = new List<LogTypeAndMessage>();
+
+            // Add a dummy logs just for cheking
+            LogTypeAndMessage m = new LogTypeAndMessage();
+            m.Message = "massage1";
+            m.Type = "INFO";
+            this.logArr.Add(m);
+
+            m = new LogTypeAndMessage();
+            m.Message = "massage2";
+            m.Type = "FAIL";
+            this.logArr.Add(m);
+
             //taking the config arguments by the GetConfigCommand
             DirectoryHandlers = new ObservableCollection<string>();
             /*OutputDirectory = "heyyyyyyyyy";
@@ -39,6 +54,7 @@ namespace WebApplication2.Models
             string[] arguments = new string[5];
             CommandRecievedEventArgs getConfigCommand = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, arguments, "");
             clientGui.CommandToServer(getConfigCommand);
+
 
             clientGui.OneCommandFromServer();
 
@@ -106,6 +122,18 @@ namespace WebApplication2.Models
                         //  });
                     }
                 }
+                // if it's get log command
+                else if (e.CommandID == (int)CommandEnum.LogCommand)
+                {
+                    // translate the Args array of CommandRecievedEventArgs to logs and add them to logCollection
+                    for (int i = 0; i < e.Args.Length; i += 2)
+                    {
+                        LogTypeAndMessage log = new LogTypeAndMessage();
+                        log.Type = e.Args[i];
+                        log.Message = e.Args[i + 1];
+                        this.logArr.Add(log);
+                    }
+                }
             }
             catch (Exception exception)
             {
@@ -143,5 +171,8 @@ namespace WebApplication2.Models
         [Display(Name = "ThumbnailSize")]
         public string ThumbnailSize { get; set; }
 
+        [Required]
+        [Display(Name = "LogArr ")]
+        public List<LogTypeAndMessage> LogAr { get; }
     }
 }

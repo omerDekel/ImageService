@@ -11,8 +11,8 @@ namespace WebApplication2.Controllers
 {
     public class FirstController : Controller
     {
+        //static Logs logsModel = new Logs();
         static Config configModel = Config.Instance;
-        static Logs logsModel = new Logs();
 
         public FirstController()
         {
@@ -51,7 +51,7 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public ActionResult Log()
         {
-            return View(logsModel);
+            return View(configModel);
         }
     }
 }

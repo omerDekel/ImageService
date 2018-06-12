@@ -154,7 +154,6 @@
     <Compile Include="Comunication\IClient.cs" />
     <Compile Include="Controllers\FirstController.cs" />
     <Compile Include="Controllers\ImageWebController.cs" />
-    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
