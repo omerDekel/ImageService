@@ -31,11 +31,12 @@ namespace WebApplication2.Models
                     foreach (DirectoryInfo month in months)
                     {
                         List<FileInfo> fileInfos = month.GetFiles().ToList();
+                        pictures.Clear();
                         foreach (FileInfo fi in fileInfos)
                         {
                             pict = new Picture();
-                            pict.RelativePath = year.Parent.Name + "\\" + year.Name + "\\" + month.Name + "\\" + fi.Name;
-                            pict.RelativeThumbPath = year.Parent.Name + "\\Thumbnails\\" + year.Name + "\\" + month.Name + "\\" + fi.Name;
+                            pict.RelativePath = "~/" + year.Parent.Name + "/" + year.Name + "/" + month.Name + "/" + fi.Name;
+                            pict.RelativeThumbPath ="~/" + year.Parent.Name + "/Thumbnails/" + year.Name +" /" + month.Name + "/" + fi.Name;
                             pict.Path = fi.FullName;
                             pict.ThumbPath = fi.FullName.Replace(pict.RelativePath, pict.RelativeThumbPath);
 

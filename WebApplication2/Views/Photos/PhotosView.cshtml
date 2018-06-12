@@ -12,41 +12,56 @@
     <script>
         $("#delete_page").hide();
     </script>
-</div >
+</div>
 
 <div id="display_pic_page">
     <h2> Photos</h2>
-   <br />
-  <button id="delete_picture_view" style="margin-right:5px; margin-left:5px; background-color:#ff2400;  border: none; width:60px; height:20px;"> delete_pic </button>
-  <script>
-      $("#display_pic_page").hide();
-  </script>
+    <br />
+    <button id="delete_picture_view" style="margin-right:5px; margin-left:5px; background-color:#ff2400;  border: none; width:60px; height:20px;"> delete_pic </button>
+    <script>
+        $("#display_pic_page").hide();
+    </script>
 </div>
-
-
 
 <div id="desplay_page">
     <h2 id="title">Photos</h2>
     <table style="width:100%">
-        <tr id="pictures">
-            <td>
-                <div style="border:1px dashed black; width:205px; height: 270px;">
-                    <table>
-                        <tr>
-                            <td> <img class="img-circle" style="width:200px; height: 200px;" alt="imagesssssssssss" src="../../md/20150807_203501.jpg"> </td>
-                        </tr>
-                        <tr>
-                            <td style="margin-right:5px;"> describtion </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button id="view" style=" margin-right:5px; margin-left:5px; background-color:#0068ff; border: none; width:60px; height:20px;"> view </button>
-                                <button id="delete" style="margin-right:5px; margin-left:5px; background-color:#ff2400;  border: none; width:60px; height:20px;"> delete </button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
+        <tr>
+            @{
+                <td> @Model.Pictures.Count.ToString()</td>
+                var index = 0;
+                foreach (var image in Model.Pictures)
+                {
+                    var path = image.RelativePath;
+                    //var path = "~/md/2015/8/20150807_203501.jpg";
+                    <td>
+                        <div style="border:1px dashed black; width:300px; height: 270px;">
+                            <table>
+                                <tr>
+                                    <td> <img class="img-circle" style="width:200px; height: 200px;" alt=path src="@Url.Content(@path)"> </td>
+                                </tr>
+                                <tr>
+                                    <td> @path </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="margin-right:5px;"> @image.Name</td>
+                                </tr>
+                                <tr>
+                                    <td style="margin-right:5px;"> month: @image.Month year: @image.Year </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button id="view" style=" margin-right:5px; margin-left:5px; background-color:#0068ff; border: none; width:60px; height:20px;"> view </button>
+                                        <button id="delete" style="margin-right:5px; margin-left:5px; background-color:#ff2400;  border: none; width:60px; height:20px;"> delete </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                    index++;
+                }
+            }
         </tr>
     </table>
 </div>
@@ -56,7 +71,7 @@
         $("#display_pic_page").show();
         $("#desplay_page").hide();
 
-        var str = "<img alt=\"imagesssssssssss\" src=\"../../md/20150807_203501.jpg\">";
+        var str = "<img alt=\"imagesssssssssss\" src=\"../../md/2015/8/20150807_203501.jpg\">";
         $("#display_pic_page").append(str);
     });
 
@@ -76,5 +91,5 @@
         var str = "<img alt=\"imagesssssssssss\" src=\"../../md/20150807_203501.jpg\">";
         $("#delete_page").append(str);
     });
-    
+
 </script>

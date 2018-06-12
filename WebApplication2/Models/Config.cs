@@ -17,14 +17,16 @@ namespace WebApplication2.Models
         public event PropertyChangedEventHandler PropertyChanged;
         public string ChosenDir { get; set; }
         private IClient clientGui;
+        private static Config instance;
+        
         /// <summary>
         /// Constructor .
         /// </summary>
-        public Config()
+        private Config()
         {
             clientGui = Client.Instance;
             clientGui.CommandRecieved += OnCommandRecieved;
-            clientGui.CommandFromServer();
+            
             //taking the config arguments by the GetConfigCommand
             DirectoryHandlers = new ObservableCollection<string>();
             /*OutputDirectory = "heyyyyyyyyy";
@@ -38,6 +40,20 @@ namespace WebApplication2.Models
             CommandRecievedEventArgs getConfigCommand = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, arguments, "");
             clientGui.CommandToServer(getConfigCommand);
 
+            clientGui.OneCommandFromServer();
+
+            clientGui.CommandFromServer();
+        }
+        public static Config Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Config();
+                }
+                return instance;
+            }
         }
         public void DeleteDirectoryHandler()
         {

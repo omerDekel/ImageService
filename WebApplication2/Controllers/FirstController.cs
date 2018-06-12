@@ -11,7 +11,7 @@ namespace WebApplication2.Controllers
 {
     public class FirstController : Controller
     {
-        static Config configModel = new Config();
+        static Config configModel = Config.Instance;
         static List<Employee> employees = new List<Employee>();
         static Logs logsModel = new Logs();
 

@@ -52,6 +52,24 @@ namespace WebApplication2.Comunication
             }
         }
 
+        public void OneCommandFromServer()
+        {
+            string commandStr;
+            try
+            {
+                NetworkStream stream = tcpClient.GetStream();
+                BinaryReader reader = new BinaryReader(stream);
+                commandStr = reader.ReadString();
+                Console.WriteLine($"Recieve {commandStr} from Server");
+                CommandRecievedEventArgs responseObj = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandStr);
+                CommandRecieved?.Invoke(this, responseObj);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
         /// <summary>
         /// task that listenning to the server to get command .
         /// </summary>

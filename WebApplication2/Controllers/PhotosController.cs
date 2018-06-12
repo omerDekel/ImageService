@@ -9,7 +9,7 @@ namespace WebApplication2.Controllers
 {
     public class PhotosController : Controller
     {
-        static Config configModel = new Config();
+        static Config configModel = Config.Instance;
         static Photos PhotosModel = new Photos();
         // GET: Photos
         public ActionResult PhotosView()

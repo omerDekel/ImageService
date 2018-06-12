@@ -15,6 +15,7 @@ namespace WebApplication2.Comunication
         void ConnectServer();
         void CommandToServer(CommandRecievedEventArgs e);
         void CommandFromServer();
+        void OneCommandFromServer();
         bool Stop { get; }
 
     }
