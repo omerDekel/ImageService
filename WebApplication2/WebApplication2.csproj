@@ -177,7 +177,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\First\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -193,6 +193,9 @@
     <Content Include="Views\First\Log.cshtml" />
     <Content Include="Views\ImageWeb\ImageWebView.cshtml" />
     <Content Include="Views\Photos\PhotosView.cshtml" />
+    <Content Include="Views\Photos\OnePictureView.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Photos\DeletePhotoConfirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

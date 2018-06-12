@@ -25,20 +25,21 @@
 
 <div id="desplay_page">
     <h2 id="title">Photos</h2>
+    <h3> number of pictures is: @Model.Pictures.Count.ToString() </h3>
     <table style="width:100%">
         <tr>
             @{
-                <td> @Model.Pictures.Count.ToString()</td>
+                
                 var index = 0;
                 foreach (var image in Model.Pictures)
                 {
+                    var thumpath = image.RelativeThumbPath;
                     var path = image.RelativePath;
-                    //var path = "~/md/2015/8/20150807_203501.jpg";
                     <td>
-                        <div style="border:1px dashed black; width:300px; height: 270px;">
-                            <table>
+                        <div>
+                            <table id="t_@path">
                                 <tr>
-                                    <td> <img class="img-circle" style="width:200px; height: 200px;" alt=path src="@Url.Content(@path)"> </td>
+                                    <td id="th_@path"> <img class="img-circle" style="width:120px; height: 120px;" alt=path src="@Url.Content(@path)"> </td>
                                 </tr>
                                 <tr>
                                     <td> @path </td>
@@ -52,8 +53,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <button id="view" style=" margin-right:5px; margin-left:5px; background-color:#0068ff; border: none; width:60px; height:20px;"> view </button>
-                                        <button id="delete" style="margin-right:5px; margin-left:5px; background-color:#ff2400;  border: none; width:60px; height:20px;"> delete </button>
+                                        <a href="@Url.Action("OnePictureView", new { path = @image.RelativeThumbPath})" id="btnView" class="btn btn-info btn-xs" role="button">View</a> 
+                                        <a href="@Url.Action("DeletePhotoConfirmation", new { path = @image.RelativeThumbPath})" id="btnDelete" class="btn btn-danger btn-xs" role="button">Delete</a>
                                     </td>
                                 </tr>
                             </table>
@@ -67,29 +68,25 @@
 </div>
 
 <script>
-    $("#view").click(function () {
+    $("#view_~/md/2015/8/20150807_203501.jpg").click(function () {
+        $("#view_~/md/2015/8/20150807_203501.jpg").html("clicked");
         $("#display_pic_page").show();
         $("#desplay_page").hide();
-
-        var str = "<img alt=\"imagesssssssssss\" src=\"../../md/2015/8/20150807_203501.jpg\">";
-        $("#display_pic_page").append(str);
+        $("#t_~/md/2015/8/20150807_203501.jpg").show();
     });
 
     $("#delete").click(function () {
         $("#delete_page").show();
         $("#desplay_page").hide();
-
-        var str = "<img alt=\"imagesssssssssss\" src=\"../../md/20150807_203501.jpg\">";
-        $("#delete_page").append(str);
+        $("#t_~/md/2015/8/20150807_203501.jpg").show();
     });
 
     $("#delete_picture_view").click(function () {
         $("#delete_page").show();
         $("#desplay_page").hide();
         $("#display_pic_page").hide();
-
-        var str = "<img alt=\"imagesssssssssss\" src=\"../../md/20150807_203501.jpg\">";
-        $("#delete_page").append(str);
+        $("#t_~/md/2015/8/20150807_203501.jpg").show();
+              
     });
 
 </script>

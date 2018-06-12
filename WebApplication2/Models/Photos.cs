@@ -54,6 +54,18 @@ namespace WebApplication2.Models
                 Console.WriteLine(e.Message);
             }
         }
+
+        public Picture GetPictureFromPath(string relPath)
+        {
+            foreach ( Picture pict in pictures)
+            {
+                if (pict.RelativeThumbPath == relPath)
+                {
+                    return pict;
+                }
+            }
+            return null;
+        }
         public void RemovePhoto(Picture picture)
         {
             pictures.Remove(picture);
@@ -66,6 +78,5 @@ namespace WebApplication2.Models
             get { return this.pictures; }
             set { this.pictures = value; }
         }
-
     }
 }

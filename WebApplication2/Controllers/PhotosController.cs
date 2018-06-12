@@ -18,8 +18,22 @@ namespace WebApplication2.Controllers
             return View(PhotosModel);
         }
 
-        public ActionResult DeleteAprroved(Picture picture)
+        public ActionResult OnePictureView(string path)
         {
+            Picture picture = PhotosModel.GetPictureFromPath(path);
+            return View(picture);
+        }
+
+        public ActionResult DeletePhotoConfirmation(string path)
+        {
+            Picture picture = PhotosModel.GetPictureFromPath(path);
+            return View(picture);
+        }
+        
+
+        public ActionResult DeleteAprroved(string path)
+        {
+            Picture picture = PhotosModel.GetPictureFromPath(path);
             PhotosModel.RemovePhoto(picture);
             try
             {

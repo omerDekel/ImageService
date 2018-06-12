@@ -1,0 +1,20 @@
+﻿@model WebApplication2.Models.Picture
+
+@{
+    ViewBag.Title = "OnePictureView";
+}
+
+<h2>Photo</h2>
+
+@{
+    var path = @Model.RelativePath.ToString();
+    var name = @Model.Name.ToString();
+    var month = @Model.Month.ToString();
+    var year = @Model.Year.ToString();
+
+    <p> <img style="width:200px; height: 400px;" alt=@path src="@Url.Content(@path)"> </p>
+    <p> name: @name </p>
+    <p> month: @month year: @year </p>
+    <a href="@Url.Action("DeletePhotoConfirmation", new { path = @Model.RelativeThumbPath})" id="btnDelete" class="btn btn-danger btn-xs" role="button">Delete</a>
+}
+

@@ -68,7 +68,7 @@ namespace WebApplication2.Models
     public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             try
-            {
+          {
                 //if it's command of get config .
                 if (e.CommandID == (int)CommandEnum.GetConfigCommand)
                 {
