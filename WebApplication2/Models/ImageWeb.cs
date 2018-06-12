@@ -11,10 +11,15 @@ namespace WebApplication2.Models
     public class ImageWeb
     {
         private IClient m_client;
-        //public IClient M_client { get; set; }
-
+        private Config config; 
         public ImageWeb()
         {
+            config = Config.Instance;
+            string outputDir;
+            outputDir = config.OutputDirectory;
+            Photos photos = new Photos();
+            photos.GetPictures(outputDir);
+            PicturesNumber = photos.Pictures.Count;
             string currentLine;
             string[] strArr;
             Student st;

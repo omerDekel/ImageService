@@ -7,20 +7,30 @@
 <h2>Image Web</h2>
 <table class="table">
     <tr>
-        
+
         <th>
-                      @Html.DisplayNameFor(model => model.Status)
-            
+            @Html.DisplayNameFor(model => model.Status)
+
         </th>
-        
+
     </tr>
-    
     <tr>
-        
+
         <td>@Model.Status</td>
-        
+
     </tr>
-    </table>
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PicturesNumber)
+
+        </th>
+
+    </tr>
+    <tr>
+        <td>@Model.PicturesNumber</td>
+    </tr>
+</table>
 <table class="table">
     <tr>
         @Html.DisplayNameFor(model => model.Students)

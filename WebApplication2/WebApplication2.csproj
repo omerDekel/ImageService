@@ -147,8 +147,6 @@
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\First\Create.cshtml" />
-    <Content Include="Views\First\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -162,7 +160,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Config.cs" />
-    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ImageWeb.cs" />
     <Compile Include="Models\Logs.cs" />
     <Compile Include="Models\LogTypeAndMessage.cs" />
@@ -184,9 +181,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\First\Edit.cshtml" />
-    <Content Include="Views\First\Error.cshtml" />
-    <Content Include="Views\First\AjaxView.cshtml" />
     <Content Include="scripts\jquery-3.0.0.min.map" />
     <Content Include="scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Views\First\DeleteHandlerUserApproval.cshtml" />
