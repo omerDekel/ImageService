@@ -12,13 +12,16 @@ using System.ComponentModel;
 
 namespace WebApplication2.Models
 {
+    /// <summary>
+    /// model handling logs and configurations.
+    /// </summary>
     public class Config
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public string ChosenDir { get; set; }
         private IClient clientGui;
         private static Config instance;
-
+        // list of logs .
         public List<LogTypeAndMessage> logArr { get; }
 
         /// <summary>
@@ -28,38 +31,20 @@ namespace WebApplication2.Models
         {
             clientGui = Client.Instance;
             clientGui.CommandRecieved += OnCommandRecieved;
-
             this.logArr = new List<LogTypeAndMessage>();
-
-            // Add a dummy logs just for cheking
-            LogTypeAndMessage m = new LogTypeAndMessage();
-            m.Message = "massage1";
-            m.Type = "INFO";
-            this.logArr.Add(m);
-
-            m = new LogTypeAndMessage();
-            m.Message = "massage2";
-            m.Type = "FAIL";
-            this.logArr.Add(m);
-
             //taking the config arguments by the GetConfigCommand
             DirectoryHandlers = new ObservableCollection<string>();
-            /*OutputDirectory = "heyyyyyyyyy";
-            SourceName = "SourceName";
-            LogName = "LogName";
-            ThumbnailSize = 120;
-             DirectoryHandlers.Add("shalom");
-             DirectoryHandlers.Add("hishuv");*/
-
             string[] arguments = new string[5];
             CommandRecievedEventArgs getConfigCommand = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, arguments, "");
             clientGui.CommandToServer(getConfigCommand);
-
-
+            // for the command of getting config .
             clientGui.OneCommandFromServer();
 
             clientGui.CommandFromServer();
         }
+        /// <summary>
+        /// instance for singleton
+        /// </summary>
         public static Config Instance
         {
             get
@@ -71,20 +56,26 @@ namespace WebApplication2.Models
                 return instance;
             }
         }
+        /// <summary>
+        /// Delete Directory Handler .
+        /// </summary>
         public void DeleteDirectoryHandler()
         {
             if (this.DirectoryHandlers.Contains(ChosenDir))
             {
-
-                //DirectoryHandlers.Remove(ChosenDir);
                 CommandRecievedEventArgs closeCommand = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, null, ChosenDir);
                 clientGui.CommandToServer(closeCommand);
             }
         }
-    public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
+        /// <summary>
+        /// on command recieved event handler function .
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             try
-          {
+            {
                 //if it's command of get config .
                 if (e.CommandID == (int)CommandEnum.GetConfigCommand)
                 {
@@ -99,14 +90,8 @@ namespace WebApplication2.Models
                     {
                         string dir = directoryArray[i];
                         Console.WriteLine("dir name" + dir);
-
-
                         Console.WriteLine("dir was added " + dir);
-                       // App.Current.Dispatcher.Invoke((Action)delegate
-                       // {
-                            DirectoryHandlers.Add(dir);
-
-                       // });
+                        DirectoryHandlers.Add(dir);
                     }
                 }
                 //if it's event of close directory command .
@@ -114,12 +99,9 @@ namespace WebApplication2.Models
                 {
                     if (e.RequestDirPath != null && DirectoryHandlers != null && DirectoryHandlers.Contains(e.RequestDirPath))
                     {
-                        //App.Current.Dispatcher.Invoke((Action)delegate
-                       //// {
-                            this.DirectoryHandlers.Remove(e.RequestDirPath);
-                        PropertyChanged?.Invoke(this, e: new PropertyChangedEventArgs(e.RequestDirPath));
 
-                        //  });
+                        this.DirectoryHandlers.Remove(e.RequestDirPath);
+                        PropertyChanged?.Invoke(this, e: new PropertyChangedEventArgs(e.RequestDirPath));
                     }
                 }
                 // if it's get log command

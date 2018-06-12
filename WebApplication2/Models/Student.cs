@@ -6,6 +6,9 @@ using System.Web;
 
 namespace WebApplication2.Models
 {
+    /// <summary>
+    /// This calss kepps the studesnts details.
+    /// </summary>
     public class Student
     {   
         public Student() { }

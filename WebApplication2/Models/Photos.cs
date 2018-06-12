@@ -10,6 +10,10 @@ namespace WebApplication2.Models
     public class Photos
     {
         private List<Picture> pictures = new List<Picture>();
+        /// <summary>
+        /// updating the pictures list according to the parameter of path to directory.
+        /// </summary>
+        /// <param name="directory">path to directory to take the photos from there</param>
         public void GetPictures(string directory)
         {
 

@@ -51,7 +51,10 @@ namespace WebApplication2.Comunication
                 return this.stop;
             }
         }
-
+        /// <summary>
+        /// OneCommandFromServer.
+        /// function for  handle only one event that command have been recieved .
+        /// </summary>
         public void OneCommandFromServer()
         {
             string commandStr;

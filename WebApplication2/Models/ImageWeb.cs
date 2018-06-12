@@ -35,7 +35,7 @@ namespace WebApplication2.Models
                 Status = "Connected";
             }
             Students = new List<Student>();
-
+            //reading the file of the students  
             try
             {
                 stream = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/students.txt"));

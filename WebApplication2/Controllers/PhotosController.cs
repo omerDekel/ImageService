@@ -17,7 +17,11 @@ namespace WebApplication2.Controllers
             PhotosModel.GetPictures(configModel.OutputDirectory);
             return View(PhotosModel);
         }
-
+        /// <summary>
+        /// view of full picture .
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public ActionResult OnePictureView(string path)
         {
             Picture picture = PhotosModel.GetPictureFromPath(path);

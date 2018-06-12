@@ -5,6 +5,9 @@ using System.Web;
 
 namespace WebApplication2.Models
 {
+    /// <summary>
+    /// This class kepps a log details.
+    /// </summary>
     public class LogTypeAndMessage
     {
         public string Type { get; set; }

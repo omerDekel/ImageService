@@ -9,6 +9,9 @@ namespace WebApplication2.Models
 {
     public class Picture
     {
+        /// <summary>
+        /// This is the constractor of picture.
+        /// </summary>
         public Picture()
         { }
 
