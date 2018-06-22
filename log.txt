@@ -1,0 +1,949 @@
+commit 74905101624ccb6b7b5c6bc1186152b1c023fd11
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Tue Jun 12 19:54:44 2018 +0300
+
+    comments
+
+commit 591b6f785095eaaf065def11dd7e3869c13f0a2c
+Author: Yifat <yifatyank@gmail.com>
+Date:   Tue Jun 12 19:17:04 2018 +0300
+
+    ALLL WORKSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
+commit 3795171813c4505f2d5c858d7d91e5c4cd9f42a0
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Tue Jun 12 18:09:03 2018 +0300
+
+    DELETING FILES, SHOWING NUMBER OF PICTURES IN HOME.
+
+commit 45c62554da6e4b2d053687cf1da83c08a0fb12a6
+Author: Yifat <yifatyank@gmail.com>
+Date:   Tue Jun 12 16:50:59 2018 +0300
+
+    Itsssssssss workkkkkkkkkking!!!!!!!!!!!!!!!!!!!!!!
+
+commit fbd724bb1c3ebc21dc30488064eaf54ccddcc4b0
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Tue Jun 12 15:23:13 2018 +0300
+
+    fix
+
+commit 0f94dbe43fbe62ad4229a439c68266a268acb101
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Tue Jun 12 15:17:01 2018 +0300
+
+    photos thumb path fix
+
+commit 054f9cebaf9bd2ad0fc399ba889c62c29edd925b
+Author: Yifat <yifatyank@gmail.com>
+Date:   Tue Jun 12 04:42:37 2018 +0300
+
+    comtinue with pictures
+
+commit d5c621575bc29aea4d067d4d7cffd3eff4743207
+Merge: 6ee1ab4 a8782cb
+Author: Yifat <yifatyank@gmail.com>
+Date:   Tue Jun 12 01:01:00 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 6ee1ab499cf3ba69c49c130ec6bc34e14d33793f
+Author: Yifat <yifatyank@gmail.com>
+Date:   Tue Jun 12 01:00:47 2018 +0300
+
+    ImageView html+javascript part
+
+commit a8782cbd23f34ef5d37480d0f1cfc8f30d71be63
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon Jun 11 23:00:36 2018 +0300
+
+    Photos model and controller start
+
+commit e5c2456cd45d6e6035201c95862d920f4fbd7f08
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon Jun 11 15:40:01 2018 +0300
+
+    picture object
+
+commit 0ebddae4b6cd10ff89404c4789ad72537b0786e2
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon Jun 11 14:23:41 2018 +0300
+
+    creating photos page
+
+commit 91370b831bbbb83bd61c7974f46dd3076cd004b6
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon Jun 11 14:10:02 2018 +0300
+
+    PHOTOS STARTING NOW CREATING THE FILES
+
+commit 6f205687c9d719fd6a6cbfb41d03f3a4e7e807f0
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon Jun 11 13:08:11 2018 +0300
+
+    Students table in image web
+
+commit ff997674ac1d91235a3951dd276b724ddff3585a
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon Jun 11 00:48:43 2018 +0300
+
+    Reading students file
+
+commit 148b48f29f695a32cbedaae3bb3a431239339dee
+Merge: 7ed7ade c067f0a
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon Jun 11 00:14:59 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 7ed7ade091f73a01965c602326b4d1968855c7cc
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon Jun 11 00:14:29 2018 +0300
+
+    Start reading students
+
+commit c067f0a9cfe4f007145d65c5b0779a71cd586e65
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 23:49:23 2018 +0300
+
+    Delete debug comments
+
+commit 0bb56255a299c14eb00de444c65885220bc374b6
+Merge: 4826bdf d09df22
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 23:43:19 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 4826bdfbc776751973ad9641b9277107542b161b
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 23:42:54 2018 +0300
+
+    Log filter done
+
+commit d09df22b69775b67e284bfe4ff60851822c0214f
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Jun 10 22:47:34 2018 +0300
+
+    Fixing bugs after merging , through heaven's eyes
+
+commit d9357afeae291231898ddf6bab42429f936d651b
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 22:23:14 2018 +0300
+
+    Refference to lod from layout
+
+commit 76c50a7668ceb28089fb6768dc8af40140a39370
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 22:15:10 2018 +0300
+
+    Revert "now we can see image web home"
+    
+    This reverts commit bef8d42c5624fbb0b3783e4550a9cab68881f829.
+
+commit db6663141c4a12e2b56ef60ec81078ff337e6b05
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 22:13:48 2018 +0300
+
+    Revert "START OF WEB IMAGE"
+    
+    This reverts commit 2462ed16aca3b4731b4430fd9661fb16c4d1258f.
+
+commit 4608c80f9f55cf1c7e8f524720933e739116bec4
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 22:09:58 2018 +0300
+
+    Revert "now we can see image web home"
+    
+    This reverts commit bef8d42c5624fbb0b3783e4550a9cab68881f829.
+
+commit e3c16fa2f690dca9c4845d06d749bf363148d52c
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 21:59:26 2018 +0300
+
+    Revert "START OF WEB IMAGE"
+    
+    This reverts commit 2462ed16aca3b4731b4430fd9661fb16c4d1258f.
+
+commit b79f1d06a4980face4e8b22e1fe01ba6565eb2d4
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 21:59:06 2018 +0300
+
+    Revert "now we can see image web home"
+    
+    This reverts commit bef8d42c5624fbb0b3783e4550a9cab68881f829.
+
+commit b5b3cb3f31142310a5f0572398963c0423bdcd5a
+Merge: 18b1370 bef8d42
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 21:33:58 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 18b1370a5a31f77abb5239716b36c1e0d446b39f
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 21:33:46 2018 +0300
+
+    morelogs
+
+commit bef8d42c5624fbb0b3783e4550a9cab68881f829
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Jun 10 21:23:13 2018 +0300
+
+    now we can see image web home
+
+commit 2462ed16aca3b4731b4430fd9661fb16c4d1258f
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Jun 10 18:52:32 2018 +0300
+
+    START OF WEB IMAGE
+
+commit 15e3b2ec16dc03d0179fde9ad2056615ba718f3d
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Jun 10 17:29:07 2018 +0300
+
+    config good
+
+commit 2958198303243fd0084080b7d3d1afac092c677d
+Merge: 47964bc 7baa85f
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 14:41:16 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 47964bc529592ddc21a85ce43734da396aa16d52
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Jun 10 14:40:52 2018 +0300
+
+    more logs
+
+commit 7baa85f8059b717e84cac9468b3fb28c4e66d3b4
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Jun 10 01:53:37 2018 +0300
+
+    config model send event to the controller. not finished yet.
+
+commit a4564e76a11026a639f1ad2ef7d7b12311d31dce
+Merge: 90571b9 7ab1699
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat Jun 9 21:41:06 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 90571b9d98f640480569aafd5d011af3aecc0113
+Merge: 032a069 9a61e2c
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat Jun 9 21:40:42 2018 +0300
+
+    log model
+
+commit 7ab1699948de2a97601ac0a41875ec6468869068
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat Jun 9 21:08:31 2018 +0300
+
+    communication test succeed
+
+commit 9a61e2c9fd35d6f1067c4e71d40010dbb0324d7f
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat Jun 9 19:38:42 2018 +0300
+
+    Continue with Config
+
+commit 032a069d0220892ddb33fd98a81366a33b898803
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat Jun 9 18:04:51 2018 +0300
+
+    change app config so it will work at my computer
+
+commit 7c9e41ee0e3cb8d6a10e060b6a7048490427f9e5
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat Jun 9 00:15:43 2018 +0300
+
+    controller and config changes
+
+commit 329426a8db1ecb35f174c45aebc9391788f68b38
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri Jun 8 14:03:01 2018 +0300
+
+    start config
+
+commit e99f15373c80300ed601526b2086e50da062e97f
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri Jun 8 13:36:30 2018 +0300
+
+    adding client to web application
+
+commit 91902159ef6eea023f895dcc3b9acbf07afc2de4
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu Jun 7 20:40:39 2018 +0300
+
+    Start of web Application
+
+commit 24cd9456edfeb59e969ca92e503365d41b37f23c
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun May 27 21:34:24 2018 +0300
+
+    deleting redundant files directories
+
+commit 640bb6d54a87052b16a6e7a3b2c37323438f1321
+Merge: 879db5f 7a7c06a
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun May 27 18:23:35 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 879db5f4f0cffa48538bb7bf73db079faf26db8b
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun May 27 18:23:16 2018 +0300
+
+    Documantaion added.
+
+commit 7a7c06a2cb7ff4bc9858f01701e46001ca7ae0d0
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun May 27 14:01:49 2018 +0300
+
+    remove column span from settings xaml
+
+commit 2efe8d813a273d100bb8f2efc8c14045bd6b5c0f
+Merge: 33de17c 1aac975
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun May 27 02:17:20 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 33de17c37c3ac587848286e0d9a244c8ddf6e5a3
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun May 27 02:17:07 2018 +0300
+
+    Final Canges
+
+commit 1aac97573d215a91d37cdc3364bc4edb56394e30
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun May 27 01:45:46 2018 +0300
+
+    coding style in gui
+
+commit 67277d5ce54e8872a8be17f175f07c1b6e94d146
+Merge: 1c7f947 46a6ae1
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun May 27 01:18:09 2018 +0300
+
+    All workssssssssssssssssssss!!!!!!!!!!!!
+
+commit 1c7f947020ef5c596a63b226fc58d0656dcf4684
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat May 26 22:10:04 2018 +0300
+
+    Addig debug loggs
+
+commit 46a6ae1e8f0dd509d5039732e149364b8070bb1a
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 26 22:09:22 2018 +0300
+
+    fixing method command to server in settings model
+
+commit 95d75e40e2b719306648ca7a4599f8212636a905
+Merge: bf103ba 0c607f5
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat May 26 21:30:04 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit bf103bad7e69dc7940e65f99a9e5e681b5cb59fc
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat May 26 21:29:44 2018 +0300
+
+    Service can be closed after a gui has didconnected
+
+commit 0c607f5cb08f23ccd418014804c4526cd65cf29e
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 26 17:43:33 2018 +0300
+
+    in gui Comments and methods in settings model that the view model settings uses them
+
+commit 719631e42afea9cb4cee2fc78208f1090b15a00a
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 26 14:17:44 2018 +0300
+
+    now we can scroll in logs
+
+commit 1f4fb254b56af748ab509bc0cde1bd0a9fa8658d
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 26 12:58:53 2018 +0300
+
+    Settings with uppercase, scrolling in logs
+
+commit aa70ca40f84e0f5ddebfb68f5a25b6d4269b6588
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat May 26 02:25:53 2018 +0300
+
+    Getting all loggs
+
+commit 0aebcafcc4849b3ff7a68e815399e3c4dd98b395
+Merge: 2e4320c fa39819
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 26 01:57:02 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 2e4320c911eb762b241e312a981bc4675e3a095b
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 26 01:56:28 2018 +0300
+
+    scroll
+
+commit fa3981937d69aee4d3368336b1fbd3f250f33015
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat May 26 01:52:56 2018 +0300
+
+    Remove ecccecive logs
+
+commit b6e2e3cbdf7955e5a690ca57a6af1fe5ff6fb266
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 26 01:38:40 2018 +0300
+
+    SCROLL IN LOGS
+
+commit 1140d4796f808b5f03f0b3e38ea8048e922521f4
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat May 26 01:23:00 2018 +0300
+
+    Loging is (partially) working
+
+commit 17efa5421ef3990217ceaae9fda948cf0dcc7464
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 25 22:34:55 2018 +0300
+
+    few comments
+
+commit cf8e5dee8a513b3046264bf825fb85dd078e4609
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 25 20:54:55 2018 +0300
+
+    dispatcher
+
+commit 1b5e546fa98e35108e84fc1af8b2490d0666032a
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 25 19:25:17 2018 +0300
+
+    need dispatcher
+
+commit c27006baecd749f6226936dee109a650229fc0c6
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 25 16:29:46 2018 +0300
+
+    start running
+
+commit 2e07b7b6950751c59cd926df7c11f1a151f0bf02
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 25 13:35:50 2018 +0300
+
+    start dubuging with logs
+
+commit 89fdbb43e8d7f733baed407c8de98531a19b5c9f
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 25 02:25:12 2018 +0300
+
+    isTaskCanceled
+
+commit 56b7ac6d75e0e7263ba084c850e8cd26e627ea6e
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 25 02:22:49 2018 +0300
+
+    LITTLE CHANGES
+
+commit 438ea66baf0cf5936158a0b0d6c3e10e8970aa17
+Author: Yifat <yifatyank@gmail.com>
+Date:   Fri May 25 02:20:29 2018 +0300
+
+    I think the code is done
+
+commit 359a2157584013da37e5681f5f23ed7f7818fa67
+Merge: 12f1c5e c0bebf1
+Author: Yifat <yifatyank@gmail.com>
+Date:   Fri May 25 00:06:48 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 12f1c5e3fb26acd3e19c15ff682b37c3884e9851
+Author: Yifat <yifatyank@gmail.com>
+Date:   Fri May 25 00:06:31 2018 +0300
+
+    First communication command,
+    the server gives the client the configurations, and the logs has recivesd so far.
+
+commit c0bebf1d0fd9303d702ccacae7b6ad177530214b
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu May 24 23:05:52 2018 +0300
+
+    loging model
+
+commit b97cdf559b2741f58459767b103d279beee59c8f
+Merge: 779a230 e4473a9
+Author: Yifat <yifatyank@gmail.com>
+Date:   Thu May 24 20:32:06 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 779a230dd83d2445bbf2ee17c4665f4afcd745ef
+Author: Yifat <yifatyank@gmail.com>
+Date:   Thu May 24 20:31:39 2018 +0300
+
+    fix get logs command
+
+commit e4473a9be9b81fae0b503880c2bc49c26725948b
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu May 24 19:52:37 2018 +0300
+
+    CLIENT START LISTEN TO SERVER
+
+commit 34bb60010d3188ae8573a6aa90ce63326d0dd653
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu May 24 17:56:02 2018 +0300
+
+    HIII
+
+commit 741431b00feb078722f607805b88b8fcc9ad90e8
+Merge: c12ca62 b5e9a34
+Author: Yifat <yifatyank@gmail.com>
+Date:   Thu May 24 14:40:55 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit c12ca6220085e61bcd8e16c26974734fe07c3f78
+Author: Yifat <yifatyank@gmail.com>
+Date:   Thu May 24 14:40:37 2018 +0300
+
+    getLogCommand
+
+commit b5e9a346361e3891f7c401544641941d4d3d98d2
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu May 24 14:25:37 2018 +0300
+
+    backgrond white if connected
+
+commit 0def66b93e17c60a0358f12f0602aa1099fc48ea
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu May 24 14:20:52 2018 +0300
+
+    making grey background if disconnected
+
+commit 2cd2f694a4c3a3d483cc15c561f4d95017afc32c
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu May 24 01:51:02 2018 +0300
+
+    mutex in client
+
+commit 6e4ee7f2b9f82f69f4050751dec044602a435ba5
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed May 23 20:54:03 2018 +0300
+
+    heyyyy
+
+commit 926a757800f7f27509f120c0abecb7e269fe27ff
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed May 23 20:35:39 2018 +0300
+
+    try and catch in client
+
+commit 01e1e4227c1b3052c2c899a446b163e3a801e80a
+Merge: d2161f3 8700157
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed May 23 20:31:16 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit d2161f3d5ff288e1e7f962453922e613d1033385
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed May 23 20:28:21 2018 +0300
+
+    Handle exception in client class
+
+commit 87001578e4626820d48066380da71bc6b5b4159b
+Merge: 6536078 42e1dd9
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed May 23 19:50:49 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit 6536078ee6c6198ee19915cb88c051cf7f826c1c
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed May 23 19:50:04 2018 +0300
+
+    clientsMannaget
+
+commit 42e1dd9b20f34fdadeb3a52ad5c4a03b0fb1f867
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed May 23 19:35:29 2018 +0300
+
+    fixing bugs from git the zevel
+
+commit 941d90c1345e6e506b063ebf2b5394461ff7c1ae
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed May 23 18:48:11 2018 +0300
+
+    deleted garbage
+
+commit 4b5f2f4e9de738ace623c6167acce225b3a33f08
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed May 23 17:33:05 2018 +0300
+
+    is it ok now
+
+commit 8bbc307f059e3a5b5b26902c14ddbf24f761ac9e
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed May 23 17:27:04 2018 +0300
+
+    Revert "Settings model  get commands from the server"
+    
+    This reverts commit 10b194ce07145edaebdd93a3102fc1fe9304c4bb.
+
+commit 0441f181f2642fb3174cc2f453c21fe878e394e6
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed May 23 17:26:27 2018 +0300
+
+    Revert "after merge"
+    
+    This reverts commit ed5b55df005643c4745a98c27704d2516704c728, reversing
+    changes made to f113bbb8f856e54aac813e82a0c5dab19c1f149d.
+    y
+
+commit 48aab383f325f559ff9f4df54b0efa7ad55498a3
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed May 23 17:07:12 2018 +0300
+
+    Revert "fix a manespace problem"
+    
+    This reverts commit cbc836302a6e98935f43e4dd9241f90abd1b071f.
+
+commit 2ac8edde8ce5cb81fb0d07dfc3a0278dbb2c9c14
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed May 23 16:38:19 2018 +0300
+
+    try
+    
+    khgf
+
+commit a8a4eec1f315241a8a35e229851a2f5dfce18591
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed May 23 13:37:04 2018 +0300
+
+    Revert "Finish get log command, continue with clients hadlers."
+    
+    This reverts commit 4896ccdb047167e7de7316074823f046cb33752f.
+
+commit 10b194ce07145edaebdd93a3102fc1fe9304c4bb
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 19 13:06:30 2018 +0300
+
+    Settings model  get commands from the server
+
+commit a7afc6fa5f98dcc6d44f23ff620e86624d8d8418
+Merge: 193d008 e3ced37
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat May 19 03:03:29 2018 +0300
+
+    finish log command
+    continue with communocation
+
+commit 193d008a71f3bda9490829a95c4e26cdbf84665e
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat May 19 02:59:26 2018 +0300
+
+    finish log command, concinue with the server, and the clients handler
+
+commit 4896ccdb047167e7de7316074823f046cb33752f
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sat May 19 00:47:09 2018 +0300
+
+    Finish get log command, continue with clients hadlers.
+
+commit e3ced376930d902de16dd97a3d73437acc8d4253
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 18 17:11:47 2018 +0300
+
+    HEYUSH
+
+commit 8c92129537d320c3e9379e0095f510690f533921
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 18 14:12:26 2018 +0300
+
+    comment hag sameh
+
+commit b59dd970f22d6b8f28bf168accdf05c262976d1d
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 18 14:11:23 2018 +0300
+
+    client gui in settings
+
+commit 16e41577ba35578d5e7e0a853f65338578bf56d1
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 18 02:41:31 2018 +0300
+
+    COMMENTS
+
+commit e07156d242657a6f0b9c1cd33f56015c17053a2f
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 18 00:17:57 2018 +0300
+
+    commands to gui client
+
+commit cbc836302a6e98935f43e4dd9241f90abd1b071f
+Author: Yifat <yifatyank@gmail.com>
+Date:   Thu May 17 14:09:10 2018 +0300
+
+    fix a manespace problem
+
+commit ed5b55df005643c4745a98c27704d2516704c728
+Merge: f113bbb 089055f
+Author: Yifat <yifatyank@gmail.com>
+Date:   Thu May 17 13:48:51 2018 +0300
+
+    after merge
+
+commit f113bbb8f856e54aac813e82a0c5dab19c1f149d
+Author: Yifat <yifatyank@gmail.com>
+Date:   Thu May 17 13:46:27 2018 +0300
+
+    kululu kululay!!
+
+commit 089055fe8cce23f2079fd12b5edd53f6c81f43fe
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed May 9 00:24:19 2018 +0300
+
+    comment
+
+commit 46015252e3c44a40a38195ee5bb4888068ddc0e7
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed May 9 00:22:07 2018 +0300
+
+    task in Command to service
+
+commit c505301f9a1aaae997fe7cf650e0616d3e43c947
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Tue May 8 23:36:20 2018 +0300
+
+    Start of client in gui
+
+commit 01470f389bb5f46450ceacbdf20e396d6371cf3b
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon May 7 14:43:32 2018 +0300
+
+    fix the convertor to color
+
+commit b87784c698b6af350ee122b9c388ec8c30527fc8
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon May 7 01:22:44 2018 +0300
+
+    log view screen , start of changing the background
+
+commit 23d59a9e0dfa559212d58c651fe0c2fb106cf764
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun May 6 19:51:40 2018 +0300
+
+    view logs tab
+
+commit 166bad4f94e9073f4fbd2d8065ecdd1f74a69869
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun May 6 13:27:20 2018 +0300
+
+    Fixing settings view xaml
+
+commit cbb81311dd5dc4ab89c2a8d7336b274afb3a027d
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 5 23:46:41 2018 +0300
+
+    creating settings gui
+
+commit a4274120b90fcf14378927c014869175bc730be9
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 5 15:45:20 2018 +0300
+
+    changes
+
+commit 97b2bd849937aa5d4596eca8421e97058d0a181e
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat May 5 00:04:04 2018 +0300
+
+    settings vm changing
+
+commit 53a8a41f0001e0adf479f4cef75c0ffb814b9d14
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 4 14:27:04 2018 +0300
+
+    OnPropertyChanged
+
+commit aff0b5518bc39fc157c27351a9814646d7ca1273
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 4 14:21:46 2018 +0300
+
+    SETTINGS VIEW MODEL
+
+commit 13efd805f9c4041c8129594b0c714021d6126349
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri May 4 02:03:32 2018 +0300
+
+    more gui
+
+commit b1b5592df51f2607001e04a9ae021ae1a3fed339
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu May 3 20:39:58 2018 +0300
+
+    START OF GUI
+
+commit 436cdda017ad747f1be2d9339fa895f23bcd7a8b
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Apr 15 20:54:44 2018 +0300
+
+    Fixing ImageModal
+
+commit ec55793921b689523c792577becc7f814f4bd02c
+Merge: f4aedae 7529f5d
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Apr 15 20:52:09 2018 +0300
+
+    Merge branch 'master' of https://github.com/omerDekel/ImageService
+
+commit f4aedaea1f2d9af23e5dca2c831486b95c8d289c
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Apr 15 20:48:02 2018 +0300
+
+    hiiiii
+
+commit c0b83af9be72e1f2fab5539836a4d0f3f45789fa
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Apr 15 20:46:34 2018 +0300
+
+    fixing bugs
+
+commit 7529f5d5ff6be919f18acf4771295eb39e9cdf05
+Author: Yifat <yifatyank@gmail.com>
+Date:   Sun Apr 15 18:19:44 2018 +0300
+
+    commnts
+
+commit cdd3381fa33aba681de2329b929449eaa8f37e80
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Apr 15 17:24:38 2018 +0300
+
+    Making outputdir hidden directory
+
+commit 948ad2aab06e034f5fd1776c558e1c88cda7d0d6
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sun Apr 15 01:37:43 2018 +0300
+
+    comments to image server,modlas ,controller.
+
+commit 79145272e2455d6e02d0f4e7cf535c20a9383ad6
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat Apr 14 13:43:56 2018 +0300
+
+    Changing from copy to move
+
+commit 4661f88fd374d47da755bfdc2eb81204e79ae6d9
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri Apr 13 14:17:54 2018 +0300
+
+    fixing image modal and directory handler
+
+commit f7d3b38fb4e4a74c13cee74b6fc1935565846497
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu Apr 12 15:10:27 2018 +0300
+
+    updating the service
+
+commit ee96b7e3d65d1e03fbd8717bd69ff7973afd9ff0
+Author: Yifat <yifatyank@gmail.com>
+Date:   Thu Apr 12 00:56:13 2018 +0300
+
+    addind appconfig and finish image service
+
+commit e14f6a394f11f2ba69ce90727d50adcedb855759
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed Apr 11 23:05:58 2018 +0300
+
+    Image Server and changes in directory handler .
+
+commit a401b27f08d87dd6989a9f5eb138f43743851d9d
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed Apr 11 19:38:25 2018 +0300
+
+    adding comments
+
+commit b1a71c86f823d8cd6c00dc07c9d14eaf7bc496f9
+Author: Yifat <yifatyank@gmail.com>
+Date:   Wed Apr 11 18:56:15 2018 +0300
+
+    add cpmments
+
+commit 2dc9a838725645935c526fdf2ea46d73ce6b1eaa
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Tue Apr 10 21:02:33 2018 +0300
+
+    updating directory handler message to the log and closing handler
+
+commit 022886613983dafec56fc363ff8ec10eef3b9ca5
+Author: Yifat <yifatyank@gmail.com>
+Date:   Mon Apr 9 21:32:35 2018 +0300
+
+    a log is sent when a file is moved.
+
+commit d1f3cb56a3f29cc2e3d0703b9819c4aebcdf6b42
+Author: Yifat <yifatyank@gmail.com>
+Date:   Mon Apr 9 19:53:35 2018 +0300
+
+    add logging
+
+commit e4928ec8eec1ff748d0a744c46822d18cd1dad7b
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Mon Apr 9 17:26:52 2018 +0300
+
+    hiii
+
+commit 6354e33bd43da83e2b804a7e1095d922550588e5
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Sat Mar 31 21:31:45 2018 +0300
+
+    start impiement DirectoryHandler , need to continue with startHandle function implement
+
+commit de101d03a1981b1151c500458a505bfad77bd285
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri Mar 30 14:51:36 2018 +0300
+
+    updating the classes :  Image Controller and commends
+
+commit 70dba2a2a36fd670e50b148a9dbfbb328c149282
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri Mar 30 03:24:53 2018 +0300
+
+    updating the addFile function and the constructor in image modal class
+
+commit 6f90df0824c2100af92fac68fb92005c2a084bd3
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Fri Mar 30 03:19:06 2018 +0300
+
+    ADDfile
+
+commit c3d7ebdd8277cc30e57048b58fedbb0a5f3396e7
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Thu Mar 29 01:32:06 2018 +0300
+
+    Start of the image modal
+
+commit c87638c2509ddc515fea1dc86b66837e8ab046fd
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed Mar 28 18:22:21 2018 +0300
+
+    Initial commit
+
+commit 151d77aff4397b21e1f54c800a0cf93799fc1a76
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed Mar 28 18:16:42 2018 +0300
+
+    Add project files.
+
+commit aa631c10c1d56ca953429c91968b741d030ef792
+Author: Omer Dekel <omerdekel92@gmail.com>
+Date:   Wed Mar 28 18:16:26 2018 +0300
+
+    Add .gitignore and .gitattributes.

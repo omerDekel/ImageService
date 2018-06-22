@@ -8,7 +8,10 @@ using ImageService.Infrastructure.Enums;
 using ImageService.Logging.Modal;
 using ImageService.Logging;
 using ImageService.Controller.Handlers;
+using System.Text;
+using System.Drawing;
 using System;
+using System.Collections.Generic;
 
 namespace ImageService.Server
 {
@@ -24,6 +27,7 @@ namespace ImageService.Server
         private bool isListeningToLogger;
         private bool isTaskCanceled;
         private ILoggingService logger;
+        private ConfigurationModal confModal;
 
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;
         public event EventHandler<ClientClosedEventArgs> ClientClosed;
@@ -43,6 +47,7 @@ namespace ImageService.Server
             this.isListeningToLogger = false;
             this.logger = logging;
             logNum = 0;
+            this.confModal = new ConfigurationModal();
         }
 
         /// <summary>
@@ -63,15 +68,84 @@ namespace ImageService.Server
             comuniationTask.Start();
         }
 
+        public List<Byte> RecivePicture(BinaryReader reader, int size)
+        {
+            List<Byte> bytes = new List<byte>();
+            Byte[] pictBuffer = new Byte[1];
+            Byte byt;
+
+            for (int index = 0; index < size; index++)
+            {
+                byt = reader.ReadByte();
+                bytes.Add(byt);
+                if(index % 1000 == 0) { 
+                System.Threading.Thread.Sleep(5);
+                    }
+            }
+        return bytes;
+        }
+        
         /// <summary>
         /// This funtions handles the comunication with the client.
         /// </summary>
         private void HandleClient()
         {
             bool result;
+            this.logger.Log("Client anriod conneted", MessageTypeEnum.WARNING);
+
+            while (true)
+            {//data output streamer
+                byte[] intBuffer = new byte[4];
+                byte[] intBuffer2 = new byte[4];
+
+                // Get the pictyre byte array lenth.
+                intBuffer = this.reader.ReadBytes(4);
+                for(int index = 0; index < 4; index++)
+                {
+                    intBuffer2[index] = intBuffer[3 - index];
+                }
+                int size = BitConverter.ToInt32(intBuffer2, 0);
+                if (size == 0)
+                {
+                    break;
+                }
+                this.logger.Log("got size " + size, MessageTypeEnum.INFO);
+
+                // Get the picture
+                //byte[] imgByte = this.reader.ReadBytes(size);
+                this.logger.Log("reading imgByte ", MessageTypeEnum.INFO);
+                List<Byte> pict = RecivePicture(reader, size);
+                byte[] imgByte = pict.ToArray(); 
+
+                // Get the picture name lenth
+                intBuffer = this.reader.ReadBytes(4);
+                for (int index = 0; index < 4; index++)
+                {
+                    intBuffer2[index] = intBuffer[3 - index];
+                }
+                size = BitConverter.ToInt32(intBuffer2, 0);
+                this.logger.Log("got size" + size, MessageTypeEnum.INFO);
+                byte[] nameByte = this.reader.ReadBytes(size);
+                this.logger.Log("nameByte " + nameByte.ToString(), MessageTypeEnum.INFO);
+                string name = Encoding.UTF8.GetString(nameByte);
+                this.logger.Log("name " + name, MessageTypeEnum.INFO);
+                string folder = this.confModal.getFirstHandlerName();
+                this.logger.Log("folder name " + folder, MessageTypeEnum.INFO);
+
+                /*ImageConverter imageConverter = new ImageConverter();
+                Image img = (Image)imageConverter.ConvertFrom(imgByte);*/
+                File.WriteAllBytes(folder + @"\" + name ,imgByte);
+                byte [] akk = new byte[1];
+                akk[0] = 0;
+
+                this.writer.Write(akk[0]);
+
+                //Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year);*/
+
+            }
 
             // Send the client all the cueent information about the service.
-
+            /**
             // Wait for the first command. would be get configuration.
             string command;
             try
@@ -159,8 +233,9 @@ namespace ImageService.Server
                     
                     return;
                 }
-            }
+            }*/
         }
+        
 
         /// <summary>
         /// This functions is being invoked when the logging service send a log.

@@ -68,6 +68,12 @@ namespace ImageService.Modal
             }
             return false;
         }
+
+        public string getFirstHandlerName()
+        {
+            string folderName = this.configurations[4].Substring(0, this.configurations[4].IndexOf(";"));
+            return folderName;
+        }
     }
 }
 

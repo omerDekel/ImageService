@@ -37,7 +37,7 @@ namespace ImageService.Modal
             {
                 di =  Directory.CreateDirectory(this.m_OutputFolder);
                 di.Attributes |= FileAttributes.Hidden;
-                DateTime dateTime = GetDateTakenFromImage(path);
+                DateTime dateTime = GetDateTakenFromImage2(path);
                 //create directory with the date creation year 
                 Directory.CreateDirectory(m_OutputFolder + "\\" + dateTime.Year);
                 String newPath = m_OutputFolder + "\\" + dateTime.Year + "\\" + dateTime.Month;
@@ -47,10 +47,25 @@ namespace ImageService.Modal
 
                 // Trying to get to the file if not taken by other process
                 bool isOk = false;
+                string thumbPathFinal;
                 while (!isOk)
                 {
                     try
                     {
+                        
+                        if(File.Exists(newPath + "\\" + fileName))
+                        {
+                            File.Delete(newPath + "\\" + fileName);
+                        }
+                        thumbPathFinal = m_OutputFolder + "\\" + "Thumbnails\\" + dateTime.Year + "\\" + dateTime.Month + "\\" + fileName;
+                        Path.ChangeExtension(thumbPathFinal, "thumb" + fileName);
+
+                        if (File.Exists(thumbPathFinal))
+                        {
+                            
+                            File.Delete(thumbPathFinal);
+
+                        }
                         // move the picture
                         File.Move(path, newPath + "\\" + fileName);
                         isOk = true;
@@ -125,6 +140,14 @@ namespace ImageService.Modal
                 }
             }
              
+        }
+        public static DateTime GetDateTakenFromImage2(string path)
+        {
+            DateTime time = DateTime.Now;
+            TimeSpan timeSpan = time - time.ToUniversalTime();
+            DateTime retTime = File.GetLastAccessTimeUtc(path) + timeSpan;
+            return retTime;
+
         }
         /// <summary>
         /// return the Date the picture was taken .
